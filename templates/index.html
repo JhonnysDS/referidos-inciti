@@ -1,0 +1,16 @@
+{% extends "base_template.html" %}
+
+{% block title %}Iniciar sesion {{ slug_title }}{% endblock %}
+
+{% block content %}
+     <div class="login-page">
+            <div class="form">
+              <form class="login-form">
+                <img class="logo" src="{{url_for('static', filename='imagenes/logo blue.png')}}" alt="Inciti">
+                <input type="email" placeholder="Correo"/>
+                <input type="password" placeholder="Contraseña"/>
+                <button>iniciar sesion</button>
+              </form>
+            </div>
+          </div>
+{% endblock %}

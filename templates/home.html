@@ -1,0 +1,109 @@
+{% extends "base_template.html" %}
+
+{% block title %}Principal {{ slug_title }}{% endblock %}
+
+{% block content %}
+     <div class="logotype">
+        <img src="{{url_for('static', filename='imagenes/Logo white.png')}}" alt="Logo inciti">
+        <a href="#">Cerrar Sesion</a>
+    </div>
+    <!-- Contenedor principal -->
+	<div class="menu">
+		<h1>Plan de referidos</h1>
+
+		<ul class="menu__tabs">
+			<li><a class="active" href="#item-1"><i class="fa fa-star"></i> Mis Referidos</a></li>
+			<li><a href="#item-2"><i class="fa fa-link"></i> Mis referidos vinculados </a></li>
+			<li><a href="#item-3"><i class="fa fa-photo"></i> Agregar nuevo referido</a></li>
+            <li><a href="#item-4"><i class="fa fa-photo"></i> Mis bonos</a></li>
+		</ul>
+		<section class="menu__wrapper">
+			<article id="item-1" class="menu__item item-active">
+				<h3>Datos de mis referidos</h3>
+				<table class="table">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Celular</th>
+                    </tr>
+                    <tr>
+                        <td>Juan José Gonzalez Perez</td>
+                        <td>Juangonzales@gmail.com</td>
+                        <td>3215398925</td>
+                    </tr>
+                    <tr>
+                        <td>Juan José Gonzalez Perez</td>
+                        <td>Juangonzales@gmail.com</td>
+                        <td>3215398925</td>
+                    </tr>
+
+                </table>
+			</article>
+
+			<article id="item-2" class="menu__item">
+
+				<h3>Datos de mis referidos</h3>
+
+				<table class="table">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Celular</th>
+                    </tr>
+                    <tr>
+                        <td>Juan José Gonzalez Perez</td>
+                        <td>Juangonzales@gmail.com</td>
+                        <td>3215398925</td>
+                    </tr>
+                    <tr>
+                        <td>Juan José Gonzalez Perez</td>
+                        <td>Juangonzales@gmail.com</td>
+                        <td>3215398925</td>
+                    </tr>
+
+                </table>
+                <p>NOTA: Se consideran vinculados clientes referidos que ya firmaron carta de instrucción</p>
+			</article>
+
+			<article id="item-3" class="menu__item">
+				<h3>Ingresa los datos de tu nuevo referido</h3>
+                <input type="text"  placeholder="Nombre del referido" required>
+                <input type="email" placeholder="Correo del referido" required>
+                <input type="number" placeholder="Celular del referido" required>
+                <div class="container-radio">
+                    <input type="radio" id="check-term" name="check-term"><label for="check-term">  Acepto los <a href="/term-conditions.html" target="_blank">términos y condiciones del plan.</a></label>
+                </div>
+                <input type="submit" value="Enviar Referido">
+			</article>
+
+            <article id="item-4" class="menu__item">
+				<h3>Mis bonos</h3>
+                <table class="table">
+                    <tr>
+                        <th>Referido</th>
+                        <th>Apartamento</th>
+                        <th>bono</th>
+                    </tr>
+                    <tr>
+                        <td>Juan José Gonzales Pérez</td>
+                        <td>1A</td>
+                        <td>$2.000.000</td>
+                    </tr>
+                    <tr>
+                        <td>Juan José Gonzales Pérez</td>
+                        <td>2B</td>
+                        <td>$2.000.000</td>
+                    </tr>
+                </table>
+                <div class="container-total">
+                    <h4>Total: $ 4.000.000</h4>
+                </div>
+			</article>
+		</section>
+		<div class="menu--shadow"></div>
+	</div>
+{% endblock %}
+{% block scripts %}
+    <script src="{{url_for('static', filename='/plugins/jquery/jquery-3.4.1.js')}}"></script>
+    <script src="{{url_for('static', filename='/js/menutabular.js')}}"></script>
+{% endblock %}
