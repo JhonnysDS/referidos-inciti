@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base_template.html" %}
+
+{% block title %}Iniciar sesion {{ slug_title }}{% endblock %}
+
+{% block content %}
+      <div class="login-page">
+        <div class="form">
+          <form class="register-form">
+            <img class="logo" src="{{url_for('static', filename='imagenes/logo blue.png')}}" alt="Inciti">
+            <input type="text" name="name" id="name" placeholder="Nombre"/>
+            <input type="password" name="password" id="password" placeholder="Contraseña"/>
+            <input type="text" name="email" id="email" placeholder="Correo"/>
+            <input type="submit" id="send-signup" name="signup" value="Crear cuenta">
+            <div class="ref-login-signup">
+                <p>Ya tengo una cuenta: <a href="/login.html">iniciar sesión</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+{% endblock %}
