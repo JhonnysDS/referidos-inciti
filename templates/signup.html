@@ -5,12 +5,31 @@
 {% block content %}
       <div class="login-page">
         <div class="form">
-          <form class="register-form">
-            <img class="logo" src="{{url_for('static', filename='imagenes/logo blue.png')}}" alt="Inciti">
-            <input type="text" name="name" id="name" placeholder="Nombre"/>
-            <input type="password" name="password" id="password" placeholder="Contraseña"/>
-            <input type="text" name="email" id="email" placeholder="Correo"/>
-            <input type="submit" id="send-signup" name="signup" value="Crear cuenta">
+          <form class="register-form" action="" method="post" novalidate>
+              {{ form.hidden_tag() }}
+              <img class="logo" src="{{url_for('static', filename='imagenes/logo blue.png')}}" alt="Inciti">
+              <div>
+                  {{ form.username(placeholder="Nombre de Usuario")}}
+                  {% for error in form.username.errors %}
+                  <span style="color: red;">{{ error }}</span>
+                  {% endfor %}
+              </div>
+              <div>
+                  {{ form.password(placeholder="Contraseña")}}
+                  {% for error in form.password.errors %}
+                  <span style="color: red;">{{ error }}</span>
+                  {% endfor %}
+              </div>
+              <div>
+                  {{ form.email(placeholder="Correo")}}
+                  {% for error in form.email.errors %}
+                  <span style="color: red;">{{ error }}</span>
+                  {% endfor %}
+              </div>
+              <div>
+                  {{ form.submit()}}
+                    <!--<input type="submit" id="send-signup" name="signup" value="Crear cuenta">-->
+              </div>
             <div class="ref-login-signup">
                 <p>Ya tengo una cuenta: <a href="/login.html">iniciar sesión</a></p>
             </div>

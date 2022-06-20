@@ -7,7 +7,7 @@ class SignupForm(FlaskForm):
     username = StringField('Nombre', validators=[DataRequired(), Length(max=64)])
     password = PasswordField('Contraseña', validators=[DataRequired()])
     email = StringField('Correo', validators=[DataRequired(), Email()])
-    Submit = SubmitField('Crear cuenta')
+    submit = SubmitField('Crear cuenta')
 
 
 

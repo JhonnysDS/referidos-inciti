@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
-
+from forms import SignupForm
 app = Flask(__name__)
+app.config['SECRET_KEY'] = '7110c8ae51a4b5af97be6534caef90e4bb9bdcb3380af008f90b23a5d1616bf319bc298105da20fe'
+
 
 posts = []
 
@@ -12,16 +14,18 @@ def index():
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.formm['password']
-        email = request.form['email']
+    form = SignupForm()
+
+    if form.validate_on_submit():
+        username = form.username.data
+        password = form.password.data
+        email = form.email.data
 
         next = request.args.get('next', None)
         if next:
             return redirect(next)
         return redirect(url_for('home'))
-    return render_template("signup.html")
+    return render_template("signup.html", form=form)
 
 
 @app.route("/home/")
