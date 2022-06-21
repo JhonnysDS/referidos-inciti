@@ -3,6 +3,9 @@
 {% block title %}Iniciar sesion {{ slug_title }}{% endblock %}
 
 {% block content %}
+    {% if error %}
+        <p style="color: red;"><strong>Error:</strong> {{ error }}
+    {% endif %}
       <div class="login-page">
         <div class="form">
           <form class="register-form" action="" method="post" novalidate>
@@ -31,7 +34,7 @@
                     <!--<input type="submit" id="send-signup" name="signup" value="Crear cuenta">-->
               </div>
             <div class="ref-login-signup">
-                <p>Ya tengo una cuenta: <a href="/login.html">iniciar sesión</a></p>
+                <p>Ya tengo una cuenta:  <a href="{{ url_for('login') }}">iniciar sesión</a></p>
             </div>
           </form>
         </div>

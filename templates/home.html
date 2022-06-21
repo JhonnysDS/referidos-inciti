@@ -26,17 +26,13 @@
                         <th>Correo</th>
                         <th>Celular</th>
                     </tr>
+                    {% for user_referred in users_referred %}
                     <tr>
-                        <td>Juan José Gonzalez Perez</td>
-                        <td>Juangonzales@gmail.com</td>
-                        <td>3215398925</td>
+                        <td>{{ user_referred.name }}</td>
+                        <td>{{ user_referred.email }}</td>
+                        <td>{{ user_referred.cellphone}}</td>
                     </tr>
-                    <tr>
-                        <td>Juan José Gonzalez Perez</td>
-                        <td>Juangonzales@gmail.com</td>
-                        <td>3215398925</td>
-                    </tr>
-
+                    {% endfor %}
                 </table>
 			</article>
 
