@@ -1,23 +1,13 @@
-from flask import Flask, render_template, request, redirect, url_for
-from flask_login import LoginManager, current_user, login_user, logout_user, login_required
+from flask import render_template, redirect, url_for, request
+from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
-from flask_sqlalchemy import SQLAlchemy
-from app.auth.forms import SignupForm, LoginForm
-
-app = Flask(__name__)
-app.config['SECRET_KEY'] = '7110c8ae51a4b5af97be6534caef90e4bb9bdcb3380af008f90b23a5d1616bf319bc298105da20fe'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root@localhost/referidos_inciti'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-login_manager = LoginManager(app)
-login_manager.login_view = "login"
-db = SQLAlchemy(app)
+from app import login_manager
+from . import auth_bp
+from .forms import SignupForm, LoginForm
+from .models import User, UserReferred
 
 
-from app.auth.models import User, UserReferred
-
-
-@app.route("/signup", methods=["GET", "POST"])
+@auth_bp.route("/signup", methods=["GET", "POST"])
 def signup():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
@@ -45,7 +35,7 @@ def signup():
     return render_template("signup.html", form=form)
 
 
-@app.route("/login", methods=["GET", "POST"])
+@auth_bp.route("/login", methods=["GET", "POST"])
 def login():
     error = None
     if current_user.is_authenticated:
@@ -70,20 +60,20 @@ def load_user(user_id):
     return User.get_by_id(int(user_id))
 
 
-@app.route('/logout')
+@auth_bp.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('login'))
 
 
-@app.route("/home/")
+@auth_bp.route("/home/")
 @login_required
 def listviewreferred():
     users_referred = UserReferred.get_all()
     return render_template("home.html", users_referreds=users_referred)
 
 
-@app.route("/home/terminosycondiciones/")
+@auth_bp.route("/home/terminosycondiciones/")
 @login_required
 def view_term():
     return render_template("term-conditions.html")
