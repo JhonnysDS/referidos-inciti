@@ -1,6 +1,6 @@
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
-from app import db
+from app.public.app import db
 
 
 class User(db.Model, UserMixin):
@@ -42,7 +42,7 @@ class UserReferred(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), unique=True, nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
-    cellphone = db.column(db.Integer()) #arreglar esta parte del nullable.
+    cellphone = db.Column(db.Integer,  nullable=False)
 
     def __repr__(self):
         return f'<UserReferred {self.name}>'
