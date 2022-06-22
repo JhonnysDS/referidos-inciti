@@ -7,7 +7,7 @@ from forms import SignupForm, LoginForm
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '7110c8ae51a4b5af97be6534caef90e4bb9bdcb3380af008f90b23a5d1616bf319bc298105da20fe'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root@localhost/referidos_inciti'
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 login_manager = LoginManager(app)
 login_manager.login_view = "login"
@@ -15,25 +15,6 @@ db = SQLAlchemy(app)
 
 
 from models import User, UserReferred
-
-
-posts = []
-
-
-@app.route("/login", methods=["GET", "POST"])
-def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('home'))
-    form = LoginForm()
-    if form.validate_on_submit():
-        user = User.get_by_username(form.username.data)
-        if user is not None and user.check_password(form.password.data):
-            login_user(user, remember=form.remember_me.data)
-            next_page = request.args.get('next')
-            if not next_page or url_parse(next_page).netloc != '':
-                next_page = url_for('home')
-            return redirect(next_page)
-    return render_template("login.html", form=form)
 
 
 @app.route("/signup", methods=["GET", "POST"])
@@ -64,6 +45,26 @@ def signup():
     return render_template("signup.html", form=form)
 
 
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    error = None
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.get_by_username(form.username.data)
+        if user is not None and user.check_password(form.password.data):
+            login_user(user, remember=form.remember_me.data)
+            next_page = request.args.get('next')
+
+            if not next_page or url_parse(next_page).netloc != '':
+                next_page = url_for('home')
+
+            return redirect(next_page)
+    return render_template("login.html", form=form)
+
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.get_by_id(int(user_id))
@@ -77,7 +78,7 @@ def logout():
 
 @app.route("/home/")
 @login_required
-def listviewraferred():
+def listviewreferred():
     users_referred = UserReferred.get_all()
     return render_template("home.html", users_referreds=users_referred)
 

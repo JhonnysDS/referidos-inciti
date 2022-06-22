@@ -42,7 +42,7 @@ class UserReferred(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), unique=True, nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
-    cellphone = db.column(db.Integer, nullable=False)
+    cellphone = db.column(db.Integer()) #arreglar esta parte del nullable.
 
     def __repr__(self):
         return f'<UserReferred {self.name}>'
