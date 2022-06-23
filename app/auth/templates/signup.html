@@ -12,6 +12,18 @@
               {{ form.hidden_tag() }}
               <img class="logo" src="{{url_for('static', filename='imagenes/logo blue.png')}}" alt="Inciti">
               <div>
+                  {{ form.names(placeholder="Nombres")}}
+                  {% for error in form.names.errors %}
+                  <span style="color: red;">{{ error }}</span>
+                  {% endfor %}
+              </div>
+              <div>
+                  {{ form.last_names(placeholder="Apellidos")}}
+                  {% for error in form.last_names.errors %}
+                  <span style="color: red;">{{ error }}</span>
+                  {% endfor %}
+              </div>
+              <div>
                   {{ form.username(placeholder="Nombre de Usuario")}}
                   {% for error in form.username.errors %}
                   <span style="color: red;">{{ error }}</span>
@@ -34,7 +46,7 @@
                     <!--<input type="submit" id="send-signup" name="signup" value="Crear cuenta">-->
               </div>
             <div class="ref-login-signup">
-                <p>Ya tengo una cuenta:  <a href="{{ url_for('login') }}">iniciar sesión</a></p>
+                <p>Ya tengo una cuenta:  <a href="{{ url_for('auth.login') }}">iniciar sesión</a></p>
             </div>
           </form>
         </div>

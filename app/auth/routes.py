@@ -4,16 +4,18 @@ from werkzeug.urls import url_parse
 from app import login_manager
 from . import auth_bp
 from .forms import SignupForm, LoginForm
-from .models import User, UserReferred
+from .models import User
 
 
 @auth_bp.route("/signup", methods=["GET", "POST"])
 def signup():
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('public.index'))
     form = SignupForm()
     error = None
     if form.validate_on_submit():
+        names = form.names.data
+        last_names = form.last_names.data
         username = form.username.data
         password = form.password.data
         email = form.email.data
@@ -23,14 +25,14 @@ def signup():
             error = f'El nombre de usuario {username} ya existe.'
         else:
             # Creamos el usuario y lo guardamos
-            user = User(username=username, email=email)
+            user = User(username=username, email=email, names=names,last_names=last_names)
             user.set_password(password)
             user.save()
             # Dejamos al usuario logueado
             login_user(user, remember=True)
             next_page = request.args.get('next', None)
             if not next_page or url_parse(next_page).netloc != '':
-                next_page = url_for('home')
+                next_page = url_for('public.index')
             return redirect(next_page)
     return render_template("signup.html", form=form)
 
@@ -39,7 +41,7 @@ def signup():
 def login():
     error = None
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('public.index'))
 
     form = LoginForm()
     if form.validate_on_submit():
@@ -49,7 +51,7 @@ def login():
             next_page = request.args.get('next')
 
             if not next_page or url_parse(next_page).netloc != '':
-                next_page = url_for('home')
+                next_page = url_for('public.index')
 
             return redirect(next_page)
     return render_template("login.html", form=form)
@@ -63,17 +65,10 @@ def load_user(user_id):
 @auth_bp.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('login'))
+    return redirect(url_for('auth.login'))
 
 
-@auth_bp.route("/home/")
-@login_required
-def listviewreferred():
-    users_referred = UserReferred.get_all()
-    return render_template("home.html", users_referreds=users_referred)
-
-
-@auth_bp.route("/home/terminosycondiciones/")
+@auth_bp.route("/terminos-condiciones/")
 @login_required
 def view_term():
     return render_template("term-conditions.html")

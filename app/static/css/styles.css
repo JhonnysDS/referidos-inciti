@@ -336,3 +336,10 @@ margin: 10px;
   font: 13px mst-regular;
 }
 
+/*estilos de paginas de errores*/
+
+.errors-letters{
+color: white;
+margin: 10px;
+font: 2rem mst-regular;
+}

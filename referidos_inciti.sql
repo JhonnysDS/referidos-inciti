@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-06-2022 a las 01:27:28
+-- Tiempo de generación: 23-06-2022 a las 23:34:11
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -29,11 +29,20 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `app_user` (
   `id` int(11) NOT NULL,
+  `names` varchar(255) NOT NULL,
+  `last_names` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(128) NOT NULL,
   `creation_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `app_user`
+--
+
+INSERT INTO `app_user` (`id`, `names`, `last_names`, `username`, `email`, `password`, `creation_date`) VALUES
+(1, 'Jhonnys David', 'De Avila Salgado', 'JhonnysD21', 'kal@gmail.com', 'pbkdf2:sha256:260000$63VUyTvvkjZxjiAS$1ff4ae353c42f52bff46ab88bbbba8b8ba59d93a744a2b3bb54f6d584e947f2a', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -43,11 +52,12 @@ CREATE TABLE `app_user` (
 
 CREATE TABLE `app_user_referred` (
   `id` int(11) NOT NULL,
-  `admin_creation_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `creation_date` datetime NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `all_names` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `cellphone` int(12) NOT NULL
+  `cellphone` varchar(255) NOT NULL,
+  `term_cond` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -64,7 +74,8 @@ ALTER TABLE `app_user`
 -- Indices de la tabla `app_user_referred`
 --
 ALTER TABLE `app_user_referred`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -74,7 +85,7 @@ ALTER TABLE `app_user_referred`
 -- AUTO_INCREMENT de la tabla `app_user`
 --
 ALTER TABLE `app_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `app_user_referred`
