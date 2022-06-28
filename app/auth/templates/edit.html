@@ -1,0 +1,24 @@
+{% extends "base_template.html" %}
+
+{% block title %}Principal {{ slug_title }}{% endblock %}
+
+{% block content %}
+     <div class="logotype">
+        <img src="{{url_for('static', filename='imagenes/Logo white.png')}}" alt="Logo inciti">
+        <a href="{{ url_for('auth.logout') }}">Cerrar sesion</a>
+    </div>
+    <div class="container-term">
+        <div class="container-term-son">
+                <h2>Editar datos del referido</h2>
+                <input type="text"  placeholder="Nombre del referido" required>
+                <input type="email" placeholder="Correo del referido" required>
+                <input type="number" placeholder="Celular del referido" required>
+                <label>¿Firmó carta?</label>
+                <select>
+                    <option value="0">No</option>
+                    <option value="1">Si</option>
+                </select>
+                <input class="update" type="submit" value="Actualizar">
+        </div>
+    </div>
+{% endblock %}
