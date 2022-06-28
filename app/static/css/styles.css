@@ -11,6 +11,13 @@
     font-family: mst-bold;
     src: url(../fonts/montserrate/Montserrat-Bold.otf); }
 
+
+.span-error{
+color: red;
+font: 13px mst-light;
+margin-left: 15px;
+}
+
 .login-page {
   width: 360px;
   padding: 8% 0 0;
@@ -27,7 +34,7 @@
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 .form input,
-.menu__item input[type="text"], input[type=email], input[type=number] {
+.menu__item input[type="text"],input[type=text],select, input[type=email], input[type=number] {
   font-family: mst-light;
   outline: 0;
   background: #f2f2f2;
@@ -38,7 +45,7 @@
   box-sizing: border-box;
   font-size: 14px;
 }
-.form input[type=submit], .menu__item input[type=submit] {
+.form input[type=submit], .menu__item input[type=submit], .update , .table-admin .edit, .table-admin .delete {
   font-family: mst-medium;
   text-transform: uppercase;
   outline: 0;
@@ -56,7 +63,7 @@
   background: rgb(0, 113, 235);
 }
 
-.menu__item input[type=submit] {
+.menu__item input[type=submit],.update,.table-admin .delete, .table-admin .edit{
   display: block;
   margin: auto;
   width: auto;
@@ -78,7 +85,11 @@ margin: 0px;
 
 }
 
-.menu__item input[type=submit]:hover,.menu__item input[type=submit]:active,.menu__item input[type=submit]:focus {
+.menu__item input[type=submit]:hover,
+.menu__item input[type=submit]:active,
+.menu__item input[type=submit]:focus,
+ .table-admin .edit:hover,
+ .table-admin .delete:hover {
   background: rgb(0, 113, 235);
 }
 
@@ -136,6 +147,7 @@ h1 {
     font-family: mst-light;
 	list-style: none;
 	overflow: hidden;
+	min-width: 700px;
 
 }
 .menu__tabs li {
@@ -190,7 +202,7 @@ h1 {
 	z-index: 400;
 	background: #FFF;
 	min-height: 300px;
-  min-width: 400px;
+    min-width: 720px;
 
 	-webkit-border-radius: 0 4px 4px 4px;
 	-moz-border-radius: 0 4px 4px 4px;
@@ -238,7 +250,7 @@ h1 {
     margin: 0px 30px;
 
 }
-.menu__wrapper .menu__item table {
+.menu__wrapper .menu__item table, .table-admin {
     font-family: mst-light;
     display: flex;
     justify-content: center;
@@ -248,14 +260,14 @@ h1 {
     border-collapse:collapse;
     border: none;
 }
-.menu__wrapper .menu__item th{
+.menu__wrapper .menu__item th, .table-admin td{
     color: #FFF;
     background-color: rgb(44, 130, 222);
 }
-.menu__wrapper .menu__item td{
+.menu__wrapper .menu__item td, .table-admin td{
     color: black;
 }
-.menu__wrapper .menu__item th, .menu__wrapper .menu__item td {
+.menu__wrapper .menu__item th, .menu__wrapper .menu__item td, .table-admin th, .table-admin td{
     padding: 15px   ;
 }
 .logotype{
@@ -265,6 +277,9 @@ h1 {
         padding: 0;
 }
 
+.buttons-panel{
+display: flex;
+}
 
 
 .logotype img{
@@ -299,10 +314,9 @@ h1 {
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
+  -moz-appearance:textfield;
   margin: 0;
 }
-
-input[type=number] { -moz-appearance:textfield; }
 
 .container-radio{
   display: flex;
@@ -336,6 +350,12 @@ margin: 10px;
   font: 13px mst-regular;
 }
 
+.container-term .container-term-son h2{
+  font: 1.6em mst-medium;
+  text-align: center;
+  margin: 15px;
+}
+
 /*estilos de paginas de errores*/
 
 .errors-letters{
@@ -343,3 +363,4 @@ color: white;
 margin: 10px;
 font: 2rem mst-regular;
 }
+

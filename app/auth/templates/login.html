@@ -9,19 +9,19 @@
                   {{ form.hidden_tag() }}
                 <img class="logo" src="{{url_for('static', filename='imagenes/logo blue.png')}}" alt="Inciti">
                     {% if error %}
-                        <p style="color: red;"><strong>Error:</strong> {{ error }}
+                        <p class="span-error"><strong>Error:</strong> {{ error }}
                     {% endif %}
                   <div>
-                      {{ form.username(placeholder = 'Nombre de usuario')}}
-                      {% for error in form.username.errors %}
-                        <span style="color: red;">{{ error }}</span>
-                      {% endfor %}
+                    {% for error in form.username.errors %}
+                        <span class="span-error">{{ error }}</span>
+                    {% endfor %}
+                    {{ form.username(placeholder = 'Nombre de usuario')}}
                   </div>
                   <div>
-                      {{ form.password(placeholder = 'Contraseña')}}
                       {% for error in form.password.errors %}
-                      <span style="color: red;">{{ error }}</span>
+                        <span class="span-error">{{ error }}</span>
                       {% endfor %}
+                      {{ form.password(placeholder = 'Contraseña')}}
                   </div>
                   <div class="remember">
                          {{ form.remember_me() }} {{ form.remember_me.label() }}

@@ -25,17 +25,18 @@
                         <th>Nombre</th>
                         <th>Correo</th>
                         <th>Celular</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                     {% for user_referred in users_referred %}
-                        {% if current_user.id != user_referred.id %}
                             <tr>
                                 <td>{{ user_referred.all_names }}</td>
                                 <td>{{ user_referred.email }}</td>
                                 <td>{{ user_referred.cellphone}}</td>
                             </tr>
-                        {% endif %}
                     {% endfor %}
                 </table>
+                <p>NOTA: Si tienes problemas en ver tus referidos, por favor recargue la pagina o vuelva a iniciar sesiòn.</p>
 			</article>
 
 			<article id="item-2" class="menu__item">
@@ -68,31 +69,35 @@
                     <h3>Ingresa los datos de tu nuevo referido</h3>
                     {{ form.hidden_tag() }}
                     <div>
-                      {{ form.all_names(placeholder = 'Nombres y apellidos')}}
                       {% for error in form.all_names.errors %}
-                        <span style="color: red;">{{ error }}</span>
+                        <span class="span-error">{{ error }}</span>
                       {% endfor %}
+                        {{ form.all_names(placeholder = 'Nombres y apellidos')}}
                   </div>
                   <div>
-                      {{ form.email(placeholder = 'Correo del referido')}}
+                      {% if error %}
+                        <span class="span-error"><strong>Error:</strong> {{ error }}</span>
+                      {% endif %}
                       {% for error in form.email.errors %}
-                        <span style="color: red;">{{ error }}</span>
+                        <span class="span-error">{{ error }}</span>
                       {% endfor %}
+                      {{ form.email(placeholder = 'Correo del referido')}}
                   </div>
                   <div>
-                      {{ form.cellphone(placeholder = 'Num celular del referido')}}
                       {% for error in form.cellphone.errors %}
-                        <span style="color: red;">{{ error }}</span>
+                        <span class="span-error">{{ error }}</span>
                       {% endfor %}
+                      {{ form.cellphone(placeholder = 'Num celular del referido')}}
                   </div>
                     <div class="container-radio">
                         {{ form.term_cond() }}<label>  Acepto los <a href="{{ url_for('auth.view_term') }}" target="_blank">términos y condiciones del plan.</a></label>
                         {% for error in form.term_cond.errors %}
-                        <span style="color: red;">{{ error }}</span>
+                        <span class="span-error">{{ error }}</span>
                       {% endfor %}
                     </div>
                         {{ form.submit() }}
                 </form>
+                <p>NOTA: Por favor asegurese de digitar correctamente los datos de su referido..</p>
 			</article>
 
             <article id="item-4" class="menu__item">
@@ -119,7 +124,6 @@
                 </div>
 			</article>
 		</section>
-		<div class="menu--shadow"></div>
 	</div>
 {% endblock %}
 {% block scripts %}

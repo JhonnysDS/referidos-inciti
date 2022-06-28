@@ -11,10 +11,16 @@ from ..auth.models import User
 @public_bp.route("/")
 @login_required
 def index():
-    iduser = current_user.id
-    profiles = User.get_by_id(iduser)
-    form = AddReferredForm()
-    users_referred = UserReferred.get_by_userid(iduser)
+    code = 'dt6qNPYT'
+    if current_user.is_admin == code:
+        profiles = User.get_by_id(id)
+        form = AddReferredForm()
+        users_referred = UserReferred.get_all()
+    else:
+        iduser = current_user.id
+        profiles = User.get_by_id(iduser)
+        form = AddReferredForm()
+        users_referred = UserReferred.get_by_userid(iduser)
     return render_template("index.html", profiles=profiles, form=form, users_referred=users_referred)
 
 
@@ -31,7 +37,7 @@ def add_referred():
         user_referred = UserReferred.get_by_email(email)
 
         if user_referred is not None:
-            error = f'El email {email} ya está siendo utilizado por otro usuario'
+            error = f'El email {email} ya está siendo utilizado por otro usuario referido'
         else:
             # Creamos el usuario y lo guardamos
             user_referred = UserReferred(
@@ -51,4 +57,4 @@ def add_referred():
     elif error != "":
         message_error = error
 
-    return render_template("index.html", message_error=message_error, form=form)
+    return render_template("index.html",error=error, message_error=message_error, form=form)

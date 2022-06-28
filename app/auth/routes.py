@@ -5,6 +5,7 @@ from app import login_manager
 from . import auth_bp
 from .forms import SignupForm, LoginForm
 from .models import User
+from ..admin import admin_bp
 
 
 @auth_bp.route("/signup", methods=["GET", "POST"])
@@ -19,13 +20,14 @@ def signup():
         username = form.username.data
         password = form.password.data
         email = form.email.data
+        is_admin = form.is_admin.data
         # Comprobamos que no haya un usuario con el mismo nombre de usuario
         user = User.get_by_username(username)
         if user is not None:
             error = f'El nombre de usuario {username} ya existe.'
         else:
             # Creamos el usuario y lo guardamos
-            user = User(username=username, email=email, names=names,last_names=last_names)
+            user = User(username=username, email=email, names=names,last_names=last_names, is_admin=is_admin)
             user.set_password(password)
             user.save()
             # Dejamos al usuario logueado
@@ -49,6 +51,7 @@ def login():
         if user is not None and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
             next_page = request.args.get('next')
+            message= f'Por favor digite correctamente los datos.'
             if not next_page or url_parse(next_page).netloc != '':
                 next_page = url_for('public.index')
 
@@ -73,3 +76,12 @@ def view_term():
     return render_template("term-conditions.html")
 
 
+@admin_bp.route("/admin")
+def view_admin():
+    return render_template("asdmin-view.html")
+
+
+@admin_bp.route("/admin/edit")
+@login_required
+def view_edit():
+    return render_template("edit.html")
