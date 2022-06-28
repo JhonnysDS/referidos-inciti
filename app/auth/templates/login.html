@@ -8,6 +8,9 @@
               <form class="login-form" method="post" novalidate>
                   {{ form.hidden_tag() }}
                 <img class="logo" src="{{url_for('static', filename='imagenes/logo blue.png')}}" alt="Inciti">
+                    {% if error %}
+                        <p style="color: red;"><strong>Error:</strong> {{ error }}
+                    {% endif %}
                   <div>
                       {{ form.username(placeholder = 'Nombre de usuario')}}
                       {% for error in form.username.errors %}

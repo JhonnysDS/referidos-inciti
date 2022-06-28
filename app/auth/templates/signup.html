@@ -3,14 +3,12 @@
 {% block title %}Iniciar sesion {{ slug_title }}{% endblock %}
 
 {% block content %}
-    {% if error %}
-        <p style="color: red;"><strong>Error:</strong> {{ error }}
-    {% endif %}
       <div class="login-page">
         <div class="form">
           <form class="register-form" action="" method="post" novalidate>
               {{ form.hidden_tag() }}
               <img class="logo" src="{{url_for('static', filename='imagenes/logo blue.png')}}" alt="Inciti">
+
               <div>
                   {{ form.names(placeholder="Nombres")}}
                   {% for error in form.names.errors %}
@@ -28,6 +26,9 @@
                   {% for error in form.username.errors %}
                   <span style="color: red;">{{ error }}</span>
                   {% endfor %}
+                  {% if error %}
+                    <span style="color: red;"><strong>Error:</strong> {{ error }}</span>
+                  {% endif %}
               </div>
               <div>
                   {{ form.password(placeholder="Contraseña")}}

@@ -11,9 +11,10 @@ from ..auth.models import User
 @public_bp.route("/")
 @login_required
 def index():
-    profiles = User.get_by_id(id)
+    iduser = current_user.id
+    profiles = User.get_by_id(iduser)
     form = AddReferredForm()
-    users_referred = UserReferred.get_all()
+    users_referred = UserReferred.get_by_userid(iduser)
     return render_template("index.html", profiles=profiles, form=form, users_referred=users_referred)
 
 

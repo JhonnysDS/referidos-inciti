@@ -26,6 +26,10 @@ class UserReferred(db.Model, UserMixin):
         db.session.commit()
 
     @staticmethod
+    def get_by_userid(userId):
+        return UserReferred.query.filter_by(user_id=userId).all()
+
+    @staticmethod
     def get_all():
         return UserReferred.query.all()
 

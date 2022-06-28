@@ -34,7 +34,7 @@ def signup():
             if not next_page or url_parse(next_page).netloc != '':
                 next_page = url_for('public.index')
             return redirect(next_page)
-    return render_template("signup.html", form=form)
+    return render_template("signup.html",error=error, form=form)
 
 
 @auth_bp.route("/login", methods=["GET", "POST"])
@@ -49,12 +49,11 @@ def login():
         if user is not None and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
             next_page = request.args.get('next')
-
             if not next_page or url_parse(next_page).netloc != '':
                 next_page = url_for('public.index')
 
             return redirect(next_page)
-    return render_template("login.html", form=form)
+    return render_template("login.html", error=error, form=form)
 
 
 @login_manager.user_loader
