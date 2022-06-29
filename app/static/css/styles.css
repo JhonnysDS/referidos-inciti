@@ -45,7 +45,7 @@ margin-left: 15px;
   box-sizing: border-box;
   font-size: 14px;
 }
-.form input[type=submit], .menu__item input[type=submit], .update , .table-admin .edit, .table-admin .delete {
+.form input[type=submit], .menu__item input[type=submit],.cancel, .update , .table-admin .edit, .table-admin .delete {
   font-family: mst-medium;
   text-transform: uppercase;
   outline: 0;
@@ -63,7 +63,7 @@ margin-left: 15px;
   background: rgb(0, 113, 235);
 }
 
-.menu__item input[type=submit],.update,.table-admin .delete, .table-admin .edit{
+.menu__item input[type=submit], .cancel, .update,.table-admin .delete, .table-admin .edit{
   display: block;
   margin: auto;
   width: auto;
@@ -89,7 +89,8 @@ margin: 0px;
 .menu__item input[type=submit]:active,
 .menu__item input[type=submit]:focus,
  .table-admin .edit:hover,
- .table-admin .delete:hover {
+ .table-admin .delete:hover,
+ .cancel:hover{
   background: rgb(0, 113, 235);
 }
 
@@ -260,7 +261,7 @@ h1 {
     border-collapse:collapse;
     border: none;
 }
-.menu__wrapper .menu__item th, .table-admin td{
+.menu__wrapper .menu__item th, .table-admin th{
     color: #FFF;
     background-color: rgb(44, 130, 222);
 }
@@ -335,7 +336,7 @@ margin: 10px;
 	padding: 2em;
 	z-index: 400;
   margin: 50px auto 100px;
-  width: 50%;
+  width: 70%;
 	background: #FFF;
 	min-width: 500px;
 	-webkit-border-radius: 0 4px 4px 4px;
@@ -364,3 +365,15 @@ margin: 10px;
 font: 2rem mst-regular;
 }
 
+.buttons-edit{
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-term .container-term-son h1{
+color: black;
+font: 1rem mst-regular;
+text-align: center;
+}

@@ -9,16 +9,39 @@
     </div>
     <div class="container-term">
         <div class="container-term-son">
+            <form  method="POST" novalidate>
+                {{ form.hidden_tag() }}
                 <h2>Editar datos del referido</h2>
-                <input type="text"  placeholder="Nombre del referido" required>
-                <input type="email" placeholder="Correo del referido" required>
-                <input type="number" placeholder="Celular del referido" required>
-                <label>¿Firmó carta?</label>
-                <select>
-                    <option value="0">No</option>
-                    <option value="1">Si</option>
-                </select>
-                <input class="update" type="submit" value="Actualizar">
+                <div>
+                    {% for error in form.all_names.errors %}
+                        <span class="span-error">{{ error }}</span>
+                    {% endfor %}
+                    {{ form.all_names(placeholder = 'Nombre del referido')}}
+                </div>
+                <div>
+                    {% for error in form.email.errors %}
+                        <span class="span-error">{{ error }}</span>
+                    {% endfor %}
+                    {{ form.email(placeholder = 'Correo del referido')}}
+                </div>
+                <div>
+                    {% for error in form.cellphone.errors %}
+                        <span class="span-error">{{ error }}</span>
+                    {% endfor %}
+                    {{ form.cellphone(placeholder = 'Celular del referido')}}
+                </div>
+
+                <div>
+                    {{ form.signature()}}
+                </div>
+                <div>
+                    {{ form.apartment_type()}}
+                </div>
+                <div class="buttons-edit">
+                     {{form.submit(class='update')}}
+                    <a class="cancel"  href="{{url_for('auth.view_admin')}}">Cancelar</a>
+                </div>
+            </form>
         </div>
     </div>
 {% endblock %}

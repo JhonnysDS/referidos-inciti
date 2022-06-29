@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-06-2022 a las 00:14:07
+-- Tiempo de generación: 29-06-2022 a las 23:58:38
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -43,9 +43,8 @@ CREATE TABLE `app_user` (
 --
 
 INSERT INTO `app_user` (`id`, `names`, `last_names`, `username`, `email`, `password`, `is_admin`, `creation_date`) VALUES
-(1, 'Jhonnys David', 'De Avila Salgado', 'JhonnysD02', 'jdeavilasalgado@gmail.com', 'pbkdf2:sha256:260000$cn3W4ZEAN66GRKXz$19f1aa00dc0db1d7711dfe1e7a4e7799318c19c9d61a56b80fa00c75cc83eea3', '', '0000-00-00 00:00:00'),
-(2, 'Jhonnys David', 'Rodriguez', 'JhonnysDS', 'nicoldeavila@gmail.com', 'pbkdf2:sha256:260000$BCb10r7FmiSpVStU$d3126601fa8887082b70facbaadb461d2d4db129aed48e0627ca44873cf94359', 'dt6qNPYT', '0000-00-00 00:00:00'),
-(5, 'fulaniro', 'mendoza', 'fulano', 'fulano@gmail.com', 'pbkdf2:sha256:260000$kdpRNcNX0UTcuq7p$004304fecb9a7146aa92d6dfdf5c5be68869eab6183918a33ce0677e5afa7e64', 'dt6qNPYT', '0000-00-00 00:00:00');
+(8, 'Jhonnys David', 'De Avila Salgado', 'JhonnysDS', 'jdeavigflasalgado@gmail.com', 'pbkdf2:sha256:260000$hRAM2DwYKahnG9e7$6867cce07de7c0c08b85d701f773f3543954e97d8065b7c22a36954a06002c6b', 'dt6qNPYT', '0000-00-00 00:00:00'),
+(9, 'Jhonnys David', 'De Avila Salgado', 'JhonnysD02', 'jdeavilasalgado@gmail.com', 'pbkdf2:sha256:260000$6VgJ7rMizDYvbFLb$250f7b97d8037e7a7348d6551250f83619ef05b66431fb2a28ef901bcc70500b', '', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -60,6 +59,8 @@ CREATE TABLE `app_user_referred` (
   `all_names` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `cellphone` varchar(255) NOT NULL,
+  `signature` smallint(2) NOT NULL,
+  `apartment_type` smallint(2) NOT NULL,
   `term_cond` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -67,12 +68,8 @@ CREATE TABLE `app_user_referred` (
 -- Volcado de datos para la tabla `app_user_referred`
 --
 
-INSERT INTO `app_user_referred` (`id`, `user_id`, `creation_date`, `all_names`, `email`, `cellphone`, `term_cond`) VALUES
-(1, 2, '0000-00-00 00:00:00', 'Nicol Kari De Avila Salgado', 'nicoldeavila@gmail.com', '3043569874', 0),
-(2, 4, '0000-00-00 00:00:00', 'Juan camilo Sarmiento', 'pedromendoza@gmail.con', '3214569870', 0),
-(3, 4, '0000-00-00 00:00:00', 'Rodolfo Enrique De Avila Hernandez', 'rodolfoenrique@gmail.com', '3214569556', 0),
-(4, 2, '0000-00-00 00:00:00', 'JHONATHAN FONTALVO', 'jhonathan@gmail.com', '3135698552', 0),
-(6, 2, '0000-00-00 00:00:00', 'JHONATHA ENRRIQUE HERNANDEZ FONTALVO', 'enrique@mail.com', '1234567890', 0);
+INSERT INTO `app_user_referred` (`id`, `user_id`, `creation_date`, `all_names`, `email`, `cellphone`, `signature`, `apartment_type`, `term_cond`) VALUES
+(8, 9, '0000-00-00 00:00:00', 'Juan camilo Sarmiento', 'juanda@mail.com', '3214569586', 0, 0, 0);
 
 --
 -- Índices para tablas volcadas
@@ -99,13 +96,13 @@ ALTER TABLE `app_user_referred`
 -- AUTO_INCREMENT de la tabla `app_user`
 --
 ALTER TABLE `app_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `app_user_referred`
 --
 ALTER TABLE `app_user_referred`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

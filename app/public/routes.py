@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from werkzeug.utils import redirect
 
 from . import public_bp
-from .forms import AddReferredForm
+from .forms import AddReferredForm, EditReferredForm
 from .models import UserReferred
 from ..auth.models import User
 
@@ -11,16 +11,10 @@ from ..auth.models import User
 @public_bp.route("/")
 @login_required
 def index():
-    code = 'dt6qNPYT'
-    if current_user.is_admin == code:
-        profiles = User.get_by_id(id)
-        form = AddReferredForm()
-        users_referred = UserReferred.get_all()
-    else:
-        iduser = current_user.id
-        profiles = User.get_by_id(iduser)
-        form = AddReferredForm()
-        users_referred = UserReferred.get_by_userid(iduser)
+    iduser = current_user.id
+    profiles = User.get_by_id(iduser)
+    form = AddReferredForm()
+    users_referred = UserReferred.get_by_userid(iduser)
     return render_template("index.html", profiles=profiles, form=form, users_referred=users_referred)
 
 
@@ -58,3 +52,44 @@ def add_referred():
         message_error = error
 
     return render_template("index.html",error=error, message_error=message_error, form=form)
+
+
+@public_bp.route("/admin/edit/<int:id>", methods=['GET', 'POST'])
+@login_required
+def edit_referred(id):
+    message_error = ""
+    error = ""
+
+    profilesreferred = UserReferred.get_by_id(id)
+    if profilesreferred is None:
+        abort(404)
+
+    form = EditReferredForm(obj=profilesreferred)
+
+    if form.validate_on_submit():
+        profilesreferred.all_names = form.all_names.data,
+        profilesreferred.cellphone = form.cellphone.data,
+        profilesreferred.email = form.email.data,
+        profilesreferred.signature = form.signature.data,
+        profilesreferred.apartment_type = form.apartment_type.data
+        profilesreferred.save()
+        return redirect(url_for('auth.view_admin'))
+
+
+    formerrors = form.errors
+
+    if formerrors != {}:
+        message_error = "Error al editar, por favor revise los campos obligatorios"
+    elif formerrors != "":
+        message_error = error
+
+    return render_template("edit.html", message_error=message_error, formerrors=formerrors, profilesreferred=profilesreferred, form=form )
+
+
+@public_bp.route("/admin/delete/<int:id>")
+def delete_referrer(id):
+    profilesreferred = UserReferred.get_by_id(id)
+    if profilesreferred is None:
+        abort(404)
+    profilesreferred.delete()
+    return redirect(url_for('public.view_admin'))
