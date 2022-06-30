@@ -16,12 +16,12 @@ class EditReferredForm(FlaskForm):
     email = StringField('Correo', validators=[DataRequired(), Email()])
     cellphone = IntegerField('Celular', validators=[DataRequired()])
     signature = SelectField(u'¿Firmó Carta?',
-                            choices=[(0, 'No'), (1, 'Si')],
+                            choices=[(1, 'No'), (2, 'Si')],
                             coerce=int, validators=[DataRequired()])
     apartment_type = SelectField(u'Tipo de apartamento',
-                                 choices=[(0, 'Seleccione...'), (1, 'Tipo 1A'),
-                                          (2, 'Tipo 1B'), (3, 'Tipo 1C'),
-                                          (4, 'Tipo 2'), (5, 'Tipo 3')],
+                                 choices=[(1, 'Seleccione...'), (2, 'Tipo 1A'),
+                                          (3, 'Tipo 1B'), (4, 'Tipo 1C'),
+                                          (5, 'Tipo 2'), (6, 'Tipo 3')],
                                  coerce=int, validators=[DataRequired()])
     term_cond = BooleanField(validators=[DataRequired()])
     submit = SubmitField('Editar Referido')

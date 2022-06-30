@@ -36,7 +36,7 @@
                             </tr>
                     {% endfor %}
                 </table>
-                <p>NOTA: Si tienes problemas en ver tus referidos, por favor recargue la pagina o vuelva a iniciar sesiòn.</p>
+                <p class="notes">NOTA: Si tienes problemas en ver tus referidos, por favor recargue la pagina o vuelva a iniciar sesiòn.</p>
 			</article>
 
 			<article id="item-2" class="menu__item">
@@ -49,19 +49,17 @@
                         <th>Correo</th>
                         <th>Celular</th>
                     </tr>
-                    <tr>
-                        <td>Juan José Gonzalez Perez</td>
-                        <td>Juangonzales@gmail.com</td>
-                        <td>3215398925</td>
-                    </tr>
-                    <tr>
-                        <td>Juan José Gonzalez Perez</td>
-                        <td>Juangonzales@gmail.com</td>
-                        <td>3215398925</td>
-                    </tr>
-
+                    {% for user_referred in users_referred %}
+                        {% if user_referred.signature == 2 %}
+                        <tr>
+                            <td>{{ user_referred.all_names }}</td>
+                            <td>{{ user_referred.email }}</td>
+                            <td>{{ user_referred.cellphone}}</td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
                 </table>
-                <p>NOTA: Se consideran vinculados clientes referidos que ya firmaron carta de instrucción</p>
+                <p class="notes">NOTA: Se consideran vinculados clientes referidos que ya firmaron carta de instrucción</p>
 			</article>
 
 			<article id="item-3" class="menu__item">
@@ -97,7 +95,7 @@
                     </div>
                         {{ form.submit() }}
                 </form>
-                <p>NOTA: Por favor asegurese de digitar correctamente los datos de su referido..</p>
+                <p class="notes">NOTA: Por favor asegurese de digitar correctamente los datos de su referido..</p>
 			</article>
 
             <article id="item-4" class="menu__item">
@@ -108,20 +106,39 @@
                         <th>Apartamento</th>
                         <th>bono</th>
                     </tr>
-                    <tr>
-                        <td>Juan José Gonzales Pérez</td>
-                        <td>1A</td>
-                        <td>$2.000.000</td>
-                    </tr>
-                    <tr>
-                        <td>Juan José Gonzales Pérez</td>
-                        <td>2B</td>
-                        <td>$2.000.000</td>
-                    </tr>
+                    {% for user_referred in users_referred %}
+                        {% if user_referred.signature == 2 %}
+                        <tr>
+                            <td>{{ user_referred.all_names }}</td>
+                            <td>
+                                {% if user_referred.apartment_type == 1 %}
+                                    <p>No seleccionado</p>
+                                {% elif user_referred.apartment_type == 2 %}
+                                    <p>Tipo 1A</p>
+                                {% elif user_referred.apartment_type == 3 %}
+                                    <p>Tipo 1B</p>
+                                {% elif user_referred.apartment_type == 4 %}
+                                    <p>Tipo 1C</p>
+                                {% elif user_referred.apartment_type == 5 %}
+                                    <p>Tipo 2</p>
+                                {% elif user_referred.apartment_type == 6 %}
+                                    <p>Tipo 3</p>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if user_referred.apartment_type == 2 or user_referred.apartment_type == 3 or user_referred.apartment_type == 4 %}
+                                    <p>2.000.000 COP</p>
+                                {% elif user_referred.apartment_type == 5 %}
+                                    <p>1.500.000 COP</p>
+                                {% elif user_referred.apartment_type == 6 %}
+                                    <p>1.000.000 COP</p>
+                                {% endif %}
+                            </td>
+
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
                 </table>
-                <div class="container-total">
-                    <h4>Total: $ 4.000.000</h4>
-                </div>
 			</article>
 		</section>
 	</div>

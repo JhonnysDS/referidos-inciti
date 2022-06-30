@@ -242,7 +242,7 @@ h1 {
 	margin-bottom: 12px;
 }
 
-.menu__wrapper .menu__item p {
+.menu__wrapper .menu__item .notes {
     font-family: mst-light;
 	font-size: 1.5em;
 	color: #ff0000;

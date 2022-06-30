@@ -5,6 +5,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from app import login_manager
 from . import auth_bp
+from .decorators import admin_required
 from .forms import SignupForm, LoginForm
 from .models import User
 from ..admin import admin_bp
@@ -87,6 +88,8 @@ def view_term():
 
 
 @auth_bp.route("/admin")
+@login_required
+@admin_required
 def view_admin():
     profiles = User.get_by_id(id)
     form = AddReferredForm()
@@ -94,3 +97,49 @@ def view_admin():
     return render_template("admin-view.html", profiles=profiles, form=form, users_referred=users_referred)
 
 
+@auth_bp.route("/admin/edit/<int:id>", methods=['GET', 'POST'])
+@login_required
+@admin_required
+def edit_referred(id):
+    message_error = ""
+    error = ""
+
+    profilesreferred = UserReferred.get_by_id(id)
+    if profilesreferred is None:
+        abort(404)
+
+    form = EditReferredForm(obj=profilesreferred)
+
+    if form.validate_on_submit():
+        email = form.email.data
+        user_referred = UserReferred.get_by_email(email)
+
+        if user_referred is not None and user_referred.id != id:
+            error = f'El email {email} ya está siendo utilizado por otro usuario'
+        else:
+            profilesreferred.all_names = form.all_names.data,
+            profilesreferred.cellphone = form.cellphone.data,
+            profilesreferred.email = email,
+            profilesreferred.signature = form.signature.data,
+            profilesreferred.apartment_type = form.apartment_type.data
+            profilesreferred.save()
+            return redirect(url_for('auth.view_admin'))
+
+
+    formerrors = form.errors
+
+    if formerrors != {}:
+        message_error = "Error al editar, por favor revise los campos obligatorios"
+    elif formerrors != "":
+        message_error = error
+
+    return render_template("edit.html", message_error=message_error, formerrors=formerrors, profilesreferred=profilesreferred, form=form )
+
+
+@auth_bp.route("/admin/delete/<int:id>")
+def delete_referrer(id):
+    profilesreferred = UserReferred.get_by_id(id)
+    if profilesreferred is None:
+        abort(404)
+    profilesreferred.delete()
+    return redirect(url_for('auth.view_admin'))

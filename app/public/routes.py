@@ -5,11 +5,13 @@ from werkzeug.utils import redirect
 from . import public_bp
 from .forms import AddReferredForm, EditReferredForm
 from .models import UserReferred
+from ..auth.decorators import admin_forbidden
 from ..auth.models import User
 
 
 @public_bp.route("/")
 @login_required
+@admin_forbidden
 def index():
     iduser = current_user.id
     profiles = User.get_by_id(iduser)
@@ -39,6 +41,7 @@ def add_referred():
                 all_names=form.all_names.data,
                 cellphone=form.cellphone.data,
                 email=email,
+
             )
 
             user_referred.save()
@@ -53,43 +56,3 @@ def add_referred():
 
     return render_template("index.html",error=error, message_error=message_error, form=form)
 
-
-@public_bp.route("/admin/edit/<int:id>", methods=['GET', 'POST'])
-@login_required
-def edit_referred(id):
-    message_error = ""
-    error = ""
-
-    profilesreferred = UserReferred.get_by_id(id)
-    if profilesreferred is None:
-        abort(404)
-
-    form = EditReferredForm(obj=profilesreferred)
-
-    if form.validate_on_submit():
-        profilesreferred.all_names = form.all_names.data,
-        profilesreferred.cellphone = form.cellphone.data,
-        profilesreferred.email = form.email.data,
-        profilesreferred.signature = form.signature.data,
-        profilesreferred.apartment_type = form.apartment_type.data
-        profilesreferred.save()
-        return redirect(url_for('auth.view_admin'))
-
-
-    formerrors = form.errors
-
-    if formerrors != {}:
-        message_error = "Error al editar, por favor revise los campos obligatorios"
-    elif formerrors != "":
-        message_error = error
-
-    return render_template("edit.html", message_error=message_error, formerrors=formerrors, profilesreferred=profilesreferred, form=form )
-
-
-@public_bp.route("/admin/delete/<int:id>")
-def delete_referrer(id):
-    profilesreferred = UserReferred.get_by_id(id)
-    if profilesreferred is None:
-        abort(404)
-    profilesreferred.delete()
-    return redirect(url_for('public.view_admin'))

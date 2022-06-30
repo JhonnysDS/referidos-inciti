@@ -13,7 +13,7 @@ class UserReferred(db.Model, UserMixin):
     email = db.Column(db.String(255), unique=True, nullable=False)
     cellphone = db.Column(db.Integer,  nullable=False)
     signature = db.Column(db.SmallInteger, default=True)
-    Apartment_type = db.Column(db.SmallInteger, default=True)
+    apartment_type = db.Column(db.SmallInteger, default=True)
 
     def __repr__(self):
         return f'<UserReferred {self.name}>'
