@@ -18,7 +18,7 @@
                     <th>Firma</th>
                     <th>T. apto</th>
                     <th></th>
-                    <th></th>
+                    <!--<th></th>-->
                 </tr>
                 {% for user_referred in users_referred %}
                 <tr>
@@ -47,7 +47,8 @@
                             <p>Tipo 3</p>
                         {% endif %}
                     </td>
-
+                    <td><a href="{{url_for('auth.edit_referred', id=user_referred.id)}}" class="edit">Editar </a></td>
+                    <!--<td><a href="{{url_for('auth.delete_referred', id=user_referred.id)}}" class="delete">Eliminar</a></td>--!>
                 </tr>
                 {% endfor %}
             </table>

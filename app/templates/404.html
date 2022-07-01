@@ -1,5 +1,14 @@
 {% extends 'base_template.html' %}
 
 {% block content %}
-   <p class="errors-letters"> Ooops!! La página que buscas no existe xD </p>
+<div class="logotype">
+        <img src="{{url_for('static', filename='imagenes/Logo white.png')}}" alt="Logo inciti">
+        <a href="{{ url_for('auth.logout') }}">Cerrar sesion</a>
+</div>
+      <div class="container-term">
+        <div class="container-term-son">
+            <h1 class="tittle-error">Opss. La pagina que buscas no existe.</h1>
+        </div>
+    </div>
+
 {% endblock %}

@@ -91,10 +91,10 @@ def view_term():
 @login_required
 @admin_required
 def view_admin():
-    profiles = User.get_by_id(id)
+
     form = AddReferredForm()
     users_referred = UserReferred.get_all()
-    return render_template("admin-view.html", profiles=profiles, form=form, users_referred=users_referred)
+    return render_template("admin-view.html", form=form, users_referred=users_referred)
 
 
 @auth_bp.route("/admin/edit/<int:id>", methods=['GET', 'POST'])
@@ -104,11 +104,11 @@ def edit_referred(id):
     message_error = ""
     error = ""
 
-    profilesreferred = UserReferred.get_by_id(id)
-    if profilesreferred is None:
+    profiles = UserReferred.get_by_id(id)
+    if profiles is None:
         abort(404)
 
-    form = EditReferredForm(obj=profilesreferred)
+    form = EditReferredForm(obj=profiles)
 
     if form.validate_on_submit():
         email = form.email.data
@@ -117,12 +117,12 @@ def edit_referred(id):
         if user_referred is not None and user_referred.id != id:
             error = f'El email {email} ya está siendo utilizado por otro usuario'
         else:
-            profilesreferred.all_names = form.all_names.data,
-            profilesreferred.cellphone = form.cellphone.data,
-            profilesreferred.email = email,
-            profilesreferred.signature = form.signature.data,
-            profilesreferred.apartment_type = form.apartment_type.data
-            profilesreferred.save()
+            profiles.all_names = form.all_names.data,
+            profiles.cellphone = form.cellphone.data,
+            profiles.email = email,
+            profiles.signature = form.signature.data,
+            profiles.apartment_type = form.apartment_type.data
+            profiles.save()
             return redirect(url_for('auth.view_admin'))
 
 
@@ -133,11 +133,11 @@ def edit_referred(id):
     elif formerrors != "":
         message_error = error
 
-    return render_template("edit.html", message_error=message_error, formerrors=formerrors, profilesreferred=profilesreferred, form=form )
+    return render_template("edit.html", message_error=message_error, formerrors=formerrors, profiles=profiles, form=form )
 
 
 @auth_bp.route("/admin/delete/<int:id>")
-def delete_referrer(id):
+def delete_referred(id):
     profilesreferred = UserReferred.get_by_id(id)
     if profilesreferred is None:
         abort(404)

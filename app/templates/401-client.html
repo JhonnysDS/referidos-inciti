@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base_template.html' %}
+
+{% block content %}
+<div class="logotype">
+        <img src="{{url_for('static', filename='imagenes/Logo white.png')}}" alt="Logo inciti">
+        <a href="{{ url_for('auth.logout') }}">Cerrar sesion</a>
+</div>
+      <div class="container-term">
+        <div class="container-term-son">
+            <h1 class="tittle-error">¡Vaya! parece que usted está en el lugar equivocado</h1>
+           <a class="back-buttom"  href="{{url_for('public.index')}}">Ir al inicio</a>
+        </div>
+    </div>
+
+{% endblock %}

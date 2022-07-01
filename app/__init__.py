@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
 from flask_sqlalchemy import SQLAlchemy
 
 from config import local
@@ -52,6 +52,14 @@ def register_error_handlers(app):
     @app.errorhandler(500)
     def base_error_handler(e):
         return render_template('500.html'), 500
+
+    @app.errorhandler(401)
+    def error_401_handler(e):
+        code = 'dt6qNPYT'
+        if current_user.is_admin == code:
+            return render_template('401.html'), 401
+        else:
+            return render_template('401-client.html'), 401
 
     @app.errorhandler(404)
     def error_404_handler(e):

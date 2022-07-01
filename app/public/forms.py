@@ -23,5 +23,4 @@ class EditReferredForm(FlaskForm):
                                           (3, 'Tipo 1B'), (4, 'Tipo 1C'),
                                           (5, 'Tipo 2'), (6, 'Tipo 3')],
                                  coerce=int, validators=[DataRequired()])
-    term_cond = BooleanField(validators=[DataRequired()])
     submit = SubmitField('Editar Referido')

@@ -34,7 +34,7 @@ margin-left: 15px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 .form input,
-.menu__item input[type="text"],input[type=text],select, input[type=email], input[type=number] {
+.menu__item input[type="text"],input[type=text],select, input[type=email], input[type=number]{
   font-family: mst-light;
   outline: 0;
   background: #f2f2f2;
@@ -45,7 +45,7 @@ margin-left: 15px;
   box-sizing: border-box;
   font-size: 14px;
 }
-.form input[type=submit], .menu__item input[type=submit],.cancel, .update , .table-admin .edit, .table-admin .delete {
+.form input[type=submit], .menu__item input[type=submit],.back-buttom,.cancel, .update , .table-admin .edit, .table-admin .delete {
   font-family: mst-medium;
   text-transform: uppercase;
   outline: 0;
@@ -63,10 +63,16 @@ margin-left: 15px;
   background: rgb(0, 113, 235);
 }
 
-.menu__item input[type=submit], .cancel, .update,.table-admin .delete, .table-admin .edit{
+.menu__item input[type=submit], .back-buttom,.cancel, .update,.table-admin .delete, .table-admin .edit{
   display: block;
   margin: auto;
   width: auto;
+}
+
+.back-buttom{
+text-align: center;
+display: inline;
+margin-left: 390px;
 }
 
 .remember{
@@ -336,7 +342,7 @@ margin: 10px;
 	padding: 2em;
 	z-index: 400;
   margin: 50px auto 100px;
-  width: 70%;
+  width: 900px;
 	background: #FFF;
 	min-width: 500px;
 	-webkit-border-radius: 0 4px 4px 4px;
@@ -376,4 +382,10 @@ font: 2rem mst-regular;
 color: black;
 font: 1rem mst-regular;
 text-align: center;
+}
+
+
+.container-term .container-term-son .tittle-error{
+font-size: 30px;
+margin-bottom: 30px;
 }

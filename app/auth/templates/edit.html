@@ -1,6 +1,6 @@
 {% extends "base_template.html" %}
 
-{% block title %}Principal {{ slug_title }}{% endblock %}
+{% block title %}Editar referido {{ slug_title }}{% endblock %}
 
 {% block content %}
      <div class="logotype">
@@ -9,9 +9,12 @@
     </div>
     <div class="container-term">
         <div class="container-term-son">
-            <form  method="POST" novalidate>
+            <form  method="POST" novalidate action="">
                 {{ form.hidden_tag() }}
                 <h2>Editar datos del referido</h2>
+                {% if error %}
+                    <span class="span-error"><strong>Error:</strong> {{ error }}</span>
+                {% endif %}
                 <div>
                     {% for error in form.all_names.errors %}
                         <span class="span-error">{{ error }}</span>
@@ -32,13 +35,15 @@
                 </div>
 
                 <div>
+                    <p>¿Firmó carta?</p>
                     {{ form.signature()}}
                 </div>
                 <div>
+                    <p>Tipo de Apartamento</p>
                     {{ form.apartment_type()}}
                 </div>
                 <div class="buttons-edit">
-                     {{form.submit(class='update')}}
+                     {{ form.submit(class='update')}}
                     <a class="cancel"  href="{{url_for('auth.view_admin')}}">Cancelar</a>
                 </div>
             </form>

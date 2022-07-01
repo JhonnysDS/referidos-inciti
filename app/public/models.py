@@ -16,7 +16,7 @@ class UserReferred(db.Model, UserMixin):
     apartment_type = db.Column(db.SmallInteger, default=True)
 
     def __repr__(self):
-        return f'<UserReferred {self.name}>'
+        return f'<UserReferred {self.email}>'
 
     def save(self):
         if not self.id:
