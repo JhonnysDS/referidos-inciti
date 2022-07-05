@@ -13,7 +13,7 @@ from ..public.forms import AddReferredForm, EditReferredForm
 from ..public.models import UserReferred
 
 
-@auth_bp.route("/signup", methods=["GET", "POST"])
+@auth_bp.route("/signup/", methods=["GET", "POST"])
 def signup():
     if current_user.is_authenticated:
         return redirect(url_for('public.index'))
@@ -21,7 +21,6 @@ def signup():
     error = None
     if form.validate_on_submit():
         names = form.names.data
-        last_names = form.last_names.data
         username = form.username.data
         password = form.password.data
         email = form.email.data
@@ -32,7 +31,7 @@ def signup():
             error = f'El nombre de usuario {username} ya existe.'
         else:
             # Creamos el usuario y lo guardamos
-            user = User(username=username, email=email, names=names,last_names=last_names, is_admin=is_admin)
+            user = User(username=username, email=email, names=names, is_admin=is_admin)
             user.set_password(password)
             user.save()
             # Dejamos al usuario logueado

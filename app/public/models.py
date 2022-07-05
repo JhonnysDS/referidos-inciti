@@ -9,6 +9,7 @@ class UserReferred(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('app_user.id', ondelete='CASCADE'), nullable=False)
+    name_user = db.Column(db.String, db.ForeignKey('app_user.names', ondelete='CASCADE'), nullable=False)
     all_names = db.Column(db.String(255), unique=True, nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
     cellphone = db.Column(db.Integer,  nullable=False)

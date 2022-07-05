@@ -12,16 +12,18 @@
             <h1>Bienvenido a la zona administrativa</h1>
             <table  class="table-admin ">
                 <tr>
-                    <th>Nombre</th>
-                    <th>Correo</th>
-                    <th>Celular</th>
+                    <th>Nombre del referidor</th>
+                    <th>Nombre del referido</th>
+                    <th>Correo del referido</th>
+                    <th>Celular del referido</th>
                     <th>Firma</th>
                     <th>T. apto</th>
                     <th></th>
-                    <!--<th></th>-->
+
                 </tr>
                 {% for user_referred in users_referred %}
                 <tr>
+                    <td>{{ user_referred.name_user }}</td>
                     <td>{{ user_referred.all_names }}</td>
                     <td>{{ user_referred.email }}</td>
                     <td>{{ user_referred.cellphone}}</td>

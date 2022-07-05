@@ -13,13 +13,7 @@
                   {% for error in form.names.errors %}
                   <span class="span-error">{{ error }}</span>
                   {% endfor %}
-                  {{ form.names(placeholder="Nombres")}}
-              </div>
-              <div>
-                  {% for error in form.last_names.errors %}
-                  <span class="span-error">{{ error }}</span>
-                  {% endfor %}
-                  {{ form.last_names(placeholder="Apellidos")}}
+                  {{ form.names(placeholder="Nombres y apellidos")}}
               </div>
               <div>
                   {% for error in form.username.errors %}
