@@ -19,7 +19,7 @@
                     <th>Firma</th>
                     <th>T. apto</th>
                     <th></th>
-
+                    <th></th>
                 </tr>
                 {% for user_referred in users_referred %}
                 <tr>
@@ -50,10 +50,14 @@
                         {% endif %}
                     </td>
                     <td><a href="{{url_for('auth.edit_referred', id=user_referred.id)}}" class="edit">Editar </a></td>
-                    <!--<td><a href="{{url_for('auth.delete_referred', id=user_referred.id)}}" class="delete">Eliminar</a></td>--!>
+                    <td><a href="{{url_for('auth.delete_referred', id=user_referred.id)}}" class="delete btn-delete">Eliminar</a></td>
                 </tr>
                 {% endfor %}
             </table>
         </div>
     </div>
+{% endblock %}
+{% block scripts %}
+    <script src="{{url_for('static', filename='/plugins/jquery/jquery-3.4.1.js')}}"></script>
+    <script src="{{url_for('static', filename='/js/alertdelete.js')}}"></script>
 {% endblock %}

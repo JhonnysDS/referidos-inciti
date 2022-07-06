@@ -1,4 +1,4 @@
-from flask import abort, render_template, url_for
+from flask import abort, render_template, url_for, current_app
 from flask_login import login_required, current_user
 from werkzeug.utils import redirect
 
@@ -13,6 +13,7 @@ from ..auth.models import User
 @login_required
 @admin_forbidden
 def index():
+    current_app.logger.info('Mostrando')
     iduser = current_user.id
     profiles = User.get_by_id(iduser)
     form = AddReferredForm()
