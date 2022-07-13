@@ -338,7 +338,7 @@ margin: 10px;
 
 /*Estilos de terminos y condiciones*/
 
-.container-term-son {
+.container-term-son, .container-term-admin {
 	padding: 2em;
 	z-index: 400;
   margin: 50px auto 100px;
@@ -351,10 +351,17 @@ margin: 10px;
     box-shadow: 0 15px 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 
 }
+.container-term-admin {
+    width: 85%;
+}
 
 .container-term .container-term-son p{
   text-align: justify;
   font: 13px mst-regular;
+}
+.container-term-admin h1{
+color: black;
+text-align: center;
 }
 
 .container-term .container-term-son h2{
