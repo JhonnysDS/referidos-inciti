@@ -63,10 +63,21 @@ margin-left: 15px;
   background: rgb(0, 113, 235);
 }
 
-.menu__item input[type=submit], .back-buttom,.cancel, .update,.table-admin .delete, .table-admin .edit{
+.menu__item input[type=submit],.update ,.back-buttom,.cancel{
   display: block;
   margin: auto;
   width: auto;
+}
+
+.table-admin .delete, .table-admin .edit{
+  display: block;
+  margin: auto;
+      width: 120px;
+    text-align: center;
+}
+
+.filtro{
+    display: none;
 }
 
 .back-buttom{

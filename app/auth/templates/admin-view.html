@@ -10,8 +10,10 @@
     <div class="container-term">
         <div class="container-term-admin">
             <h1>Bienvenido a la zona administrativa</h1>
+
             <table  class="table-admin ">
                 <tr>
+
                     <th>Nombre del referidor</th>
                     <th>Nombre del referido</th>
                     <th>Correo del referido</th>
@@ -19,10 +21,10 @@
                     <th>Firma</th>
                     <th>T. apto</th>
                     <th></th>
-                    <th></th>
+                    <th><input type="text" name="buscador" id="buscador" placeholder="Buscar..."></th>
                 </tr>
                 {% for user_referred in users_referred %}
-                <tr>
+                <tr class="articulo">
                     <td>{{ user_referred.name_user }}</td>
                     <td>{{ user_referred.all_names }}</td>
                     <td>{{ user_referred.email }}</td>
@@ -60,4 +62,5 @@
 {% block scripts %}
     <script src="{{url_for('static', filename='/plugins/jquery/jquery-3.4.1.js')}}"></script>
     <script src="{{url_for('static', filename='/js/alertdelete.js')}}"></script>
+    <script src="{{url_for('static', filename='/js/searcher.js')}}"></script>
 {% endblock %}
