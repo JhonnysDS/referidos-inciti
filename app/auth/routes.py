@@ -1,3 +1,5 @@
+import json
+
 from werkzeug.exceptions import abort
 
 from flask import render_template, redirect, url_for, request
@@ -90,10 +92,12 @@ def view_term():
 @login_required
 @admin_required
 def view_admin():
-
     form = AddReferredForm()
-    users_referred = UserReferred.get_all()
-    return render_template("admin-view.html", form=form, users_referred=users_referred)
+    users_referred = User.query.\
+        join(UserReferred, User.id == UserReferred.user_id).\
+        add_columns(UserReferred.id, User.names, UserReferred.all_names, UserReferred.email, UserReferred.cellphone, UserReferred.signature, UserReferred.apartment_type).\
+        filter(User.id==UserReferred.user_id).paginate(1, 10000, False)
+    return render_template("admin-view.html", form=form, users_referred=users_referred.items)
 
 
 @auth_bp.route("/admin/edit/<int:id>", methods=['GET', 'POST'])
