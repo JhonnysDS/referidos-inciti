@@ -1,0 +1,10 @@
+flask
+Flask-WTF
+email-validator
+flask-login
+flask-sqlalchemy
+psycopg2
+python-slugify
+flask-migrate
+flask-mail
+mysqlclient
