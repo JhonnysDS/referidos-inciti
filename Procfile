@@ -1,0 +1,1 @@
+web: gunicorn --pythonpath app app:create_app
