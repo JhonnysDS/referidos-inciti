@@ -1,4 +1,5 @@
 flask
+gunicorn
 Flask-WTF
 email-validator
 flask-login
@@ -8,3 +9,4 @@ python-slugify
 flask-migrate
 flask-mail
 mysqlclient
+
