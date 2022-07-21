@@ -9,3 +9,5 @@ flask-migrate
 flask-mail
 mysqlclient
 gunicorn
+
+#Extensiones. ↑
