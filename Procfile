@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath app app:create_app
+web: gunicorn --pythonpath referidos-inciti-v1:create_app
