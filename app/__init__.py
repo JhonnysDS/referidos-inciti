@@ -2,24 +2,24 @@ from flask import Flask, render_template
 from flask_login import LoginManager, current_user
 from flask_sqlalchemy import SQLAlchemy
 
-from config import local
+from config import dev
 
 login_manager = LoginManager()
 db = SQLAlchemy()
 
 
 def create_app():
-    settings_module = local
+    settings_module = dev
     app = Flask(__name__, instance_relative_config=True)
 
     # Carga los parámetros de configuración según el entorno
     app.config.from_object(settings_module)
 
     # Carga la configuración del directorio instance
-    if app.config.get('TESTING', False):
-        app.config.from_pyfile('config-testing.py', silent=True)
-    else:
-        app.config.from_pyfile('config.py', silent=True)
+    #if app.config.get('TESTING', False):
+        #app.config.from_pyfile('config-testing.py', silent=True)
+    #else:
+        #app.config.from_pyfile('config.py', silent=True)
 
     login_manager.init_app(app)
     login_manager.login_view = "auth.login"
