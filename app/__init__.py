@@ -4,17 +4,17 @@ from flask import Flask, render_template
 from flask_login import LoginManager, current_user
 from flask_sqlalchemy import SQLAlchemy
 
-from config import dev
+from config import prod
 
 login_manager = LoginManager()
 db = SQLAlchemy()
 
 
 def create_app():
-    settings_module = dev
+    settings_module = prod
     app = Flask(__name__, instance_relative_config=True)
-    app.config['SECRET_KEY'] = dev.SECRET_KEY
-    app.config["SQLALCHEMY_POOL_RECYCLE"] = 100000
+    app.config['SECRET_KEY'] = prod.SECRET_KEY
+    app.config["SQLALCHEMY_POOL_RECYCLE"] = 10
     app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=480)
 
     # Carga los parámetros de configuración según el entorno
