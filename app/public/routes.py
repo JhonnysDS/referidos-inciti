@@ -21,7 +21,7 @@ def index():
     return render_template("index.html", profiles=profiles, form=form, users_referred=users_referred)
 
 
-@public_bp.route("/", methods=["GET", "POST"])
+@public_bp.route("/add-referred", methods=["GET", "POST"])
 def add_referred():
     error = ""
     message_error = ""
@@ -41,8 +41,7 @@ def add_referred():
                 user_id=current_user.id,
                 all_names=form.all_names.data,
                 cellphone=form.cellphone.data,
-                email=email,
-
+                email=email
             )
 
             user_referred.save()

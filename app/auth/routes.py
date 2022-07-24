@@ -140,6 +140,7 @@ def edit_referred(id):
 @auth_bp.route("/admin/delete/<int:id>")
 def delete_referred(id):
     profilesreferred = UserReferred.get_by_id(id)
+
     if profilesreferred is None:
         abort(404)
     profilesreferred.delete()
