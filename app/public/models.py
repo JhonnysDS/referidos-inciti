@@ -10,12 +10,12 @@ class UserReferred(db.Model, UserMixin):
     id = db.Column(db.Integer(), primary_key=True)
     user_id = db.Column(db.Integer(), db.ForeignKey('app_user.id', ondelete='CASCADE'), nullable=False)
     creation_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    all_names = db.Column(db.String(255), unique=True, nullable=False)
+    all_names = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(255), nullable=False)
-    cellphone = db.Column(db.Integer(),  nullable=False)
-    signature = db.Column(db.SmallInteger(), default=1, nullable=False)
-    apartment_type = db.Column(db.SmallInteger(), default=1, nullable=False)
-    term_cond = db.Column(db.Boolean, default=1, nullable=False)
+    cellphone = db.Column(db.Integer(), nullable=False)
+    signature = db.Column(db.SmallInteger(), nullable=False, default=True)
+    apartment_type = db.Column(db.SmallInteger(), nullable=False, default=True)
+    term_cond = db.Column(db.Boolean, nullable=False, default=True)
 
     def __repr__(self):
         return f'<UserReferred {self.email}>'
