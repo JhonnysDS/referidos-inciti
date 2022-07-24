@@ -14,7 +14,7 @@ def create_app():
     settings_module = prod
     app = Flask(__name__, instance_relative_config=True)
     app.config['SECRET_KEY'] = prod.SECRET_KEY
-    app.config["SQLALCHEMY_POOL_RECYCLE"] = 10
+    app.config["SQLALCHEMY_POOL_RECYCLE"] = 1
     app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=480)
 
     # Carga los parámetros de configuración según el entorno
