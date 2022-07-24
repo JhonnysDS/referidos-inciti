@@ -63,7 +63,7 @@
 			</article>
 
 			<article id="item-3" class="menu__item">
-                <form method="post" novalidate>
+                <form method="post" action="{{ url_for('public.add_referred') }}" novalidate>
                     <h3>Ingresa los datos de tu nuevo referido</h3>
                     {{ form.hidden_tag() }}
                     <div>
