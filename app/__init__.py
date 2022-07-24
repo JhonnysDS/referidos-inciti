@@ -1,19 +1,19 @@
 from datetime import timedelta
 
-from flask import Flask, render_template, session
+from flask import Flask, render_template
 from flask_login import LoginManager, current_user
 from flask_sqlalchemy import SQLAlchemy
 
-from config import prod
+from config import dev
 
 login_manager = LoginManager()
 db = SQLAlchemy()
 
 
 def create_app():
-    settings_module = prod
+    settings_module = dev
     app = Flask(__name__, instance_relative_config=True)
-    app.config['SECRET_KEY'] = prod.SECRET_KEY
+    app.config['SECRET_KEY'] = dev.SECRET_KEY
     app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=480)
 
     # Carga los parámetros de configuración según el entorno

@@ -8,10 +8,6 @@ BASE_DIR = dirname(dirname(abspath(__file__)))
 MEDIA_DIR = join(BASE_DIR, 'app/static/images/')
 PROJECTS_IMAGES_DIR = join(MEDIA_DIR, 'projects')
 
-# File google sheet
-GSHEET_DIR = join(BASE_DIR, 'app/components/gspread/')
-JSON_GSHEET_FILE = join(GSHEET_DIR, 'service_account.json')
-
 SECRET_KEY = '7110c8ae51a4b5af97be6534caef90e4bb9bdcb3380af008f90b23a5d1616bf319bc298105da20fe'
 
 # Database configuration
