@@ -8,16 +8,15 @@ from .models import UserReferred
 from ..auth.decorators import admin_forbidden
 from ..auth.models import User
 
-error = ""
-message_error = ""
-iduser = current_user.id
-profiles = User.get_by_id(iduser)
-form = AddReferredForm()
 
 @public_bp.route("/home")
 @login_required
 @admin_forbidden
 def index():
+    error = ""
+    message_error = ""
+    iduser = current_user.id
+    profiles = User.get_by_id(iduser)
     form = AddReferredForm()
     users_referred = UserReferred.get_by_userid(iduser)
     return render_template("index.html", profiles=profiles, form=form, users_referred=users_referred, error=error, message_error=message_error)
@@ -25,6 +24,13 @@ def index():
 
 @public_bp.route("/add-referred", methods=["GET", "POST"])
 def add_referred():
+    error = ""
+    message_error = ""
+    form = AddReferredForm()
+    iduser = current_user.id
+    profiles = User.get_by_id(iduser)
+    users_referred = UserReferred.get_by_userid(iduser)
+
     if form.validate_on_submit():
         email = form.email.data
 
@@ -52,5 +58,5 @@ def add_referred():
     elif error != "":
         message_error = error
 
-    return render_template("index.html",profiles=profiles, error=error, message_error=message_error, form=form)
+    return render_template("index.html", profiles=profiles, form=form, users_referred=users_referred, error=error, message_error=message_error)
 
