@@ -45,7 +45,7 @@ def add_referred():
             )
 
             user_referred.save()
-            return True
+            return redirect(url_for('public.add_referred'))
 
     formerrors = form.errors
 
