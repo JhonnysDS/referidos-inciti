@@ -1,5 +1,3 @@
-import json
-
 from werkzeug.exceptions import abort
 
 from flask import render_template, redirect, url_for, request
@@ -10,7 +8,6 @@ from . import auth_bp
 from .decorators import admin_required
 from .forms import SignupForm, LoginForm
 from .models import User
-from ..admin import admin_bp
 from ..public.forms import AddReferredForm, EditReferredForm
 from ..public.models import UserReferred
 

@@ -1,4 +1,6 @@
-from flask import Flask, render_template
+from datetime import timedelta
+
+from flask import Flask, render_template, session
 from flask_login import LoginManager, current_user
 from flask_sqlalchemy import SQLAlchemy
 
@@ -23,6 +25,11 @@ def create_app():
 
     login_manager.init_app(app)
     login_manager.login_view = "auth.login"
+
+    @app.before_request
+    def before_request():
+        session.permanent = True
+        app.permanent_session_lifetime = timedelta(minutes=480)
 
     db.init_app(app)
 
