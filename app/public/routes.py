@@ -13,12 +13,13 @@ from ..auth.models import User
 @login_required
 @admin_forbidden
 def index():
-    current_app.logger.info('Mostrando')
+    error = ""
+    message_error = ""
     iduser = current_user.id
     profiles = User.get_by_id(iduser)
     form = AddReferredForm()
     users_referred = UserReferred.get_by_userid(iduser)
-    return render_template("index.html", profiles=profiles, form=form, users_referred=users_referred)
+    return render_template("index.html", profiles=profiles, form=form, users_referred=users_referred, error=error, message_error=message_error)
 
 
 @public_bp.route("/add-referred", methods=["GET", "POST"])
@@ -45,7 +46,7 @@ def add_referred():
             )
 
             user_referred.save()
-            return render_template("index.html",error=error, message_error=message_error, form=form)
+            return redirect(url_for('public.index'))
 
     formerrors = form.errors
 
