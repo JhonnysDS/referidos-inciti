@@ -90,12 +90,11 @@ def view_term():
 @login_required
 @admin_required
 def view_admin():
-    form = AddReferredForm()
     users_referred = User.query.\
         join(UserReferred, User.id == UserReferred.user_id).\
         add_columns(UserReferred.id, User.names, UserReferred.all_names, UserReferred.email, UserReferred.cellphone, UserReferred.signature, UserReferred.apartment_type).\
         filter(User.id==UserReferred.user_id).paginate(1, 10000, False)
-    return render_template("admin-view.html", form=form, users_referred=users_referred.items)
+    return render_template("admin-view.html", users_referred=users_referred.items)
 
 
 @auth_bp.route("/admin/edit/<int:id>", methods=['GET', 'POST'])
@@ -125,7 +124,6 @@ def edit_referred(id):
             profiles.apartment_type = form.apartment_type.data
             profiles.save()
             return redirect(url_for('auth.view_admin'))
-
 
     formerrors = form.errors
 
