@@ -1,6 +1,6 @@
 from werkzeug.exceptions import abort
 
-from flask import render_template, redirect, url_for, request
+from flask import render_template, redirect, url_for, request, session
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from app import login_manager
@@ -59,6 +59,7 @@ def login():
             next_page = request.args.get('next')
             message = f'Por favor digite correctamente los datos.'
             if not next_page or url_parse(next_page).netloc != '':
+                session.permanent = True
                 if current_user.is_admin == 'dt6qNPYT' :
                     next_page = url_for('auth.view_admin')
                 else:

@@ -13,6 +13,8 @@ db = SQLAlchemy()
 def create_app():
     settings_module = prod
     app = Flask(__name__, instance_relative_config=True)
+    app.config['SECRET_KEY'] = prod.SECRET_KEY
+    app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=480)
 
     # Carga los parámetros de configuración según el entorno
     app.config.from_object(settings_module)
@@ -25,11 +27,6 @@ def create_app():
 
     login_manager.init_app(app)
     login_manager.login_view = "auth.login"
-
-    @app.before_request
-    def before_request():
-        session.permanent = True
-        app.permanent_session_lifetime = timedelta(minutes=480)
 
     db.init_app(app)
 
