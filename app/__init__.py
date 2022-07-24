@@ -4,14 +4,14 @@ from flask import Flask, render_template, session
 from flask_login import LoginManager, current_user
 from flask_sqlalchemy import SQLAlchemy
 
-from config import dev
+from config import prod
 
 login_manager = LoginManager()
 db = SQLAlchemy()
 
 
 def create_app():
-    settings_module = dev
+    settings_module = prod
     app = Flask(__name__, instance_relative_config=True)
 
     # Carga los parámetros de configuración según el entorno
