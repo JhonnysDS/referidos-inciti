@@ -56,6 +56,7 @@ def create_app():
 def register_error_handlers(app):
     @app.errorhandler(500)
     def base_error_handler(e):
+        db.session.rollback()
         return render_template('500.html'), 500
 
     @app.errorhandler(401)
