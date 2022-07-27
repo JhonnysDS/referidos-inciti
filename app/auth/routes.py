@@ -80,7 +80,6 @@ def load_user(user_id):
 
 @auth_bp.route('/logout')
 def logout():
-    time.sleep(10)
     logout_user()
     return redirect(url_for('auth.login'))
 
