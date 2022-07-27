@@ -37,7 +37,7 @@ def signup():
             login_user(user, remember=True)
             next_page = request.args.get('next', None)
             if not next_page or url_parse(next_page).netloc != '':
-                code = dt6qNPYT
+                code = 'dt6qNPYT'
                 if current_user.is_admin == code:
                     next_page = url_for('auth.view_admin')
                 else:
@@ -61,7 +61,7 @@ def login():
             message = f'Por favor digite correctamente los datos.'
             if not next_page or url_parse(next_page).netloc != '':
                 session.permanent = True
-                code = dt6qNPYT
+                code = 'dt6qNPYT'
                 if current_user.is_admin == code:
                     next_page = url_for('auth.view_admin')
                 else:
