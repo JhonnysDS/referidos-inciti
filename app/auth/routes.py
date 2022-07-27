@@ -62,14 +62,13 @@ def login():
             next_page = request.args.get('next')
             message = f'Por favor digite correctamente los datos.'
             if not next_page or url_parse(next_page).netloc != '':
+                time.sleep(3)
                 session.permanent = True
                 code = 'dt6qNPYT'
                 if current_user.is_admin == code:
                     next_page = url_for('auth.view_admin')
                 else:
                     next_page = url_for('public.index')
-
-            time.sleep(3)
             return redirect(next_page)
     return render_template("login.html", error=error, form=form)
 
