@@ -62,7 +62,7 @@ def login():
             next_page = request.args.get('next')
             message = f'Por favor digite correctamente los datos.'
             if not next_page or url_parse(next_page).netloc != '':
-                time.sleep(3)
+                time.sleep(10)
                 session.permanent = True
                 code = 'dt6qNPYT'
                 if current_user.is_admin == code:
