@@ -55,7 +55,7 @@ def login():
         return redirect(url_for('public.index'))
     form = LoginForm()
     if form.validate_on_submit():
-        time.sleep(3)
+        time.sleep(3/1000)
         user = User.get_by_username(form.username.data)
         if user is not None and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
