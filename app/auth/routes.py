@@ -1,3 +1,5 @@
+from datetime import time
+
 from werkzeug.exceptions import abort
 
 from flask import render_template, redirect, url_for, request, session
@@ -67,6 +69,7 @@ def login():
                 else:
                     next_page = url_for('public.index')
 
+            time.sleep(3)
             return redirect(next_page)
     return render_template("login.html", error=error, form=form)
 
