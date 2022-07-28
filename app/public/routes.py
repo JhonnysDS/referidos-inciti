@@ -13,7 +13,7 @@ from ..auth.models import User
 
 @public_bp.route("/")
 def indexNoHome():
-    return redirect(url_for('public.index'))
+    return redirect(url_for('auth.login'))
 
 
 @public_bp.route("/home")

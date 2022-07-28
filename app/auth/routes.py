@@ -52,8 +52,16 @@ def signup():
 @auth_bp.route("/login", methods=["GET", "POST"])
 def login():
     error = None
+    code = 'dt6qNPYT'
+
     if current_user.is_authenticated:
-        return redirect(url_for('public.index'))
+        if current_user.is_admin == code:
+            next_page = url_for('auth.view_admin')
+        else:
+            next_page = url_for('public.index')
+
+        return redirect(next_page)
+
     form = LoginForm()
     if form.validate_on_submit():
         user = User.get_by_username(form.username.data)
@@ -65,7 +73,6 @@ def login():
             message = f'Por favor digite correctamente los datos.'
             if not next_page or url_parse(next_page).netloc != '':
                 session.permanent = True
-                code = 'dt6qNPYT'
                 if current_user.is_admin == code:
                     next_page = url_for('auth.view_admin')
                 else:
