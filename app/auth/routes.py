@@ -65,7 +65,7 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.get_by_username(form.username.data)
-        print(user)
+        time.sleep(2)
 
         if user is not None and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
@@ -77,7 +77,7 @@ def login():
                     next_page = url_for('auth.view_admin')
                 else:
                     next_page = url_for('public.index')
-            time.sleep(5)
+            time.sleep(3)
             return redirect(next_page)
 
     return render_template("login.html", error=error, form=form)
