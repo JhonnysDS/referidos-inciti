@@ -11,6 +11,11 @@ from ..auth.decorators import admin_forbidden
 from ..auth.models import User
 
 
+@public_bp.route("/")
+def indexNoHome():
+    return redirect(url_for('public.index'))
+
+
 @public_bp.route("/home")
 @login_required
 @admin_forbidden
@@ -21,11 +26,11 @@ def index():
     profiles = User.get_by_id(iduser)
     form = AddReferredForm()
     users_referred = UserReferred.get_by_userid(iduser)
-    time.sleep(5)
     return render_template("index.html", profiles=profiles, form=form, users_referred=users_referred, error=error, message_error=message_error)
 
 
 @public_bp.route("/add-referred", methods=["GET", "POST"])
+@login_required
 def add_referred():
     error = ""
     message_error = ""

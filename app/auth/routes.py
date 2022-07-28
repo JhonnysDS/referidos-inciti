@@ -46,7 +46,7 @@ def signup():
 
             time.sleep(5)
             return redirect(next_page)
-    return render_template("signup.html",error=error, form=form)
+    return render_template("signup.html", error=error, form=form)
 
 
 @auth_bp.route("/login", methods=["GET", "POST"])
@@ -57,6 +57,7 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.get_by_username(form.username.data)
+        print(user)
 
         if user is not None and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
@@ -96,11 +97,11 @@ def view_term():
 @login_required
 @admin_required
 def view_admin():
-    users_referred = User.query.\
-        join(UserReferred, User.id == UserReferred.user_id).\
-        add_columns(UserReferred.id, User.names, UserReferred.all_names, UserReferred.email, UserReferred.cellphone, UserReferred.signature, UserReferred.apartment_type).\
-        filter(User.id==UserReferred.user_id).paginate(1, 10000, False)
-    time.sleep(5)
+    users_referred = User.query. \
+        join(UserReferred, User.id == UserReferred.user_id). \
+        add_columns(UserReferred.id, User.names, UserReferred.all_names, UserReferred.email, UserReferred.cellphone,
+                    UserReferred.signature, UserReferred.apartment_type). \
+        filter(User.id == UserReferred.user_id).paginate(1, 10000, False)
     return render_template("admin-view.html", users_referred=users_referred.items)
 
 
@@ -140,7 +141,8 @@ def edit_referred(id):
     elif formerrors != "":
         message_error = error
 
-    return render_template("edit.html", message_error=message_error, formerrors=formerrors, profiles=profiles, form=form )
+    return render_template("edit.html", message_error=message_error, formerrors=formerrors, profiles=profiles,
+                           form=form)
 
 
 @auth_bp.route("/admin/delete/<int:id>")
