@@ -1,3 +1,5 @@
+import time
+
 from flask import abort, render_template, url_for, current_app
 from flask_login import login_required, current_user
 from werkzeug.utils import redirect
@@ -19,6 +21,7 @@ def index():
     profiles = User.get_by_id(iduser)
     form = AddReferredForm()
     users_referred = UserReferred.get_by_userid(iduser)
+    time.sleep(5)
     return render_template("index.html", profiles=profiles, form=form, users_referred=users_referred, error=error, message_error=message_error)
 
 
@@ -49,6 +52,7 @@ def add_referred():
             )
 
             user_referred.save()
+            time.sleep(5)
             return redirect(url_for('public.index'))
 
     formerrors = form.errors

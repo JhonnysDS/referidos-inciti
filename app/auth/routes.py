@@ -1,5 +1,4 @@
-from datetime import time
-
+import time
 from werkzeug.exceptions import abort
 
 from flask import render_template, redirect, url_for, request, session
@@ -44,6 +43,8 @@ def signup():
                     next_page = url_for('auth.view_admin')
                 else:
                     next_page = url_for('public.index')
+
+            time.sleep(5)
             return redirect(next_page)
     return render_template("signup.html",error=error, form=form)
 
@@ -55,8 +56,8 @@ def login():
         return redirect(url_for('public.index'))
     form = LoginForm()
     if form.validate_on_submit():
-        time.sleep(3/1000)
         user = User.get_by_username(form.username.data)
+
         if user is not None and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
             next_page = request.args.get('next')
@@ -68,7 +69,9 @@ def login():
                     next_page = url_for('auth.view_admin')
                 else:
                     next_page = url_for('public.index')
+            time.sleep(5)
             return redirect(next_page)
+
     return render_template("login.html", error=error, form=form)
 
 
@@ -97,6 +100,7 @@ def view_admin():
         join(UserReferred, User.id == UserReferred.user_id).\
         add_columns(UserReferred.id, User.names, UserReferred.all_names, UserReferred.email, UserReferred.cellphone, UserReferred.signature, UserReferred.apartment_type).\
         filter(User.id==UserReferred.user_id).paginate(1, 10000, False)
+    time.sleep(5)
     return render_template("admin-view.html", users_referred=users_referred.items)
 
 
@@ -126,6 +130,7 @@ def edit_referred(id):
             profiles.signature = form.signature.data,
             profiles.apartment_type = form.apartment_type.data
             profiles.save()
+            time.sleep(5)
             return redirect(url_for('auth.view_admin'))
 
     formerrors = form.errors
@@ -145,4 +150,5 @@ def delete_referred(id):
     if profilesreferred is None:
         abort(404)
     profilesreferred.delete()
+    time.sleep(5)
     return redirect(url_for('auth.view_admin'))
