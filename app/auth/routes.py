@@ -18,7 +18,7 @@ def signup():
     if current_user.is_authenticated:
         return redirect(url_for('public.index'))
     form = SignupForm()
-    error = None
+    error = ""
     if form.validate_on_submit():
         names = form.names.data
         username = form.username.data
@@ -51,7 +51,7 @@ def signup():
 
 @auth_bp.route("/login", methods=["GET", "POST"])
 def login():
-    error = None
+    error = ""
     code = 'dt6qNPYT'
 
     if current_user.is_authenticated:
@@ -70,7 +70,7 @@ def login():
         if user is not None and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
             next_page = request.args.get('next')
-            message = f'Por favor digite correctamente los datos.'
+            error = f'Por favor digite correctamente los datos.'
             if not next_page or url_parse(next_page).netloc != '':
                 session.permanent = True
                 if current_user.is_admin == code:
@@ -91,6 +91,7 @@ def load_user(user_id):
 @auth_bp.route('/logout')
 def logout():
     logout_user()
+    time.sleep(2)
     return redirect(url_for('auth.login'))
 
 
