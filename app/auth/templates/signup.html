@@ -8,7 +8,9 @@
           <form class="register-form" action="" method="post" novalidate>
               {{ form.hidden_tag() }}
               <img class="logo" src="{{url_for('static', filename='imagenes/logoBlue.png')}}" alt="Inciti">
-
+                {% if error %}
+                  <p class="span-error"><strong>Error:</strong> {{ error }}</p>
+                {% endif %}
               <div>
                   {% for error in form.names.errors %}
                   <span class="span-error">{{ error }}</span>

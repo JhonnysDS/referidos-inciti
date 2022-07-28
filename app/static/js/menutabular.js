@@ -6,8 +6,8 @@ $(function() {
 		$menu_tabs.removeClass('active');
 		$(this).addClass('active');
 
-		$('.menu__item').fadeOut(300);
-		$(this.hash).delay(300).fadeIn();
+		$('.menu__item').fadeOut(100);
+		$(this.hash).delay(100).fadeIn();
 	});
 
 });
