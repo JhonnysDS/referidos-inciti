@@ -1,5 +1,3 @@
-import time
-
 from flask import abort, render_template, url_for, current_app
 from flask_login import login_required, current_user
 from werkzeug.utils import redirect
@@ -57,7 +55,6 @@ def add_referred():
             )
 
             user_referred.save()
-            time.sleep(5)
             return redirect(url_for('public.index'))
 
     formerrors = form.errors

@@ -1,4 +1,3 @@
-import time
 from werkzeug.exceptions import abort
 
 from flask import render_template, redirect, url_for, request, session
@@ -9,7 +8,7 @@ from . import auth_bp
 from .decorators import admin_required
 from .forms import SignupForm, LoginForm
 from .models import User
-from ..public.forms import AddReferredForm, EditReferredForm
+from ..public.forms import EditReferredForm
 from ..public.models import UserReferred
 
 
@@ -43,8 +42,6 @@ def signup():
                     next_page = url_for('auth.view_admin')
                 else:
                     next_page = url_for('public.index')
-
-            time.sleep(5)
             return redirect(next_page)
     return render_template("signup.html", error=error, form=form)
 
@@ -65,7 +62,6 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.get_by_username(form.username.data)
-        time.sleep(2)
 
         if user is not None and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
@@ -77,7 +73,6 @@ def login():
                     next_page = url_for('auth.view_admin')
                 else:
                     next_page = url_for('public.index')
-            time.sleep(3)
             return redirect(next_page)
 
     return render_template("login.html", error=error, form=form)
@@ -91,7 +86,6 @@ def load_user(user_id):
 @auth_bp.route('/logout')
 def logout():
     logout_user()
-    time.sleep(2)
     return redirect(url_for('auth.login'))
 
 
@@ -139,7 +133,6 @@ def edit_referred(id):
             profiles.signature = form.signature.data,
             profiles.apartment_type = form.apartment_type.data
             profiles.save()
-            time.sleep(5)
             return redirect(url_for('auth.view_admin'))
 
     formerrors = form.errors
@@ -160,5 +153,4 @@ def delete_referred(id):
     if profilesreferred is None:
         abort(404)
     profilesreferred.delete()
-    time.sleep(5)
     return redirect(url_for('auth.view_admin'))
