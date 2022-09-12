@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style-admin.css">
+    <!--<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">-->
     <link rel="stylesheet" href="{{ url_for("static", filename="css/style-admin.css") }}">
     <link rel="icon" href="{{url_for('static', filename='imagenes/icons/logo.ico') }}">
     <title>{% block title %}{% endblock %} - Zona Administrativa</title>
@@ -22,14 +20,16 @@
         <div class="container-links-button">
             <nav class="nav">
                 <ul class="nav-links">
-                    <li class="li"><a href="/Index-administrador.html" href="{{ url_for('auth.signup') }}">Proyectos</a></li>
-                    <li class="li"><a href="/add-project-refered.html">Agregar nuevo Proyecto</a></li>
+                    <li class="li"><a href="{{ url_for('project.view_admin_index') }}">Proyectos</a></li>
+                    <li class="li"><a href="{{url_for('project.add_project')}}">Agregar nuevo Proyecto</a></li>
                 </ul>
             </nav>
-        <a href="" class="btn"><button>Cerrar Sesion</button></a>
+        <a href="{{ url_for('auth.logout') }}" class="btn"><button>Cerrar Sesion</button></a>
         </div>
    </header>
 {% block content %}{% endblock %}
 </body>
 {% block scripts %}{% endblock %}
+<script src="{{url_for('static', filename='/js/navbarresponsive.js')}}"></script>
+<script src="https://kit.fontawesome.com/e2b75f306c.js" crossorigin="anonymous"></script>
 </html>

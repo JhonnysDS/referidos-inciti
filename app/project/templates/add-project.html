@@ -1,10 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base_template_admin.html" %}
+
+{% block title %}Proyectos{{ slug_title }}{% endblock %}
+
+{% block content %}
+<div class="general-title">
+        <h1>Agregar Proyecto</h1>
+    </div>
+
+    <section class="section-form">
+        <div class="div-form">
+            <form class="form" method="POST" action="{{ url_for('project.add_project') }}" novalidate>
+                <p class="form-paragraph">Por favor, ingresa los datos.</p>
+                {{ form.hidden_tag() }}
+                <div class="form-container">
+                    <div class="form-group">
+                        {% if error %}
+                        <span class="span-error"><strong>Error:</strong> {{ error }}</span>
+                        {% endif %}<br>
+                        {{ form.name_project.label(class='form-label') }}
+                        {{ form.name_project(class="form-input", id="name") }}
+                        {% for error in form.name_project.errors %}
+                            <span class="message-error">{{ error }}</span>
+                        {% endfor %}
+
+                    </div>
+                    <!--<div class="form-group">
+                        {{ form.name_project.label(class='form-label') }}
+                        {{ form.name_project(class="form-input", id="name") }}
+                        {% for error in form.name_project.errors %}
+                            <span class="message-error">{{ error }}</span>
+                        {% endfor %}
+                    </div>-->
+                    <div class="form-group">
+                        {{ form.description.label(class='form-label') }}
+                        {{ form.description(class="form-input") }}
+                        {% for error in form.description.errors %}
+                            <span class="message-error">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.terms_conditions.label(class='form-label') }}
+                        {{ form.terms_conditions(class="form-input") }}
+                        {% for error in form.terms_conditions.errors %}
+                            <span class="message-error">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {{ form.submit(class="form-submit") }}
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}
+{% block scripts %}
+
+{% endblock %}

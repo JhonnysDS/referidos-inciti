@@ -47,6 +47,8 @@ def create_app():
     from .public import public_bp
     app.register_blueprint(public_bp)
 
+    from .project import project_bp
+    app.register_blueprint(project_bp)
     # Custom error handlers
     register_error_handlers(app)
 

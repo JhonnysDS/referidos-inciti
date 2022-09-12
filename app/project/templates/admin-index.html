@@ -6,7 +6,7 @@
 <div class="general-title">
         <h1>Proyectos</h1>
     </div>
-
+{% for project in projects %}
    <section class="section">
         <div class="card-wrap">
         <article class="card">
@@ -15,17 +15,18 @@
             </header>
             <footer class="footer-card">
                 <div class="text-card">
-                    <a href="">loren-ipsu</a>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, laborum earum. Quae corrupti totam dolore, mollitia iste vel! Adipisci delectus consequuntur hic tenetur doloribus sapiente debitis fugit aliquam corrupti sint!</p>
+                    <a href="{{url_for('project.detail', id=project.id)}}">{{project.title}}</a>
+                    <p>{{project.description}}</p>
                 </div>
                 <div class="links-card">
-                    <a href="">Términos y condiciones</a>
-                    <a href="">Ir al proyecto</a>
+                    <a href="{{url_for('project.termns-conditions', id=project.id)}}">Términos y condiciones</a>
+                    <a href="{{url_for('project.detail', id=project.id)}}">Ir al proyecto</a>
                 </div>
             </footer>
         </article>
     </div>
    </section>
+{% endfor %}
 {% endblock %}
 {% block scripts %}
 

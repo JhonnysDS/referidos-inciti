@@ -1,0 +1,311 @@
+@font-face {
+    font-family: mst-regular;
+    src: url(../fonts/montserrate/Montserrat-Regular.otf); }
+  @font-face {
+    font-family: mst-light;
+    src: url(../fonts/montserrate/Montserrat-Light.otf); }
+  @font-face {
+    font-family: mst-medium;
+    src: url(../fonts/montserrate/Montserrat-Medium.otf); }
+  @font-face {
+    font-family: mst-bold;
+    src: url(../fonts/montserrate/Montserrat-Bold.otf); }
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: rgb(44, 130, 222);
+
+}
+.header{
+    background-color: aliceblue;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 65px;
+    padding: 5px 10%;
+}
+
+.header .logo img{
+    cursor: pointer;
+    height: 40px;
+    width: auto;
+    transition: all 0.3s;
+}
+
+.header .logo img:hover{
+    transform: scale(1.2);
+}
+
+.header .nav-links{
+    list-style: none;
+}
+
+.header .nav-links li{
+    display: inline-block;
+    padding: 0 20px;
+    font-size: 18px;
+    transition: all 0.3s;
+    cursor: pointer;
+    font-family: mst-regular;
+}
+header .nav-links li:hover{
+    transform: scale(1.2);
+    
+}
+
+.header .nav-links a{
+    font-size: 700;
+    text-decoration: none;
+    color: black;
+    
+}
+.nav{
+    margin-top: 15px;
+}
+
+.header .btn button{
+    font-weight: 700;
+    font: 18px mst-light;
+    color: white;
+    padding: 15px 25px;
+    background-color:rgb(44, 130, 222);
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.header .btn button:hover{
+    background-color: rgb(0, 113, 235);
+}
+
+.container-links-button{
+    display: flex;
+    justify-content: space-between;
+    width: 1000px;
+    margin-left: 150px;
+}
+
+.toggle{
+    color: rgb(0, 113, 235);
+    background: none;
+    border: none;
+    font-size: 30px;
+    padding: 0 20px;
+    line-height: 60px;
+    cursor: pointer;
+    display: none;
+}
+@media (max-width: 768px){
+    .header{
+        height: 50px;
+    }
+    
+    .header .logo img{
+        height: 25px;
+    }
+
+    
+    .header .nav-links li{
+        color: white;
+        display:block;
+    }
+
+    
+    .header .nav-links a{
+        color: white;
+    }
+    
+    .header .btn button{
+        padding: 0px;
+        margin-top: 25px ;
+        background-color:rgb(12, 25, 62);
+
+    }
+    .li{
+        margin-top: 25px;
+    }
+
+    .container-links-button{
+        display: block;
+        text-align: center;
+        position: fixed;
+        left: 0;
+        top: 50px;
+        width: 100%;
+        height: 100%;
+        list-style: none;
+        background-color: rgb(12, 25, 62);
+        left: 100%;
+        transition: 0.3s;
+        margin-left: 0px;
+    }
+    
+    .header .btn button:hover{
+        background-color: rgb(12, 25, 62);
+        transform: scale(1.2);
+
+    }
+
+    .toggle{
+        display: block;
+        color: rgb(0, 113, 235);
+    }
+
+    .container-links-button_active{
+        left: 0%;
+    }
+
+    .nav{
+        margin: 0px;
+    }
+}
+
+
+/*ESTILOS DE LAS TARJETAS*/
+.general-title{
+    color: white;
+    font: 15px mst-bold;
+    text-align: center;
+    margin-top: 20px;
+}
+.section, .card-wrap{
+    display: inline-block;
+    margin: 10px 0px 0px 10px ;
+    
+}
+article.card{
+    max-width: 350px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    margin: 1rem;
+    box-shadow: 0 0 12px #d7d7d7;
+}
+
+.header-card img{
+    width: 100%;
+    border-radius: 8px 8px 0 0 ;
+    max-height: 300px;
+    height: 300px;
+}
+.text-card a{
+    font: 23px mst-regular;
+    text-decoration: none;
+    color: black;
+    transition: all 0.3s;
+}
+.text-card p{
+    text-align: justify;
+    font: 15px mst-light;
+    padding: 18px 0px;
+}
+.card footer{
+    padding: 1rem;
+}
+.links-card{
+    display: flex;
+    justify-content: space-around;
+}
+.links-card a:hover{
+    
+    background-color: rgb(0, 113, 235);;
+}
+
+.links-card a{
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    background-color:rgb(44, 130, 222);
+    border-radius: 5px;
+    font: 13px mst-regular;
+    transition: all 0.3s;
+}
+
+/*ESTILOS DE AGREGAR NUEVO PROYECTO*/
+
+.section-form{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px;
+}
+
+.section-form .div-form{
+    max-width: 400px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 0 12px #d7d7d7;
+    text-align: center;
+}
+
+.section-form .div-form .form-paragraph{
+
+    font: 25px mst-regular;
+    margin: 13px;
+}
+
+.form-container{
+    margin-top: 3em;
+    display: grid;
+    gap: 2.5em;
+}
+
+
+.div-form-group{
+    position: relative;
+    --color: #5757577e;
+
+}
+
+.form-input, .label-description{
+    width: 90%;
+    background: none;
+    color: #706c6c;
+    padding: .6em .3em;
+    outline: none;
+    border: 2px solid grey; 
+    border-radius: 7px;
+    font :1rem mst-light;
+}
+.form-input:focus{
+    outline: none;
+    border-color: #9ecaed; 
+    box-shadow: 0 0 10px #9ecaed;
+}
+
+.form-label{
+    color: black;
+    cursor: pointer;
+    font :1rem mst-light;
+    margin-bottom: 10px;
+}
+
+.form-submit{
+    font-weight: 700;
+    font: 18px mst-light;
+    color: white;
+    padding: 15px 25px;
+    background-color:rgb(44, 130, 222);
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.form-submit:hover{
+    background-color: rgb(0, 113, 235);;
+}
+.label-description{
+    font-family: mst-medium;
+}
+.descripcion{
+    display: none;
+ }
+
