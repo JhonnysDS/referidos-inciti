@@ -3,30 +3,31 @@
 {% block title %}Proyectos{{ slug_title }}{% endblock %}
 
 {% block content %}
-<div class="general-title">
+    <div class="general-title">
         <h1>Proyectos</h1>
     </div>
-{% for project in projects %}
    <section class="section">
-        <div class="card-wrap">
-        <article class="card">
-            <header class="header-card">
-                <img src="/imagenes/vive-rio.jpeg" alt="">
-            </header>
-            <footer class="footer-card">
-                <div class="text-card">
-                    <a href="{{url_for('project.detail', id=project.id)}}">{{project.title}}</a>
-                    <p>{{project.description}}</p>
-                </div>
-                <div class="links-card">
-                    <a href="{{url_for('project.termns-conditions', id=project.id)}}">Términos y condiciones</a>
-                    <a href="{{url_for('project.detail', id=project.id)}}">Ir al proyecto</a>
-                </div>
-            </footer>
-        </article>
-    </div>
+       {% for project in projects %}
+            <div class="card-wrap">
+                <article class="card">
+                    <header class="header-card">
+                        <img src="/imagenes/vive-rio.jpeg" alt="">
+                    </header>
+                    <footer class="footer-card">
+                        <div class="text-card">
+                            <a href="">{{project.name_project}}</a>
+                            <p>{{project.description}}</p>
+                        </div>
+                        <div class="links-card">
+                            <a href="">Términos y condiciones</a>
+                            <a href="">Ir al proyecto</a>
+                        </div>
+                    </footer>
+                </article>
+            </div>
+       {% endfor %}
    </section>
-{% endfor %}
+
 {% endblock %}
 {% block scripts %}
 
