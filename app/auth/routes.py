@@ -156,7 +156,3 @@ def delete_referred(id):
     return redirect(url_for('auth.view_admin'))
 
 
-@auth_bp.route("/admin-index/")
-@login_required
-def view_admin_index():
-    return render_template("admin-index.html")

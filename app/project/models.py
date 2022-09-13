@@ -4,7 +4,7 @@ from app import db
 from datetime import datetime
 
 
-class Projects(db.Model, UserMixin):
+class Projects(db.Model):
     __tablename__ = 'projects'
     id = db.Column(db.Integer(), primary_key=True)
     name_project = db.Column(db.String(11), nullable=False)

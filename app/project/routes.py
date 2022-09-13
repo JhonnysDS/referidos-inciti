@@ -7,7 +7,7 @@ from app.project.form import ProjectForm
 from app.project.models import Projects
 
 
-@project_bp.route("/admin-index/")
+@project_bp.route("/adminzone")
 @login_required
 def view_admin_index():
     projects = Projects.order_by(Projects.id.desc())
