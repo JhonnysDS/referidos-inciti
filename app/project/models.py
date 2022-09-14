@@ -1,5 +1,3 @@
-from flask_login import UserMixin
-
 from app import db
 from datetime import datetime
 
@@ -8,7 +6,7 @@ class Projects(db.Model):
     __tablename__ = 'projects'
     id = db.Column(db.Integer(), primary_key=True)
     name_project = db.Column(db.String(11), nullable=False)
-    #image = db.Column(db.Text(), nullable=True)
+    imagen = db.Column(db.String)
     description = db.Column(db.Text(), nullable=False)
     terms_conditions = db.Column(db.Text(), nullable=False)
     creation_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)

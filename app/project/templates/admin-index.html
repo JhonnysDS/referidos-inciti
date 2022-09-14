@@ -6,21 +6,30 @@
     <div class="general-title">
         <h1>Proyectos</h1>
     </div>
-    {% for project in projects %}
+    {% for project in project_created %}
    <section class="section">
             <div class="card-wrap">
                 <article class="card">
                     <header class="header-card">
-                        <img src="/imagenes/vive-rio.jpeg" alt="">
+                        <img src="{{ url_for('media_projects', filename=project_created.image_name) }}" />
                     </header>
                     <footer class="footer-card">
                         <div class="text-card">
                             <a href="">{{project.name_project}}</a>
                             <p>{{project.description}}</p>
                         </div>
-                        <div class="links-card">
-                            <a href="">Términos y condiciones</a>
-                            <a href="">Ir al proyecto</a>
+                        <div class="container-buttons">
+                            <div class="links-card">
+                                <a class="button-link" href="">Términos y condiciones</a>
+                                <a class="button-link" href="">Ir al proyecto</a>
+                            </div>
+                            <div class="dropdown">
+                                <button class="dropdown-button">Más</button>
+                                <div class="links">
+                                    <a href="" class="link-delete">Editar</a>
+                                    <a href="" class="link2-edit">Eliminar</a>
+                                </div>
+                            </div>
                         </div>
                     </footer>
                 </article>
