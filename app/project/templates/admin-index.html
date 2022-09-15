@@ -10,9 +10,9 @@
    <section class="section">
             <div class="card-wrap">
                 <article class="card">
-                    <header class="header-card">
-                        <img src="{{ url_for('media_projects', filename=project_created.image_name) }}" />
-                    </header>
+                    <!--<header class="header-card">
+                        <img src="{{ url_for('project.add_project', filename=project_created.image_name) }}" />
+                    </header>-->
                     <footer class="footer-card">
                         <div class="text-card">
                             <a href="">{{project.name_project}}</a>
@@ -26,8 +26,8 @@
                             <div class="dropdown">
                                 <button class="dropdown-button">Más</button>
                                 <div class="links">
-                                    <a href="" class="link-delete">Editar</a>
-                                    <a href="" class="link2-edit">Eliminar</a>
+                                    <a href="{{url_for('project.edit_project', id=project.id)}}" class="link-delete">Editar</a>
+                                    <a href="{{url_for('project.delete_project', id=project.id)}}" class="link2-edit delete-project-btn">Eliminar</a>
                                 </div>
                             </div>
                         </div>
@@ -39,5 +39,6 @@
 
 {% endblock %}
 {% block scripts %}
-
+    <script src="{{url_for('static', filename='/plugins/jquery/jquery-3.4.1.js')}}"></script>
+    <script src="{{url_for('static', filename='/js/alertdelete.js')}}"></script>
 {% endblock %}
