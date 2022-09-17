@@ -9,6 +9,7 @@ class UserReferred(db.Model, UserMixin):
 
     id = db.Column(db.Integer(), primary_key=True)
     user_id = db.Column(db.Integer(), db.ForeignKey('app_user.id', ondelete='CASCADE'), nullable=False)
+    project_id = db.Column(db.Integer(), db.ForeignKey('app_projects.id'), nullable=False)
     creation_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     all_names = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(255), nullable=False)
@@ -16,6 +17,10 @@ class UserReferred(db.Model, UserMixin):
     signature = db.Column(db.SmallInteger(), nullable=False, default=True)
     apartment_type = db.Column(db.SmallInteger(), nullable=False, default=True)
     term_cond = db.Column(db.Boolean, nullable=False, default=True)
+
+    def __init__(self, user_id=None, project_id=None):
+        self.user_id = user_id
+        self.project_id = project_id
 
     def __repr__(self):
         return f'<UserReferred {self.email}>'
@@ -32,6 +37,10 @@ class UserReferred(db.Model, UserMixin):
     @staticmethod
     def get_by_userid(userId):
         return UserReferred.query.filter_by(user_id=userId).all()
+
+    @staticmethod
+    def get_by_Projectid(projectId):
+        return UserReferred.query.filter_by(project_id=projectId).all()
 
     @staticmethod
     def get_all():

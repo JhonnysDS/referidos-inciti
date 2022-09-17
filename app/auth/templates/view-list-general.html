@@ -1,0 +1,65 @@
+{% extends "base_template_admin.html" %}
+
+{% block title %}Editar proyecto {{ slug_title }}{% endblock %}
+
+{% block content %}
+<div class="general-title">
+        <h1>Lista de usuarios referidos del proyecto vive rio</h1>
+    </div>
+
+    <section class="section-table-general">
+        <div class="div-table-general">
+            <table class="table-general">
+                <thead>
+                    <tr >
+                        <th>Nombre del referidor</th>
+                        <th>Nombre del referido</th>
+                        <th>Correo del referido</th>
+                        <th>Celular del Referido</th>
+                        <th>Firma</th>
+                        <th>Tipo de Apto</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for user_referred in project_created.users_referreds%}
+                    <tr >
+                        <td data-label="Nombre del referidor">{{user_referred.names}}</td>
+                        <td data-label="Nombre del referido">{{user_referred.all_names}}</td>
+                        <td data-label="Correo del referido">{{user_referred.email}}</td>
+                        <td data-label="Celular del Referido">{{user_referred.cellphone}}</td>
+                        <td data-label="Firma">
+                            {% if user_referred.signature == 1 %}
+                                <p>No</p>
+                            {% elif user_referred.signature == 2 %}
+                                <p>Si</p>
+                            {% endif %}</td>
+                        <td data-label="Tipo de Apto">
+                            {% if user_referred.apartment_type == 1 %}
+                                <p>No seleccionado</p>
+                            {% elif user_referred.apartment_type == 2 %}
+                                <p>Tipo 1A</p>
+                            {% elif user_referred.apartment_type == 3 %}
+                                <p>Tipo 1B</p>
+                            {% elif user_referred.apartment_type == 4 %}
+                                <p>Tipo 1C</p>
+                            {% elif user_referred.apartment_type == 5 %}
+                                <p>Tipo 2</p>
+                            {% elif user_referred.apartment_type == 6 %}
+                                <p>Tipo 3</p>
+                            {% endif %}
+                        </td>
+                        <td data-label=""><a href="#" class="button-edit-table-general">Editar</a></td>
+                        <td data-label=""><a href="#" class="button-delete-table-general">Eliminar</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+    </section>
+{% endblock %}
+{% block scripts %}
+
+{% endblock %}

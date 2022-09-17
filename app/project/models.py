@@ -3,14 +3,15 @@ from datetime import datetime
 
 
 class Projects(db.Model):
-    __tablename__ = 'projects'
+    __tablename__ = 'app_projects'
     id = db.Column(db.Integer(), primary_key=True)
     name_project = db.Column(db.String(11), nullable=False)
     imagen = db.Column(db.String)
     description = db.Column(db.Text(), nullable=False)
     terms_conditions = db.Column(db.Text(), nullable=False)
     creation_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-
+    users_referreds = db.relationship('UserReferred', backref='app_projects', lazy=True, cascade='all, delete-orphan',
+                               order_by='asc(UserReferred.creation_date)')
     def __repr__(self):
         return f'<Projects {self.id}>'
 
@@ -22,10 +23,6 @@ class Projects(db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
-
-    @staticmethod
-    def get_by_Projectid(projectId):
-        return Projects.query.filter_by(project_id=projectId).all()
 
     @staticmethod
     def get_all():

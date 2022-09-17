@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from werkzeug.utils import redirect
 
 from . import public_bp
-from .forms import AddReferredForm, EditReferredForm
+from .forms import AddReferredForm
 from .models import UserReferred
 from ..auth.decorators import admin_forbidden
 from ..auth.models import User

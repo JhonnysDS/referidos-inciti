@@ -345,15 +345,15 @@ a.button-link{
 
 
 
-/*-------------------ESTILOS DE PAGINA TERMINOS Y CONDICIONES --------------*/
+/*-------------------ESTILOS DE PAGINA TERMINOS Y CONDICIONES, Y TABLA GENERAL DE LOS PROYECTOS --------------*/
 
-.section-term-conditions{
+.section-term-conditions, .section-table-general{
     display: Flex;
     align-items: center;
     justify-content: center;
 }
 
-.div-term-conditions{
+.div-term-conditions, .div-table-general{
     margin: 50px;
     width: 70%;
     background-color: #f8f8f8;
@@ -378,3 +378,102 @@ a.button-link{
 
 }
 
+
+
+
+/*-----ESTILOS DE LA TABLA GENERAL--------------*/
+.div-table-general{
+    display: flex;
+    align-items:center ;
+    justify-content: center;
+}
+
+.table-general{
+
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+
+
+}
+
+.table-general tr{
+background-color: #ebebeb;
+border: 1px solid rgb(198, 196, 196);
+}
+
+.table-general th, .table-general td{
+    font : 1rem mst-light;
+    padding: 13px;
+}
+
+.table-general th{
+    font :1rem mst-medium;
+    text-transform: uppercase;
+    background-color: rgb(44, 130, 222);
+    color: white;
+}
+
+.table-general tr:hover{
+    background-color: rgba(0, 0, 0, 0.2);
+    cursor:default;
+}
+
+.button-edit-table-general, .button-delete-table-general{
+    text-decoration: none;
+    font-weight: 700;
+    font: 18px mst-light;
+    color: white;
+    padding: 10px 20px;
+    background-color:rgb(44, 130, 222);
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+@media (max-width: 1517px){
+    .table-general th, .table-general td{
+        font : 0.9rem mst-light;
+        padding: 13px;
+    }
+}
+
+
+@media (max-width: 1396px){
+    .div-table-general{
+        width: 95%;
+        margin: 25px 0px;
+    }
+    .table-general{
+        border: 0px;
+        width: 100%;;
+
+    }
+    .table-general thead{
+        display: none;
+    }
+    .table-general tr{
+        margin-bottom: 8px;
+        border-bottom: 4px solid rgb(198, 196, 196);
+        display: block;
+    }
+    .table-general th, .table-general td{
+        font-size: 0.8rem;
+    }
+    .table-general td{
+        display: block;
+        border-bottom: 1px solid rgb(145, 144, 144);
+        text-align: right;
+    }
+    .table-general td:hover{
+        background-color: rgba(0, 0, 0, 0.3);
+
+    }
+
+    .table-general td::before{
+        content: attr(data-label);
+        font :1rem mst-medium;
+        text-transform: uppercase;
+        float: left;
+    }
+
+}

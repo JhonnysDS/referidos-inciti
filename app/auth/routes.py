@@ -8,6 +8,7 @@ from . import auth_bp
 from .decorators import admin_required
 from .forms import SignupForm, LoginForm
 from .models import User
+from ..project.models import Projects
 from ..public.forms import EditReferredForm
 from ..public.models import UserReferred
 
@@ -95,16 +96,17 @@ def view_term():
     return render_template("term-conditions.html")
 
 
-@auth_bp.route("/admin")
+@auth_bp.route("/project/list/referreds/", methods=['GET', 'POST'])
 @login_required
 @admin_required
 def view_admin():
+    project_created = Projects.get_by_id(id)
     users_referred = User.query. \
         join(UserReferred, User.id == UserReferred.user_id). \
         add_columns(UserReferred.id, User.names, UserReferred.all_names, UserReferred.email, UserReferred.cellphone,
                     UserReferred.signature, UserReferred.apartment_type). \
         filter(User.id == UserReferred.user_id).paginate(1, 10000, False)
-    return render_template("admin-view.html", users_referred=users_referred.items)
+    return render_template("view-list-general.html", users_referred=users_referred.items,project_created=project_created)
 
 
 @auth_bp.route("/admin/edit/<int:id>", methods=['GET', 'POST'])
@@ -155,5 +157,8 @@ def delete_referred(id):
     profilesreferred.delete()
     return redirect(url_for('auth.view_admin'))
 
-
+@auth_bp.route("/project/list/referreds/")
+@login_required
+def view_list_users_referreds():
+    return render_template("view-list-general.html")
 
