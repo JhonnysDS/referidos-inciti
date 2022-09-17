@@ -87,7 +87,7 @@ def add_project():
 
 
 
-@project_bp.route("/adminzone/edit/<int:id>", methods=["GET", "POST"])
+@project_bp.route("/adminzone/project/edit/<int:id>", methods=["GET", "POST"])
 @login_required
 @admin_required
 def edit_project(id):
@@ -123,7 +123,7 @@ def edit_project(id):
     return render_template("edit-project.html", message_error=message_error, formerrors=formerrors,projects=projects, form=form)
 
 
-@project_bp.route("/adminzone/delete/<int:id>")
+@project_bp.route("/adminzone/project/delete/<int:id>")
 def delete_project(id):
     projects = Projects.get_by_id(id)
 
@@ -131,3 +131,9 @@ def delete_project(id):
         abort(404)
     projects.delete()
     return redirect(url_for('project.view_admin_index'))
+
+
+@project_bp.route("/project/term-conditions/<int:id>", methods=["GET"] )
+def term_conditions_project(id):
+    projects = Projects.get_by_id(id)
+    return render_template("term-conditions-project.html", projects=projects)

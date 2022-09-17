@@ -1,0 +1,17 @@
+{% extends "base_template_admin.html" %}
+
+{% block title %}Términos y condiciones{{ slug_title }}{% endblock %}
+
+{% block content %}
+    <div class="general-title">
+        <h1>Términos y Condiciones del plan de referidos de {{projects.name_project}}</h1>
+    </div>
+
+    <section class="section-term-conditions">
+        <div class="div-term-conditions">
+            <p class="paragraph-term-conditions">
+                {{projects.terms_conditions}}
+            </p>
+        </div>
+    </section>
+{% endblock %}

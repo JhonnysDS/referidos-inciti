@@ -156,3 +156,4 @@ def delete_referred(id):
     return redirect(url_for('auth.view_admin'))
 
 
+

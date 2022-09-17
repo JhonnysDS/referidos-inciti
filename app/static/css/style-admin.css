@@ -343,3 +343,38 @@ a.button-link{
     display: none;
  }
 
+
+
+/*-------------------ESTILOS DE PAGINA TERMINOS Y CONDICIONES --------------*/
+
+.section-term-conditions{
+    display: Flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.div-term-conditions{
+    margin: 50px;
+    width: 70%;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 0 12px #d7d7d7;
+    text-align: center;
+}
+
+.paragraph-term-conditions{
+    font :1rem mst-light;
+    color: black;
+    text-align: justify;
+    line-height : 25px;
+}
+
+@media (max-width: 768px){
+    .div-term-conditions{
+        width: 95%;
+        margin: 25px 0px;
+    }
+
+}
+
