@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-09-2022 a las 00:44:18
+-- Tiempo de generación: 17-09-2022 a las 21:59:58
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -20,6 +20,30 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `referidos_inciti`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `app_projects`
+--
+
+CREATE TABLE `app_projects` (
+  `id` int(11) NOT NULL,
+  `name_project` varchar(11) NOT NULL,
+  `imagen` varchar(255) DEFAULT NULL,
+  `description` text NOT NULL,
+  `terms_conditions` text NOT NULL,
+  `creation_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `app_projects`
+--
+
+INSERT INTO `app_projects` (`id`, `name_project`, `imagen`, `description`, `terms_conditions`, `creation_date`) VALUES
+(1, 'Alameda', NULL, 'Primer proyecto en desarrollarse en el Gran malecón de Barranquilla, que contará con vista al río magdalena con un diseño vanguardista de 33 pisos que hacen de sus apartamentos, una oportunidad única para vivir e invertir en uno de los principales polos de desarrollo en Barranquilla, desde los 36m2 apartamentos totalmente terminados, con múltiples amenidades como: terraza mirador, piscina para adultos, sala creativa, turco, sauna y zona para mascotas y una excelente relación de apartamentos con parqueadero.', 'asasasa', '2022-09-13 20:24:30'),
+(2, 'Vive Rio', NULL, 'Primer proyecto en desarrollarse en el Gran malecón de Barranquilla, que contará con vista al río magdalena con un diseño vanguardista de 33 pisos que hacen de sus apartamentos, una oportunidad única para vivir e invertir en uno de los principales polos de desarrollo en Barranquilla, desde los 36m2 apartamentos totalmente terminados, con múltiples amenidades como: terraza mirador, piscina para adultos, sala creativa, turco, sauna y zona para mascotas y una excelente relación de apartamentos con parqueadero.', 'asdasd', '2022-09-13 20:34:25'),
+(3, 'Mambo', NULL, 'Primer proyecto en desarrollarse en el Gran malecón de Barranquilla, que contará con vista al río magdalena con un diseño vanguardista de 33 pisos que hacen de sus apartamentos, una oportunidad única para vivir e invertir en uno de los principales polos de desarrollo en Barranquilla, desde los 36m2 apartamentos totalmente terminados, con múltiples amenidades como: terraza mirador, piscina para adultos, sala creativa, turco, sauna y zona para mascotas y una excelente relación de apartamentos con parqueadero.', 'Terminos y Condiciones de Mambo', '2022-09-13 21:59:35');
 
 -- --------------------------------------------------------
 
@@ -110,7 +134,7 @@ INSERT INTO `app_user` (`id`, `names`, `username`, `email`, `password`, `is_admi
 
 CREATE TABLE `app_user_referred` (
   `id` int(11) NOT NULL,
-  `projects_id` int(11) NOT NULL,
+  `project_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `creation_date` datetime NOT NULL DEFAULT current_timestamp(),
   `all_names` varchar(255) NOT NULL,
@@ -125,7 +149,7 @@ CREATE TABLE `app_user_referred` (
 -- Volcado de datos para la tabla `app_user_referred`
 --
 
-INSERT INTO `app_user_referred` (`id`, `projects_id`, `user_id`, `creation_date`, `all_names`, `email`, `cellphone`, `signature`, `apartment_type`, `term_cond`) VALUES
+INSERT INTO `app_user_referred` (`id`, `project_id`, `user_id`, `creation_date`, `all_names`, `email`, `cellphone`, `signature`, `apartment_type`, `term_cond`) VALUES
 (1, 2, 1, '0000-00-00 00:00:00', 'JOSE GUILLERMO OTERO', 'jotegri@gmail.com', '72343855', 2, 4, 1),
 (2, 2, 2, '0000-00-00 00:00:00', 'Milton Marsiglia', 'miltonmarsiglia@gmail.com', '3173370324', 1, 1, 1),
 (3, 2, 2, '0000-00-00 00:00:00', 'Karen Arellana', 'karellana1806@hotmail.com', '3114917701', 1, 1, 1),
@@ -258,34 +282,15 @@ INSERT INTO `app_user_referred` (`id`, `projects_id`, `user_id`, `creation_date`
 (130, 2, 27, '0000-00-00 00:00:00', 'Accion activa natural sas', 'Pedroquijanoplata@gmail.com', '3507969087', 2, 6, 1),
 (131, 2, 53, '0000-00-00 00:00:00', 'Juan camilo Sarmiento', 'admin@gmail.com', '8256238752', 1, 1, 1);
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `projects`
---
-
-CREATE TABLE `projects` (
-  `id` int(11) NOT NULL,
-  `name_project` varchar(11) NOT NULL,
-  `imagen` varchar(255) DEFAULT NULL,
-  `description` text NOT NULL,
-  `terms_conditions` text NOT NULL,
-  `creation_date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `projects`
---
-
-INSERT INTO `projects` (`id`, `name_project`, `imagen`, `description`, `terms_conditions`, `creation_date`) VALUES
-(1, 'Alameda', NULL, 'Primer proyecto en desarrollarse en el Gran malecón de Barranquilla, que contará con vista al río magdalena con un diseño vanguardista de 33 pisos que hacen de sus apartamentos, una oportunidad única para vivir e invertir en uno de los principales polos de desarrollo en Barranquilla, desde los 36m2 apartamentos totalmente terminados, con múltiples amenidades como: terraza mirador, piscina para adultos, sala creativa, turco, sauna y zona para mascotas y una excelente relación de apartamentos con parqueadero.', 'asasasa', '2022-09-13 20:24:30'),
-(2, 'Vive Rio', NULL, 'Primer proyecto en desarrollarse en el Gran malecón de Barranquilla, que contará con vista al río magdalena con un diseño vanguardista de 33 pisos que hacen de sus apartamentos, una oportunidad única para vivir e invertir en uno de los principales polos de desarrollo en Barranquilla, desde los 36m2 apartamentos totalmente terminados, con múltiples amenidades como: terraza mirador, piscina para adultos, sala creativa, turco, sauna y zona para mascotas y una excelente relación de apartamentos con parqueadero.', 'asdasd', '2022-09-13 20:34:25'),
-(3, 'Mambo', NULL, 'Primer proyecto en desarrollarse en el Gran malecón de Barranquilla, que contará con vista al río magdalena con un diseño vanguardista de 33 pisos que hacen de sus apartamentos, una oportunidad única para vivir e invertir en uno de los principales polos de desarrollo en Barranquilla, desde los 36m2 apartamentos totalmente terminados, con múltiples amenidades como: terraza mirador, piscina para adultos, sala creativa, turco, sauna y zona para mascotas y una excelente relación de apartamentos con parqueadero.', 'Terminos y Condiciones de Mambo', '2022-09-13 21:59:35'),
-(5, 'tdhdth', NULL, 'dthdt', 'rthdrf', '2022-09-14 21:19:54');
-
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `app_projects`
+--
+ALTER TABLE `app_projects`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `app_user`
@@ -299,17 +304,17 @@ ALTER TABLE `app_user`
 ALTER TABLE `app_user_referred`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`),
-  ADD KEY `projects_id` (`projects_id`);
-
---
--- Indices de la tabla `projects`
---
-ALTER TABLE `projects`
-  ADD PRIMARY KEY (`id`);
+  ADD KEY `projects_id` (`project_id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `app_projects`
+--
+ALTER TABLE `app_projects`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `app_user`
@@ -322,12 +327,6 @@ ALTER TABLE `app_user`
 --
 ALTER TABLE `app_user_referred`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
-
---
--- AUTO_INCREMENT de la tabla `projects`
---
-ALTER TABLE `projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
