@@ -1,4 +1,4 @@
-{% extends "base_template_admin.html" %}
+{% extends "base_template_logged.html" %}
 
 {% block title %}Crear proyecto{{ slug_title }}{% endblock %}
 
@@ -9,36 +9,41 @@
 
     <section class="section-form">
         <div class="div-form">
-            <form class="form" method="POST" enctype="multipart/form-data"  novalidate>
+            <form class="form" method="post" novalidate>
                 <p class="form-paragraph">Por favor, ingresa los datos.</p>
                 {{ form.hidden_tag() }}
                 <div class="form-container">
                     <div class="form-group">
+                        {% for error in form.all_names.errors %}
+                            <span class="span-error">{{ error }}</span>
+                        {% endfor %}
+                        {{ form.all_names.label(class='form-label') }}
+                        {{ form.all_names(class="form-input")}}
+                    </div>
+                    <div class="form-group">
                         {% if error %}
-                        <span class="span-error"><strong>Error:</strong> {{ error }}</span>
-                        {% endif %}<br>
-                        {{ form.name_project.label(class='form-label') }}
-                        {{ form.name_project(class="form-input", id="name") }}
-                        {% for error in form.name_project.errors %}
-                            <span class="message-error">{{ error }}</span>
+                            <span class="span-error"><strong>Error:</strong> {{ error }}</span>
+                        {% endif %}
+                        {% for error in form.email.errors %}
+                            <span class="span-error">{{ error }}</span>
                         {% endfor %}
-
+                        {{ form.email.label(class='form-label') }}
+                        {{ form.email(class="form-input")}}
                     </div>
                     <div class="form-group">
-                        {{ form.description.label(class='form-label') }}
-                        {{ form.description(class="form-input") }}
-                        {% for error in form.description.errors %}
-                            <span class="message-error">{{ error }}</span>
+                        {% for error in form.cellphone.errors %}
+                            <span class="span-error">{{ error }}</span>
                         {% endfor %}
+                        {{ form.cellphone.label(class='form-label') }}
+                        {{ form.cellphone(class="form-input")}}
                     </div>
                     <div class="form-group">
-                        {{ form.terms_conditions.label(class='form-label') }}
-                        {{ form.terms_conditions(class="form-input") }}
-                        {% for error in form.terms_conditions.errors %}
-                            <span class="message-error">{{ error }}</span>
-                        {% endfor %}
+                         {{ form.term_cond() }}<label class="check-text">  Acepto los <a href="{{ url_for('auth.view_term') }}" target="_blank">términos y condiciones del plan.</a></label>
+                        {% for error in form.term_cond.errors %}
+                        <span class="span-error">{{ error }}</span>
+                      {% endfor %}
                     </div>
-                    {{ form.submit(class="form-submit") }}
+                    {{ form.submit(class='form-submit') }}
                 </div>
             </form>
         </div>

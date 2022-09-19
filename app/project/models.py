@@ -5,13 +5,14 @@ from datetime import datetime
 class Projects(db.Model):
     __tablename__ = 'app_projects'
     id = db.Column(db.Integer(), primary_key=True)
+
     name_project = db.Column(db.String(11), nullable=False)
     imagen = db.Column(db.String)
     description = db.Column(db.Text(), nullable=False)
     terms_conditions = db.Column(db.Text(), nullable=False)
     creation_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    users_referreds = db.relationship('UserReferred', backref='app_projects', lazy=True, cascade='all, delete-orphan',
-                               order_by='asc(UserReferred.creation_date)')
+    users_referreds = db.relationship('UserReferred', backref='project_created', lazy=True, cascade='all, delete-orphan',
+                               order_by='asc(UserReferred.user_id)')
     def __repr__(self):
         return f'<Projects {self.id}>'
 

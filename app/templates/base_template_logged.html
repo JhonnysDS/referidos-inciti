@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">-->
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/style-admin.css") }}">
+    <link rel="icon" href="{{url_for('static', filename='imagenes/icons/logo.ico') }}">
+    <title>{% block title %}{% endblock %} - Zona Administrativa</title>
+</head>
+<body>
+<header class="header">
+        <div class="logo">
+            <img src="{{url_for('static', filename='imagenes/logoBlue.png')}}" alt="Logo Inciti">
+        </div>
+        <button class="toggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="container-links-button">
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li class="li"><a href="{{ url_for('project.view_admin_index') }}">Inicio</a></li>
+                    <li class="li"><a href="#">Mis referidos</a></li>
+                    <li class="li"><a href="#">Mis referidos vinculados</a></li>
+                    <li class="li"><a href="#">Agregar Nuevo Referido</a></li>
+                    <li class="li"><a href="#">Mis bonos</a></li>
+                </ul>
+            </nav>
+        <a href="{{ url_for('auth.logout') }}" class="btn"><button>Cerrar Sesion</button></a>
+        </div>
+   </header>
+{% block content %}{% endblock %}
+</body>
+{% block scripts %}{% endblock %}
+<script src="{{url_for('static', filename='/js/navbarresponsive.js')}}"></script>
+<script src="https://kit.fontawesome.com/e2b75f306c.js" crossorigin="anonymous"></script>
+</html>

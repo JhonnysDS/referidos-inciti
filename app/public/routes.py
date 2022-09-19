@@ -7,6 +7,7 @@ from .forms import AddReferredForm
 from .models import UserReferred
 from ..auth.decorators import admin_forbidden
 from ..auth.models import User
+from ..project.models import Projects
 
 
 @public_bp.route("/")
@@ -27,15 +28,16 @@ def index():
     return render_template("index.html", profiles=profiles, form=form, users_referred=users_referred, error=error, message_error=message_error)
 
 
-@public_bp.route("/add-referred", methods=["GET", "POST"])
+@public_bp.route("/project/list/referreds/add/<int:id>", methods=["GET", "POST"])
 @login_required
-def add_referred():
+def add_referred(id):
     error = ""
     message_error = ""
     form = AddReferredForm()
     iduser = current_user.id
     profiles = User.get_by_id(iduser)
-    users_referred = UserReferred.get_by_userid(iduser)
+    project_created = Projects.get_by_id(id)
+
 
     if form.validate_on_submit():
         email = form.email.data
@@ -51,11 +53,12 @@ def add_referred():
                 user_id=current_user.id,
                 all_names=form.all_names.data,
                 cellphone=form.cellphone.data,
-                email=email
+                email=email,
+                project_created=project_created
             )
 
             user_referred.save()
-            return redirect(url_for('public.index'))
+            return redirect(url_for('project.view_admin_index'))
 
     formerrors = form.errors
 
@@ -64,5 +67,4 @@ def add_referred():
     elif error != "":
         message_error = error
 
-    return render_template("index.html", profiles=profiles, form=form, users_referred=users_referred, error=error, message_error=message_error)
-
+    return render_template("add-referred.html", profiles=profiles, form=form, error=error, message_error=message_error)

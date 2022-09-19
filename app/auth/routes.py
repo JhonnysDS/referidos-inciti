@@ -9,7 +9,7 @@ from .decorators import admin_required
 from .forms import SignupForm, LoginForm
 from .models import User
 from ..project.models import Projects
-from ..public.forms import EditReferredForm
+from ..public.forms import EditReferredForm, AddReferredForm
 from ..public.models import UserReferred
 
 
@@ -40,7 +40,7 @@ def signup():
             if not next_page or url_parse(next_page).netloc != '':
                 code = 'dt6qNPYT'
                 if current_user.is_admin == code:
-                    next_page = url_for('auth.view_admin')
+                    next_page = url_for('project.view_admin_index')
                 else:
                     next_page = url_for('public.index')
             return redirect(next_page)
@@ -54,7 +54,7 @@ def login():
 
     if current_user.is_authenticated:
         if current_user.is_admin == code:
-            next_page = url_for('auth.view_admin')
+            next_page = url_for('project.view_admin_index')
         else:
             next_page = url_for('public.index')
 
@@ -71,7 +71,7 @@ def login():
             if not next_page or url_parse(next_page).netloc != '':
                 session.permanent = True
                 if current_user.is_admin == code:
-                    next_page = url_for('auth.view_admin')
+                    next_page = url_for('project.view_admin_index')
                 else:
                     next_page = url_for('public.index')
             return redirect(next_page)
@@ -96,17 +96,27 @@ def view_term():
     return render_template("term-conditions.html")
 
 
-@auth_bp.route("/project/list/referreds/", methods=['GET', 'POST'])
+@auth_bp.route("/project/list/referreds/<int:id>", methods=['GET', 'POST'])
 @login_required
 @admin_required
-def view_admin():
+def view_admin(id):
+    error = ""
+    message_error = ""
+    form = AddReferredForm()
+    iduser = current_user.id
+    profiles = User.get_by_id(iduser)
+    users_referreds = UserReferred.get_by_userid(iduser)
     project_created = Projects.get_by_id(id)
+
     users_referred = User.query. \
         join(UserReferred, User.id == UserReferred.user_id). \
         add_columns(UserReferred.id, User.names, UserReferred.all_names, UserReferred.email, UserReferred.cellphone,
                     UserReferred.signature, UserReferred.apartment_type). \
         filter(User.id == UserReferred.user_id).paginate(1, 10000, False)
-    return render_template("view-list-general.html", users_referred=users_referred.items,project_created=project_created)
+
+    return render_template("view-list-general.html",form=form,profiles=profiles,message_error=message_error
+                           ,error=error,users_referreds=users_referreds ,users_referred=users_referred.items
+                           ,project_created=project_created)
 
 
 @auth_bp.route("/admin/edit/<int:id>", methods=['GET', 'POST'])

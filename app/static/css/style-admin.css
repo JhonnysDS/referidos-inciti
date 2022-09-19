@@ -343,7 +343,16 @@ a.button-link{
     display: none;
  }
 
+.check-text{
+    font: 13px mst-light;
+}
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance:textfield;
+  margin: 0;
+}
 
 /*-------------------ESTILOS DE PAGINA TERMINOS Y CONDICIONES, Y TABLA GENERAL DE LOS PROYECTOS --------------*/
 
@@ -386,6 +395,7 @@ a.button-link{
     display: flex;
     align-items:center ;
     justify-content: center;
+    width: auto;
 }
 
 .table-general{
@@ -430,15 +440,12 @@ border: 1px solid rgb(198, 196, 196);
     border-radius: 5px;
     transition: all 0.3s;
 }
-@media (max-width: 1517px){
-    .table-general th, .table-general td{
-        font : 0.9rem mst-light;
-        padding: 13px;
-    }
+
+.button-edit-table-general:hover, .button-delete-table-general:hover{
+    background-color: rgb(0, 113, 235);
 }
 
-
-@media (max-width: 1396px){
+@media (max-width: 768px){
     .div-table-general{
         width: 95%;
         margin: 25px 0px;

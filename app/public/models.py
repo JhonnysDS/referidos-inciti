@@ -1,3 +1,4 @@
+
 from datetime import datetime
 from flask_login import UserMixin
 from app import db
@@ -18,9 +19,14 @@ class UserReferred(db.Model, UserMixin):
     apartment_type = db.Column(db.SmallInteger(), nullable=False, default=True)
     term_cond = db.Column(db.Boolean, nullable=False, default=True)
 
-    def __init__(self, user_id=None, project_id=None):
+    def __init__(self,project_created=None,email=None, cellphone=None,all_names=None, user_id=None, project_id=None):
+        self.all_names = all_names
+        self.email = email
+        self.cellphone =cellphone
         self.user_id = user_id
         self.project_id = project_id
+        self.project_created=project_created
+
 
     def __repr__(self):
         return f'<UserReferred {self.email}>'

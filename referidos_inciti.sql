@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-09-2022 a las 21:59:58
+-- Tiempo de generación: 19-09-2022 a las 23:26:51
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `app_projects` (
   `id` int(11) NOT NULL,
-  `name_project` varchar(11) NOT NULL,
+  `name_project` varchar(50) NOT NULL,
   `imagen` varchar(255) DEFAULT NULL,
   `description` text NOT NULL,
   `terms_conditions` text NOT NULL,
@@ -150,15 +150,13 @@ CREATE TABLE `app_user_referred` (
 --
 
 INSERT INTO `app_user_referred` (`id`, `project_id`, `user_id`, `creation_date`, `all_names`, `email`, `cellphone`, `signature`, `apartment_type`, `term_cond`) VALUES
-(1, 2, 1, '0000-00-00 00:00:00', 'JOSE GUILLERMO OTERO', 'jotegri@gmail.com', '72343855', 2, 4, 1),
-(2, 2, 2, '0000-00-00 00:00:00', 'Milton Marsiglia', 'miltonmarsiglia@gmail.com', '3173370324', 1, 1, 1),
-(3, 2, 2, '0000-00-00 00:00:00', 'Karen Arellana', 'karellana1806@hotmail.com', '3114917701', 1, 1, 1),
-(4, 2, 2, '0000-00-00 00:00:00', 'Ricardo Andres Arellana', 'ricardoandresarellana@hotmail.com', '3164971634', 1, 1, 1),
+(3, 1, 2, '0000-00-00 00:00:00', 'Karen Arellana', 'karellana1806@hotmail.com', '3114917701', 1, 1, 1),
+(4, 1, 2, '0000-00-00 00:00:00', 'Ricardo Andres Arellana', 'ricardoandresarellana@hotmail.com', '3164971634', 1, 1, 1),
 (5, 2, 2, '0000-00-00 00:00:00', 'Hugo Perez', 'huaperez@gmail.com', '14086379948', 1, 1, 1),
 (6, 2, 2, '0000-00-00 00:00:00', 'Alfredo Varela', 'alfrevarela@hotmail.com', '3126924898', 2, 4, 1),
 (7, 2, 2, '0000-00-00 00:00:00', 'Ada Arellana', 'adaar50@hotmail.com', '3183849938', 1, 1, 1),
 (8, 2, 2, '0000-00-00 00:00:00', 'Cristian Meriño Pua', 'cristian.merino@hotmail.com', '3205128340', 2, 2, 1),
-(9, 2, 2, '0000-00-00 00:00:00', 'Julian Humberto Ferro Arellana', 'ju-ferro@uniandes.edu.co', '3002560299', 1, 1, 1),
+(9, 3, 2, '0000-00-00 00:00:00', 'Julian Humberto Ferro Arellana', 'ju-ferro@uniandes.edu.co', '3002560299', 1, 1, 1),
 (10, 2, 3, '0000-00-00 00:00:00', 'Maria Monica Hernandez', 'hernandezucros@gmail.com', '3205182186', 2, 5, 1),
 (11, 2, 3, '0000-00-00 00:00:00', 'Giovanni Novella', 'giovanni.novella@paramopresenta.com', '3186296818', 1, 1, 1),
 (12, 2, 3, '0000-00-00 00:00:00', 'Julio Camacho', 'julio.camacho@woobsing.com', '3116881375', 1, 1, 1),
@@ -280,7 +278,11 @@ INSERT INTO `app_user_referred` (`id`, `project_id`, `user_id`, `creation_date`,
 (128, 2, 52, '0000-00-00 00:00:00', 'Sissi Vargas', 'Sissi.Vargas@cannoncol.com', '3117915397', 2, 6, 1),
 (129, 2, 27, '0000-00-00 00:00:00', 'pedro quijano ', 'pedroquijanoplata@gmail.com', '3507969087', 2, 6, 1),
 (130, 2, 27, '0000-00-00 00:00:00', 'Accion activa natural sas', 'Pedroquijanoplata@gmail.com', '3507969087', 2, 6, 1),
-(131, 2, 53, '0000-00-00 00:00:00', 'Juan camilo Sarmiento', 'admin@gmail.com', '8256238752', 1, 1, 1);
+(131, 2, 53, '0000-00-00 00:00:00', 'Juan camilo Sarmiento', 'admin@gmail.com', '8256238752', 1, 1, 1),
+(132, 2, 54, '2022-09-19 21:08:00', 'Juan camilo Sarmiento', 'jhosnnys@inciti.com', '54354354', 1, 1, 1),
+(133, 2, 54, '2022-09-19 21:10:00', 'referido de ejemplo', 'referido@gmail.com', '123', 1, 1, 1),
+(134, 3, 54, '2022-09-19 21:10:52', 'otro referido de ejemplo', 'refersido@gmail.com', '41651658', 1, 1, 1),
+(135, 1, 54, '2022-09-19 21:12:28', 'referido de alameda del rio', '123@mail.com', '321', 1, 1, 1);
 
 --
 -- Índices para tablas volcadas
@@ -314,7 +316,7 @@ ALTER TABLE `app_user_referred`
 -- AUTO_INCREMENT de la tabla `app_projects`
 --
 ALTER TABLE `app_projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `app_user`
@@ -326,7 +328,7 @@ ALTER TABLE `app_user`
 -- AUTO_INCREMENT de la tabla `app_user_referred`
 --
 ALTER TABLE `app_user_referred`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

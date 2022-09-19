@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired, Length
 
 
 class ProjectForm(FlaskForm):
-    name_project = StringField('Nombre del proyecto', validators=[DataRequired(), Length(max=11)])
+    name_project = StringField('Nombre del proyecto', validators=[DataRequired(), Length(max=50)])
     #imagen = FileField('Imagen de cabecera', validators=[
     #    FileAllowed(['jpg', 'png'], 'Solo se permiten imágenes')
     #])
@@ -14,7 +14,7 @@ class ProjectForm(FlaskForm):
     submit = SubmitField('Guardar proyecto')
 
 class EditProjectForm(FlaskForm):
-    name_project = StringField('Nombre del proyecto', validators=[DataRequired(), Length(max=11)])
+    name_project = StringField('Nombre del proyecto', validators=[DataRequired(), Length(max=50)])
     #imagen = FileField('Imagen de cabecera', validators=[
     #    FileAllowed(['jpg', 'png'], 'Solo se permiten imágenes')
     #])
