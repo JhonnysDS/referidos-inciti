@@ -16,7 +16,7 @@ from ..public.models import UserReferred
 @auth_bp.route("/signup/", methods=["GET", "POST"])
 def signup():
     if current_user.is_authenticated:
-        return redirect(url_for('public.index'))
+        return redirect(url_for('public.view_user_index'))
     form = SignupForm()
     error = ""
     if form.validate_on_submit():
@@ -42,7 +42,7 @@ def signup():
                 if current_user.is_admin == code:
                     next_page = url_for('project.view_admin_index')
                 else:
-                    next_page = url_for('public.index')
+                    next_page = url_for('public.view_user_index')
             return redirect(next_page)
     return render_template("signup.html", error=error, form=form)
 
@@ -56,7 +56,7 @@ def login():
         if current_user.is_admin == code:
             next_page = url_for('project.view_admin_index')
         else:
-            next_page = url_for('public.index')
+            next_page = url_for('public.view_user_index')
 
         return redirect(next_page)
 
@@ -73,7 +73,7 @@ def login():
                 if current_user.is_admin == code:
                     next_page = url_for('project.view_admin_index')
                 else:
-                    next_page = url_for('public.index')
+                    next_page = url_for('public.view_user_index')
             return redirect(next_page)
 
     return render_template("login.html", error=error, form=form)
@@ -100,9 +100,6 @@ def view_term():
 @login_required
 @admin_required
 def view_admin(id):
-    error = ""
-    message_error = ""
-    form = AddReferredForm()
     iduser = current_user.id
     profiles = User.get_by_id(iduser)
     users_referreds = UserReferred.get_by_userid(iduser)
@@ -114,8 +111,8 @@ def view_admin(id):
                     UserReferred.signature, UserReferred.apartment_type). \
         filter(User.id == UserReferred.user_id).paginate(1, 10000, False)
 
-    return render_template("view-list-general.html",form=form,profiles=profiles,message_error=message_error
-                           ,error=error,users_referreds=users_referreds ,users_referred=users_referred.items
+    return render_template("view-list-general.html",profiles=profiles
+                           ,users_referreds=users_referreds ,users_referred=users_referred.items
                            ,project_created=project_created)
 
 
@@ -145,7 +142,7 @@ def edit_referred(id):
             profiles.signature = form.signature.data,
             profiles.apartment_type = form.apartment_type.data
             profiles.save()
-            return redirect(url_for('auth.view_admin'))
+            return redirect(url_for('project.view_admin_index'))
 
     formerrors = form.errors
 
@@ -154,21 +151,19 @@ def edit_referred(id):
     elif formerrors != "":
         message_error = error
 
-    return render_template("edit.html", message_error=message_error, formerrors=formerrors, profiles=profiles,
+    return render_template("edit-referred.html", message_error=message_error, formerrors=formerrors, profiles=profiles,
                            form=form)
 
 
-@auth_bp.route("/admin/delete/<int:id>")
+@auth_bp.route("/project/list/referreds/delete/<int:id>")
+@admin_required
 def delete_referred(id):
+
     profilesreferred = UserReferred.get_by_id(id)
+    project_created = Projects.get_by_id(id)
 
     if profilesreferred is None:
         abort(404)
     profilesreferred.delete()
-    return redirect(url_for('auth.view_admin'))
-
-@auth_bp.route("/project/list/referreds/")
-@login_required
-def view_list_users_referreds():
-    return render_template("view-list-general.html")
+    return redirect(url_for('project.view_admin_index'))
 

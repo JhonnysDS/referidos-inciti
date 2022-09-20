@@ -298,7 +298,7 @@ a.button-link{
 
 }
 
-.form-input, .label-description{
+.form-input, .label-description, .select-quote{
     width: 90%;
     background: none;
     color: #706c6c;

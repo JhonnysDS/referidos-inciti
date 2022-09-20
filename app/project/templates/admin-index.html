@@ -15,7 +15,7 @@
                     </header>-->
                     <footer class="footer-card">
                         <div class="text-card">
-                            <a href="">{{project.name_project}}</a>
+                            <a href="{{ url_for('public.add_referred', id=project.id) }}">{{project.name_project}}</a>
                             <p>{{project.description}}</p>
                         </div>
                         <div class="container-buttons">

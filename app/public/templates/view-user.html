@@ -1,6 +1,6 @@
-{% extends "base_template_admin.html" %}
+{% extends "base_template_logged.html" %}
 
-{% block title %}Proyectos{{ slug_title }}{% endblock %}
+{% block title %}Crear proyecto{{ slug_title }}{% endblock %}
 
 {% block content %}
     <div class="general-title">
@@ -22,13 +22,6 @@
                             <div class="links-card">
                                 <a class="button-link" href="{{url_for('project.term_conditions_project', id=project.id)}}">Términos y condiciones</a>
                                 <a class="button-link" href="{{ url_for('auth.view_admin', id=project.id) }}">Ir al proyecto</a>
-                            </div>
-                            <div class="dropdown">
-                                <button class="dropdown-button">Más</button>
-                                <div class="links">
-                                    <a href="{{url_for('project.edit_project', id=project.id)}}" class="link-delete">Editar</a>
-                                    <a href="{{url_for('project.delete_project', id=project.id)}}" class="link2-edit delete-project-btn">Eliminar</a>
-                                </div>
                             </div>
                         </div>
                     </footer>

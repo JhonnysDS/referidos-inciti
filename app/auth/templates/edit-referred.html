@@ -3,51 +3,54 @@
 {% block title %}Crear proyecto{{ slug_title }}{% endblock %}
 
 {% block content %}
-<div class="general-title">
-        <h1>Editar rreferido</h1>
+   <div class="general-title">
+        <h1>Agregar Nuevo referido</h1>
     </div>
 
     <section class="section-form">
         <div class="div-form">
-            <form class="form" method="post" novalidate>
+            <form class="form" method="POST" novalidate action="">
+                 {{ form.hidden_tag() }}
                 <p class="form-paragraph">Por favor, ingresa los datos.</p>
-                {{ form.hidden_tag() }}
+                {% if error %}
+                    <span class="span-error"><strong>Error:</strong> {{ error }}</span>
+                {% endif %}
                 <div class="form-container">
                     <div class="form-group">
                         {% for error in form.all_names.errors %}
-                            <span class="span-error">{{ error }}</span>
+                            <span class="message-error">{{ error }}</span>
                         {% endfor %}
                         {{ form.all_names.label(class='form-label') }}
-                        {{ form.all_names(class="form-input")}}
+                        {{ form.all_names(class="form-input") }}
                     </div>
                     <div class="form-group">
-                        {% if error %}
-                            <span class="span-error"><strong>Error:</strong> {{ error }}</span>
-                        {% endif %}
                         {% for error in form.email.errors %}
-                            <span class="span-error">{{ error }}</span>
+                            <span class="message-error">{{ error }}</span>
                         {% endfor %}
                         {{ form.email.label(class='form-label') }}
-                        {{ form.email(class="form-input")}}
+                        {{ form.email(class="form-input") }}
                     </div>
                     <div class="form-group">
                         {% for error in form.cellphone.errors %}
-                            <span class="span-error">{{ error }}</span>
+                            <span class="message-error">{{ error }}</span>
                         {% endfor %}
                         {{ form.cellphone.label(class='form-label') }}
-                        {{ form.cellphone(class="form-input")}}
+                        {{ form.cellphone(class="form-input") }}
                     </div>
                     <div class="form-group">
-                         {{ form.term_cond() }}<label class="check-text">  Acepto los <a href="{{ url_for('auth.view_term') }}" target="_blank">términos y condiciones del plan.</a></label>
-                        {% for error in form.term_cond.errors %}
-                        <span class="span-error">{{ error }}</span>
-                      {% endfor %}
+                        {{ form.signature.label(class='form-label') }}
+                        {{ form.signature(class='select-quote')}}
+                    </div>
+                    <div class="form-group">
+                        {{ form.apartment_type.label(class='form-label') }}
+                        {{ form.apartment_type(class='select-quote')}}
                     </div>
                     {{ form.submit(class='form-submit') }}
                 </div>
             </form>
         </div>
     </section>
+
 {% endblock %}
 {% block scripts %}
 

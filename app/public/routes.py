@@ -14,18 +14,23 @@ from ..project.models import Projects
 def indexNoHome():
     return redirect(url_for('auth.login'))
 
+@public_bp.route("/userzone")
+@login_required
+def view_user_index():
+    project_created = Projects.order_by(Projects.id.desc())
+    return render_template('view-user.html', project_created=project_created)
+
 
 @public_bp.route("/home")
 @login_required
-@admin_forbidden
+
 def index():
-    error = ""
-    message_error = ""
     iduser = current_user.id
     profiles = User.get_by_id(iduser)
+    users_referreds = UserReferred.get_by_userid(iduser)
+    project_created = Projects.get_by_id(id)
     form = AddReferredForm()
-    users_referred = UserReferred.get_by_userid(iduser)
-    return render_template("index.html", profiles=profiles, form=form, users_referred=users_referred, error=error, message_error=message_error)
+    return render_template("view-list-my-referreds.html", profiles=profiles, form=form, users_referreds=users_referreds,project_created=project_created)
 
 
 @public_bp.route("/project/list/referreds/add/<int:id>", methods=["GET", "POST"])
@@ -37,7 +42,6 @@ def add_referred(id):
     iduser = current_user.id
     profiles = User.get_by_id(iduser)
     project_created = Projects.get_by_id(id)
-
 
     if form.validate_on_submit():
         email = form.email.data

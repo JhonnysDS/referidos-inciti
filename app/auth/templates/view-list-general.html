@@ -50,8 +50,8 @@
                                 <p>Tipo 3</p>
                             {% endif %}
                         </td>
-                        <td data-label=""><a href="#" class="button-edit-table-general">Editar</a></td>
-                        <td data-label=""><a href="#" class="button-delete-table-general">Eliminar</a></td>
+                        <td data-label=""><a href="{{url_for('auth.edit_referred', id=user_referred.id)}}" class="button-edit-table-general">Editar</a></td>
+                        <td data-label=""><a href="{{url_for('auth.delete_referred', id=user_referred.id)}}" class="button-delete-table-general btn-delete">Eliminar</a></td>
                     </tr>
                 {% endfor %}
                 </tbody>
@@ -61,5 +61,6 @@
     </section>
 {% endblock %}
 {% block scripts %}
-
+    <script src="{{url_for('static', filename='/plugins/jquery/jquery-3.4.1.js')}}"></script>
+    <script src="{{url_for('static', filename='/js/alertdelete.js')}}"></script>
 {% endblock %}

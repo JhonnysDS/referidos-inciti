@@ -5,7 +5,7 @@ if (btnDelete){
     const btnArray = Array.from(btnDelete);
     btnArray.forEach((btn) => {
         btn.addEventListener('click', (e) => {
-          if(!confirm('¿Estás seguro de que quieres eliminar este usuario referido?')) {
+          if(!confirm('¿Estás seguro de que quieres eliminar este usuario referido? \n Una vez eliminado NO SE PODRÁ RECUPERAR')) {
             e.preventDefault();
           }
         });
@@ -18,7 +18,7 @@ if (btnDeleteProject){
     const btnArray = Array.from(btnDeleteProject);
     btnArray.forEach((btn) => {
         btn.addEventListener('click', (e) => {
-          if(!confirm('¿Estás seguro de que quieres eliminar este proyecto?')) {
+          if(!confirm('¿Estás seguro de que quieres eliminar este proyecto? \n Una vez eliminado NO SE PODRÁ RECUPERAR')) {
             e.preventDefault();
           }
         });

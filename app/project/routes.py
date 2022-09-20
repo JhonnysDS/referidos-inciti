@@ -14,6 +14,7 @@ from app.project.models import Projects
 
 @project_bp.route("/adminzone")
 @login_required
+@admin_required
 def view_admin_index():
     project_created = Projects.order_by(Projects.id.desc())
     return render_template('admin-index.html', project_created=project_created)
@@ -53,8 +54,9 @@ def add_project():
         message_error = error
     return render_template("add-project.html", form=form, error=error, message_error=message_error)"""
 
-@project_bp.route("/create", methods=["GET", "POST"])
+@project_bp.route("/adminzone/project/create", methods=["GET", "POST"])
 @login_required
+@admin_required
 def add_project():
     error = ""
     message_error = ""
@@ -124,6 +126,8 @@ def edit_project(id):
 
 
 @project_bp.route("/adminzone/project/delete/<int:id>")
+@login_required
+@admin_required
 def delete_project(id):
     projects = Projects.get_by_id(id)
 
@@ -134,6 +138,7 @@ def delete_project(id):
 
 
 @project_bp.route("/project/term-conditions/<int:id>", methods=["GET"] )
+@login_required
 def term_conditions_project(id):
     projects = Projects.get_by_id(id)
     return render_template("term-conditions-project.html", projects=projects)
