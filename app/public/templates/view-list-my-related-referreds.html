@@ -1,6 +1,6 @@
 {% extends "base_template_logged.html" %}
 
-{% block title %}Mis referidos{{ slug_title }}{% endblock %}
+{% block title %}Mis referidos vinculados{{ slug_title }}{% endblock %}
 
 {% block content %}
     <header class="header">
@@ -15,14 +15,15 @@
                 <ul class="nav-links">
                     <li class="li"><a href="{{ url_for('public.view_user_index') }}">Inicio</a></li>
                     <li class="li"><a  href="{{ url_for('public.list_my_referreds', id=id_project) }}">Mis referidos</a></li>
-                    <li class="li"><a  href="{{ url_for('public.add_referred', id=id_project) }}">Mis referidos vinculados</a></li>
+                    <li class="li"><a  href="{{ url_for('public.list_my_relateds_referreds', id=id_project) }}">Mis referidos vinculados</a></li>
                     <li class="li"><a  href="{{ url_for('public.add_referred', id=id_project) }}">Agregar referido</a></li>
+                    <li class="li"><a  href="{{ url_for('public.list_my_bonds_referreds', id=id_project) }}">Mis bonos</a></li>
             </nav>
         <a href="{{ url_for('auth.logout') }}" class="btn"><button>Cerrar Sesion</button></a>
         </div>
    </header>
 <div class="general-title">
-        <h1>Mi lista de usuarios referidos del proyecto {{project_created.name_project}}</h1>
+        <h1>Mi lista de usuarios referidos vinculados del proyecto {{project_created.name_project}}</h1>
     </div>
 
     <section class="section-table-general">
@@ -39,12 +40,13 @@
                 <tbody>
                 {% for user_referred in project_created.users_referreds%}
                     {% if user_referred.user_id == profiles.id %}
-
-                    <tr >
-                        <td data-label="Nombre del referido">{{user_referred.all_names}}</td>
-                        <td data-label="Correo del referido">{{user_referred.email}}</td>
-                        <td data-label="Celular del Referido">{{user_referred.cellphone}}</td>
-                    </tr>
+                        {% if user_referred.signature == 2 %}
+                                <tr >
+                                    <td data-label="Nombre del referido">{{user_referred.all_names}}</td>
+                                    <td data-label="Correo del referido">{{user_referred.email}}</td>
+                                    <td data-label="Celular del Referido">{{user_referred.cellphone}}</td>
+                                </tr>
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
                 </tbody>

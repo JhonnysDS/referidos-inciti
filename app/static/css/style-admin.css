@@ -428,7 +428,7 @@ border: 1px solid rgb(198, 196, 196);
     cursor:default;
 }
 
-.button-edit-table-general, .button-delete-table-general{
+.button-edit-table-general, .button-delete-table-general, .button-go-home{
     text-decoration: none;
     font-weight: 700;
     font: 18px mst-light;
@@ -441,7 +441,7 @@ border: 1px solid rgb(198, 196, 196);
     transition: all 0.3s;
 }
 
-.button-edit-table-general:hover, .button-delete-table-general:hover{
+.button-edit-table-general:hover, .button-delete-table-general:hover, .button-go-home:hover{
     background-color: rgb(0, 113, 235);
 }
 
@@ -483,4 +483,23 @@ border: 1px solid rgb(198, 196, 196);
         float: left;
     }
 
+}
+
+/*-------ESTILO DE PAGINAS DE ERRORES-------*/
+
+.button-go-home{
+    display: block;
+    width: 90px;
+    text-align: center;
+    margin: 15px auto;
+}
+
+.div-error-page{
+    display: flex;
+    align-item:center;
+    justify-content: center;
+}
+
+.paragraph-error-page{
+    font-size: 25px;
 }

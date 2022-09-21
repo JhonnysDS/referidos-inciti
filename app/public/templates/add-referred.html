@@ -1,10 +1,29 @@
 {% extends "base_template_logged.html" %}
 
-{% block title %}Crear proyecto{{ slug_title }}{% endblock %}
+{% block title %}Agregar referido{{ slug_title }}{% endblock %}
 
 {% block content %}
+    <header class="header">
+        <div class="logo">
+            <img src="{{url_for('static', filename='imagenes/logoBlue.png')}}" alt="Logo Inciti">
+        </div>
+        <button class="toggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="container-links-button">
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li class="li"><a href="{{ url_for('public.view_user_index') }}">Inicio</a></li>
+                    <li class="li"><a  href="{{ url_for('public.list_my_referreds', id=id_project) }}">Mis referidos</a></li>
+                    <li class="li"><a  href="{{ url_for('public.list_my_relateds_referreds', id=id_project) }}">Mis referidos vinculados</a></li>
+                    <li class="li"><a  href="{{ url_for('public.add_referred', id=id_project) }}">Agregar referido</a></li>
+                    <li class="li"><a  href="{{ url_for('public.list_my_bonds_referreds', id=id_project) }}">Mis bonos</a></li>
+            </nav>
+        <a href="{{ url_for('auth.logout') }}" class="btn"><button>Cerrar Sesion</button></a>
+        </div>
+   </header>
 <div class="general-title">
-        <h1>Agregar referrido</h1>
+        <h1>Agregar referido</h1>
     </div>
 
     <section class="section-form">
@@ -22,8 +41,9 @@
                     </div>
                     <div class="form-group">
                         {% if error %}
-                            <span class="span-error"><strong>Error:</strong> {{ error }}</span>
+                            <span class="span-error" style="color: red;"><strong>Error:</strong> {{ error }}</span>
                         {% endif %}
+                        <br>
                         {% for error in form.email.errors %}
                             <span class="span-error">{{ error }}</span>
                         {% endfor %}

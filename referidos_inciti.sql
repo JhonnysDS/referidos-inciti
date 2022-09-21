@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-09-2022 a las 23:26:51
+-- Tiempo de generación: 21-09-2022 a las 23:45:32
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -43,7 +43,8 @@ CREATE TABLE `app_projects` (
 INSERT INTO `app_projects` (`id`, `name_project`, `imagen`, `description`, `terms_conditions`, `creation_date`) VALUES
 (1, 'Alameda', NULL, 'Primer proyecto en desarrollarse en el Gran malecón de Barranquilla, que contará con vista al río magdalena con un diseño vanguardista de 33 pisos que hacen de sus apartamentos, una oportunidad única para vivir e invertir en uno de los principales polos de desarrollo en Barranquilla, desde los 36m2 apartamentos totalmente terminados, con múltiples amenidades como: terraza mirador, piscina para adultos, sala creativa, turco, sauna y zona para mascotas y una excelente relación de apartamentos con parqueadero.', 'asasasa', '2022-09-13 20:24:30'),
 (2, 'Vive Rio', NULL, 'Primer proyecto en desarrollarse en el Gran malecón de Barranquilla, que contará con vista al río magdalena con un diseño vanguardista de 33 pisos que hacen de sus apartamentos, una oportunidad única para vivir e invertir en uno de los principales polos de desarrollo en Barranquilla, desde los 36m2 apartamentos totalmente terminados, con múltiples amenidades como: terraza mirador, piscina para adultos, sala creativa, turco, sauna y zona para mascotas y una excelente relación de apartamentos con parqueadero.', 'asdasd', '2022-09-13 20:34:25'),
-(3, 'Mambo', NULL, 'Primer proyecto en desarrollarse en el Gran malecón de Barranquilla, que contará con vista al río magdalena con un diseño vanguardista de 33 pisos que hacen de sus apartamentos, una oportunidad única para vivir e invertir en uno de los principales polos de desarrollo en Barranquilla, desde los 36m2 apartamentos totalmente terminados, con múltiples amenidades como: terraza mirador, piscina para adultos, sala creativa, turco, sauna y zona para mascotas y una excelente relación de apartamentos con parqueadero.', 'Terminos y Condiciones de Mambo', '2022-09-13 21:59:35');
+(3, 'Mambo', NULL, 'Primer proyecto en desarrollarse en el Gran malecón de Barranquilla, que contará con vista al río magdalena con un diseño vanguardista de 33 pisos que hacen de sus apartamentos, una oportunidad única para vivir e invertir en uno de los principales polos de desarrollo en Barranquilla, desde los 36m2 apartamentos totalmente terminados, con múltiples amenidades como: terraza mirador, piscina para adultos, sala creativa, turco, sauna y zona para mascotas y una excelente relación de apartamentos con parqueadero.', 'Terminos y Condiciones de Mambo actualizados\r\n', '2022-09-13 21:59:35'),
+(10, 'poesia (siapè)', NULL, 'poesia', 'termino y condiciones de poesia', '2022-09-21 19:36:33');
 
 -- --------------------------------------------------------
 
@@ -124,7 +125,8 @@ INSERT INTO `app_user` (`id`, `names`, `username`, `email`, `password`, `is_admi
 (56, 'David Casas', 'DavidCa', 'david@inciti.co', 'pbkdf2:sha256:260000$uYlFCldGmxfJ1NBg$ad416aef0fd63c131712aa00da759bbfa9f52a5823810af66ec26192278fdaec', 'dt6qNPYT', '2022-07-26 19:54:48'),
 (57, 'Katherine Diaz', 'KaDiaz', 'katerin@inciti.co', 'pbkdf2:sha256:260000$n7CsXQPgU3s1IXg1$bef6d1499acc0b1da4ee65e3a707bc9f1d7bd51f650cd98e183dae09a6b50664', 'dt6qNPYT', '2022-07-26 20:01:35'),
 (58, 'Pedro Otero', 'Pedrotero', 'pedroterogris@gmail.com', 'pbkdf2:sha256:260000$MuPMVM1sI7SJi8kl$1e40287ecf1170aec3993cde73c2ff90f63aae495ace7cf77204702cc0e8d69a', 'dt6qNPYT', '2022-07-27 19:19:29'),
-(134, 'Fabian Casalins', 'marketing', 'marketing@inciti.co', 'pbkdf2:sha256:260000$7XILt7VYwHYjtpNy$521efd4754a628e5e6185ac606cbd586f746d244758225a3a4955e11ff0bcdec', 'dt6qNPYT', '2022-08-08 21:28:04');
+(134, 'Fabian Casalins', 'marketing', 'marketing@inciti.co', 'pbkdf2:sha256:260000$7XILt7VYwHYjtpNy$521efd4754a628e5e6185ac606cbd586f746d244758225a3a4955e11ff0bcdec', 'dt6qNPYT', '2022-08-08 21:28:04'),
+(135, 'as', 'as', 'as@as.as', 'pbkdf2:sha256:260000$uQsvaVgYEHOFJVEx$5f4e4027faf888ad6e25dd680335ab87f24f254a209a8467f346db80545b7667', '', '2022-09-20 16:27:21');
 
 -- --------------------------------------------------------
 
@@ -152,30 +154,12 @@ CREATE TABLE `app_user_referred` (
 INSERT INTO `app_user_referred` (`id`, `project_id`, `user_id`, `creation_date`, `all_names`, `email`, `cellphone`, `signature`, `apartment_type`, `term_cond`) VALUES
 (3, 1, 2, '0000-00-00 00:00:00', 'Karen Arellana', 'karellana1806@hotmail.com', '3114917701', 1, 1, 1),
 (4, 1, 2, '0000-00-00 00:00:00', 'Ricardo Andres Arellana', 'ricardoandresarellana@hotmail.com', '3164971634', 1, 1, 1),
-(5, 2, 2, '0000-00-00 00:00:00', 'Hugo Perez', 'huaperez@gmail.com', '14086379948', 1, 1, 1),
-(6, 2, 2, '0000-00-00 00:00:00', 'Alfredo Varela', 'alfrevarela@hotmail.com', '3126924898', 2, 4, 1),
-(7, 2, 2, '0000-00-00 00:00:00', 'Ada Arellana', 'adaar50@hotmail.com', '3183849938', 1, 1, 1),
-(8, 2, 2, '0000-00-00 00:00:00', 'Cristian Meriño Pua', 'cristian.merino@hotmail.com', '3205128340', 2, 2, 1),
-(9, 3, 2, '0000-00-00 00:00:00', 'Julian Humberto Ferro Arellana', 'ju-ferro@uniandes.edu.co', '3002560299', 1, 1, 1),
-(10, 2, 3, '0000-00-00 00:00:00', 'Maria Monica Hernandez', 'hernandezucros@gmail.com', '3205182186', 2, 5, 1),
-(11, 2, 3, '0000-00-00 00:00:00', 'Giovanni Novella', 'giovanni.novella@paramopresenta.com', '3186296818', 1, 1, 1),
-(12, 2, 3, '0000-00-00 00:00:00', 'Julio Camacho', 'julio.camacho@woobsing.com', '3116881375', 1, 1, 1),
-(13, 2, 3, '0000-00-00 00:00:00', 'Juan Carlos Correa', 'juancarloscorreaescobar@gmail.com', '3157211809', 1, 1, 1),
-(14, 2, 3, '0000-00-00 00:00:00', 'Antonio Habib', 'ahabib@redsis.com', '3186964127', 1, 1, 1),
-(15, 2, 3, '0000-00-00 00:00:00', 'Christian Murillo', 'murilloc725@gmail.com', '3183379166', 2, 2, 1),
-(16, 2, 3, '0000-00-00 00:00:00', 'Julian Gutierrez', 'Juliangutierrez2@gmail.com', '3167108177', 1, 1, 1),
-(17, 2, 4, '0000-00-00 00:00:00', 'federico eckardth', 'jorgedecastro2005@gmail.com', '0', 1, 1, 1),
-(18, 2, 4, '0000-00-00 00:00:00', 'Alfredo de castro', 'jorgedecastro2005@gmail.com', '0', 2, 6, 1),
-(19, 2, 4, '0000-00-00 00:00:00', 'silvia acosta', 'jorgedecastro2005@gmail.com', '0', 2, 6, 1),
-(20, 2, 4, '0000-00-00 00:00:00', 'Guillermo pupo', 'jorgedecastro2005@gmail.com', '0', 2, 6, 1),
 (21, 2, 5, '0000-00-00 00:00:00', 'Luis castro', 'mail@mai.com', '3006772295', 1, 1, 1),
 (22, 2, 4, '0000-00-00 00:00:00', 'Marlon Herrera', 'Alex Castillo', '0', 1, 1, 1),
-(23, 2, 4, '0000-00-00 00:00:00', 'Elisa guerrero', 'Alex Castillo', '0', 2, 5, 1),
 (24, 2, 6, '0000-00-00 00:00:00', 'Nestor Joaquin Taffur Barrios', 'joaquintaffur@icloud.com', '17323576058', 1, 1, 1),
 (25, 2, 6, '0000-00-00 00:00:00', 'ubaldo altamar', 'ubaldo.altamar@gmail.com', '3003652378', 1, 1, 1),
 (26, 2, 4, '0000-00-00 00:00:00', 'Nidia otero', 'jorgedecastro2005@gmail.com', '3008053609', 2, 6, 1),
 (27, 2, 4, '0000-00-00 00:00:00', 'Felipe bedoya', 'jorgedecastro2005@gmail.com', '3006508436', 1, 1, 1),
-(28, 2, 4, '0000-00-00 00:00:00', 'Carlos Rozo Nader', 'jorgedecastro2005@gmail.com', '3153295140', 1, 1, 1),
 (29, 2, 4, '0000-00-00 00:00:00', 'Jairo angulo', 'Jorgedecastro2005@gmail.com', '3114186078', 1, 1, 1),
 (30, 2, 7, '0000-00-00 00:00:00', 'Luis Camilo Palacios', 'luispalacios@me.com', '5,73103E+11', 1, 1, 1),
 (31, 2, 4, '0000-00-00 00:00:00', 'Orlando retamoso', 'jorgedecastro2005@gmail.com', '3103612181', 1, 1, 1),
@@ -200,7 +184,6 @@ INSERT INTO `app_user_referred` (`id`, `project_id`, `user_id`, `creation_date`,
 (50, 2, 16, '0000-00-00 00:00:00', 'welfran mendoza', 'Mwelfran@gmail.com', '323 3138338', 1, 1, 1),
 (51, 2, 17, '0000-00-00 00:00:00', 'Laura Lopez', 'Laura.f.lopez@hotmail.com', '5,73134E+11', 1, 1, 1),
 (52, 2, 15, '0000-00-00 00:00:00', 'Miguel bolivar', 'Mibolivar@hotmail.com', '3215396160', 2, 6, 1),
-(53, 2, 15, '0000-00-00 00:00:00', 'Luis Carlos Pertuz ', 'luis_pertuz@hotmail.com', '5,73127E+11', 1, 1, 1),
 (54, 2, 18, '0000-00-00 00:00:00', 'Paola londoño', 'Paola.londos@gmail.com', '3214731427', 1, 1, 1),
 (55, 2, 4, '0000-00-00 00:00:00', 'Jose rodriguez', 'jorgedecastro2005@gmail.com', '3013295230', 2, 6, 1),
 (56, 2, 19, '0000-00-00 00:00:00', 'Oliver Antequera', 'oliverantequera777@gmail.com ', '19545931664', 1, 1, 1),
@@ -273,16 +256,27 @@ INSERT INTO `app_user_referred` (`id`, `project_id`, `user_id`, `creation_date`,
 (123, 2, 49, '0000-00-00 00:00:00', 'Wilson Rincon', 'wilson.rincon@segurosdelestado.com', '3102481891', 1, 1, 1),
 (124, 2, 49, '0000-00-00 00:00:00', 'Carlos Rojas', 'carlos.rojas@segurosdelestado.com', '3214651580', 1, 1, 1),
 (125, 2, 50, '0000-00-00 00:00:00', 'Alex viñas', 'alex@renzo.c?mo.co', '3135041169', 1, 1, 1),
-(126, 2, 50, '0000-00-00 00:00:00', 'Mauricio barros', 'maubarcas@yahho.com', '3017336507', 1, 1, 1),
 (127, 2, 51, '0000-00-00 00:00:00', 'Carlos Martes M', 'carlos.martes@celta.com.co', '3123320017', 1, 1, 1),
 (128, 2, 52, '0000-00-00 00:00:00', 'Sissi Vargas', 'Sissi.Vargas@cannoncol.com', '3117915397', 2, 6, 1),
 (129, 2, 27, '0000-00-00 00:00:00', 'pedro quijano ', 'pedroquijanoplata@gmail.com', '3507969087', 2, 6, 1),
 (130, 2, 27, '0000-00-00 00:00:00', 'Accion activa natural sas', 'Pedroquijanoplata@gmail.com', '3507969087', 2, 6, 1),
-(131, 2, 53, '0000-00-00 00:00:00', 'Juan camilo Sarmiento', 'admin@gmail.com', '8256238752', 1, 1, 1),
-(132, 2, 54, '2022-09-19 21:08:00', 'Juan camilo Sarmiento', 'jhosnnys@inciti.com', '54354354', 1, 1, 1),
-(133, 2, 54, '2022-09-19 21:10:00', 'referido de ejemplo', 'referido@gmail.com', '123', 1, 1, 1),
-(134, 3, 54, '2022-09-19 21:10:52', 'otro referido de ejemplo', 'refersido@gmail.com', '41651658', 1, 1, 1),
-(135, 1, 54, '2022-09-19 21:12:28', 'referido de alameda del rio', '123@mail.com', '321', 1, 1, 1);
+(135, 1, 54, '2022-09-19 21:12:28', 'referido de alameda', 'alamedareferido@mail.com', '3215398925', 2, 3, 1),
+(137, 3, 54, '2022-09-20 20:34:28', 'Juan camilo Sarmiento', 'sasa@mail.com', '8545454964', 2, 2, 1),
+(138, 3, 54, '2022-09-20 21:08:03', 'nuevo referido de mambo por el titulo', 'gdr@referido.com', '561651', 1, 1, 1),
+(139, 2, 54, '2022-09-20 21:36:38', 'f', 'f@mail.com', '4', 2, 4, 1),
+(140, 2, 53, '2022-09-21 15:50:47', 'trh', 'tfhf@wdadaw.com', '5161', 1, 1, 1),
+(141, 2, 53, '2022-09-21 15:53:02', 'referido53', 'referido53@gmail.com', '321235698', 2, 5, 1),
+(142, 1, 53, '2022-09-21 15:55:57', 'referido de alameda id 53', 'referidodealamedaid53@gmail.com', '323656989741', 1, 1, 1),
+(143, 2, 6, '2022-09-21 16:15:24', 'referido53', 'refernido53@gmail.com', '321235698', 1, 1, 1),
+(144, 2, 6, '2022-09-21 16:19:15', 'gfhg', 'jorgedecastro2005@gmail.com', '5675675', 1, 1, 1),
+(145, 1, 6, '2022-09-21 17:40:13', 'rtyrty', 'yfytf@asa.com', '1235354', 1, 1, 1),
+(146, 2, 6, '2022-09-21 17:43:21', 'fhfhf', 'dfxf@fsdfsd.xcom', '5785', 1, 1, 1),
+(147, 2, 6, '2022-09-21 17:52:48', 'dsgsdg', 'sdgdsg@fsd.co', '65434', 1, 1, 1),
+(148, 2, 6, '2022-09-21 17:53:09', 'albeto', 'alexsas@gmail.com', '1651', 1, 1, 1),
+(149, 1, 6, '2022-09-21 18:29:51', 'Juan camilo Sarmiento', 'asdsad@hotmail.com', '231423', 1, 1, 1),
+(150, 1, 6, '2022-09-21 19:26:24', 'Jhonnys De Avila Salgado', '31Jhonnys@gmail.com', '41', 2, 1, 1),
+(151, 10, 53, '2022-09-21 19:37:27', 'Referido de Poesia', 'referidopoesia@gmail.com', '3214568565', 1, 4, 1),
+(152, 10, 53, '2022-09-21 19:57:36', 'referido poesia 2', 'referidopoesia2@hotmail.com', '12365454', 2, 6, 1);
 
 --
 -- Índices para tablas volcadas
@@ -316,19 +310,19 @@ ALTER TABLE `app_user_referred`
 -- AUTO_INCREMENT de la tabla `app_projects`
 --
 ALTER TABLE `app_projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `app_user`
 --
 ALTER TABLE `app_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
 
 --
 -- AUTO_INCREMENT de la tabla `app_user_referred`
 --
 ALTER TABLE `app_user_referred`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

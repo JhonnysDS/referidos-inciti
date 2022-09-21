@@ -1,6 +1,6 @@
 {% extends "base_template_logged.html" %}
 
-{% block title %}Mis referidos{{ slug_title }}{% endblock %}
+{% block title %}Bonos{{ slug_title }}{% endblock %}
 
 {% block content %}
     <header class="header">
@@ -17,12 +17,13 @@
                     <li class="li"><a  href="{{ url_for('public.list_my_referreds', id=id_project) }}">Mis referidos</a></li>
                     <li class="li"><a  href="{{ url_for('public.list_my_relateds_referreds', id=id_project) }}">Mis referidos vinculados</a></li>
                     <li class="li"><a  href="{{ url_for('public.add_referred', id=id_project) }}">Agregar referido</a></li>
+                    <li class="li"><a  href="{{ url_for('public.list_my_bonds_referreds', id=id_project) }}">Mis bonos</a></li>
             </nav>
         <a href="{{ url_for('auth.logout') }}" class="btn"><button>Cerrar Sesion</button></a>
         </div>
    </header>
 <div class="general-title">
-        <h1>Mi lista de usuarios referidos del proyecto {{project_created.name_project}}</h1>
+        <h1>Mi lista de bonos de mis referidos del proyecto {{project_created.name_project}}</h1>
     </div>
 
     <section class="section-table-general">
@@ -31,20 +32,45 @@
                 <thead>
                     <tr >
                         <th>Nombre del referido</th>
-                        <th>Correo del referido</th>
-                        <th>Celular del Referido</th>
+                        <th>Apartamento</th>
+                        <th>Bonos</th>
 
                     </tr>
                 </thead>
                 <tbody>
                 {% for user_referred in project_created.users_referreds%}
                     {% if user_referred.user_id == profiles.id %}
-
-                    <tr >
-                        <td data-label="Nombre del referido">{{user_referred.all_names}}</td>
-                        <td data-label="Correo del referido">{{user_referred.email}}</td>
-                        <td data-label="Celular del Referido">{{user_referred.cellphone}}</td>
-                    </tr>
+                        {% if user_referred.signature == 2 %}
+                            {% if user_referred.apartment_type != 1 %}
+                                <tr>
+                                    <td data-label="Nombre del referido">{{ user_referred.all_names }}</td>
+                                    <td data-label="Apartamento">
+                                        {% if user_referred.apartment_type == 1 %}
+                                            <p>No seleccionado</p>
+                                        {% elif user_referred.apartment_type == 2 %}
+                                            <p>Tipo 1A</p>
+                                        {% elif user_referred.apartment_type == 3 %}
+                                            <p>Tipo 1B</p>
+                                        {% elif user_referred.apartment_type == 4 %}
+                                            <p>Tipo 1C</p>
+                                        {% elif user_referred.apartment_type == 5 %}
+                                            <p>Tipo 2</p>
+                                        {% elif user_referred.apartment_type == 6 %}
+                                            <p>Tipo 3</p>
+                                        {% endif %}
+                                    </td>
+                                    <td data-label="Bono">
+                                        {% if user_referred.apartment_type == 2 or user_referred.apartment_type == 3 or user_referred.apartment_type == 4 %}
+                                            <p>2.000.000 COP</p>
+                                        {% elif user_referred.apartment_type == 5 %}
+                                            <p>1.500.000 COP</p>
+                                        {% elif user_referred.apartment_type == 6 %}
+                                            <p>1.000.000 COP</p>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
                 </tbody>
