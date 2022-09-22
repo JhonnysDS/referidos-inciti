@@ -7,6 +7,8 @@ from werkzeug.exceptions import abort
 from werkzeug.utils import redirect, secure_filename
 
 from app.auth.decorators import admin_required
+from app.auth.forms import SignupForm
+from app.auth.models import User
 from app.project import project_bp
 from app.project.form import ProjectForm, EditProjectForm
 from app.project.models import Projects

@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired, Length, Email
 class AddReferredForm(FlaskForm):
     all_names = StringField('Nombre completo del referido', validators=[DataRequired(), Length(max=64)])
     email = StringField('Correo de contacto del referido', validators=[DataRequired(), Email()])
-    cellphone = IntegerField('Celular de contactop del referido', validators=[DataRequired()])
+    cellphone = IntegerField('Celular de contacto del referido', validators=[DataRequired()])
     term_cond = BooleanField(validators=[DataRequired()])
     submit = SubmitField('Agregar referido')
 

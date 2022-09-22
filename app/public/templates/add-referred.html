@@ -58,7 +58,7 @@
                         {{ form.cellphone(class="form-input")}}
                     </div>
                     <div class="form-group">
-                         {{ form.term_cond() }}<label class="check-text">  Acepto los <a href="{{ url_for('auth.view_term') }}" target="_blank">términos y condiciones del plan.</a></label>
+                         {{ form.term_cond() }}<label class="check-text">  Acepto los <a href="{{ url_for('project.term_conditions_project', id=id_project) }}" target="_blank">términos y condiciones del plan.</a></label>
                         {% for error in form.term_cond.errors %}
                         <span class="span-error">{{ error }}</span>
                       {% endfor %}
