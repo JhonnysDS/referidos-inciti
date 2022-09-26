@@ -11,6 +11,7 @@ class UserReferred(db.Model, UserMixin):
     id = db.Column(db.Integer(), primary_key=True)
     user_id = db.Column(db.Integer(), db.ForeignKey('app_user.id', ondelete='CASCADE'), nullable=False)
     project_id = db.Column(db.Integer(), db.ForeignKey('app_projects.id'), nullable=False)
+    name_user = db.Column(db.String(), db.ForeignKey('app_user.names', ondelete='CASCADE'), nullable=False)
     creation_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     all_names = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(255), nullable=False)
@@ -19,13 +20,14 @@ class UserReferred(db.Model, UserMixin):
     apartment_type = db.Column(db.SmallInteger(), nullable=False, default=True)
     term_cond = db.Column(db.Boolean, nullable=False, default=True)
 
-    def __init__(self,project_created=None,email=None, cellphone=None,all_names=None, user_id=None, project_id=None):
+    def __init__(self,project_created=None,name_user=None, email=None, cellphone=None,all_names=None, user_id=None, project_id=None):
         self.all_names = all_names
         self.email = email
         self.cellphone =cellphone
         self.user_id = user_id
         self.project_id = project_id
         self.project_created=project_created
+        self.name_user = name_user
 
 
     def __repr__(self):

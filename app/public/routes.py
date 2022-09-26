@@ -69,6 +69,7 @@ def add_referred(id):
         # Creamos el usuario y lo guardamos
         user_referred = UserReferred(
                 user_id=current_user.id,
+                name_user=current_user.names,
                 all_names=form.all_names.data,
                 cellphone=form.cellphone.data,
                 email=email,

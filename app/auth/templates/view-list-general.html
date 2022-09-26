@@ -25,7 +25,7 @@
                 <tbody>
                 {% for user_referred in project_created.users_referreds%}
                     <tr >
-                        <td data-label="Nombre del referidor">{{user_referred.names}}</td>
+                        <td data-label="Nombre del referidor">{{user_referred.name_user}}</td>
                         <td data-label="Nombre del referido">{{user_referred.all_names}}</td>
                         <td data-label="Correo del referido">{{user_referred.email}}</td>
                         <td data-label="Celular del Referido">{{user_referred.cellphone}}</td>

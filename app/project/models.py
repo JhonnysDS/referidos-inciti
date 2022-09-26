@@ -12,7 +12,7 @@ class Projects(db.Model):
     terms_conditions = db.Column(db.Text(), nullable=False)
     creation_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     users_referreds = db.relationship('UserReferred', backref='project_created', lazy=True, cascade='all, delete-orphan',
-                               order_by='asc(UserReferred.user_id)')
+                               order_by='desc(UserReferred.creation_date)')
     def __repr__(self):
         return f'<Projects {self.id}>'
 
