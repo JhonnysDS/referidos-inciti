@@ -9,4 +9,4 @@ APP_ENV = APP_ENV_DEVELOPMENT
 
 #SQLALCHEMY_DATABASE_URI = 'mysql://admin:referidos-inciti-v1@database-1.cs7ofbid7db4.us-east-1.rds.amazonaws.com/referidos_inciti'
 
-SQLALCHEMY_DATABASE_URI = 'mysql://root@localhost/referidos_inciti'
+SQLALCHEMY_DATABASE_URI = 'mysql://root@localhost/referidos_inciti_v1'
