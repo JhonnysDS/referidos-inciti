@@ -167,3 +167,9 @@ def delete_referred(id):
     profilesreferred.delete()
     return redirect(url_for('project.view_admin_index'))
 
+@auth_bp.route("/prueba/")
+def descargar_informe():
+    informe = UserReferred.query.filter_by(signature=3).all()
+    print(informe)
+
+    return {"da":2}
