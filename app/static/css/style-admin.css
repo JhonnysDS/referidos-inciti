@@ -503,3 +503,72 @@ border: 1px solid rgb(198, 196, 196);
 .paragraph-error-page{
     font-size: 25px;
 }
+
+
+
+
+/*-------------ESTILOS DE BANNER ----------------*/
+.section-overall-banner{
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.9);
+    visibility: visible;
+}
+
+.section-overall-banner.inactive{
+    visibility: hidden;
+    transition:.5s easy all;
+}
+
+.section-banner{
+    opacity: 1;
+}
+
+/*--ANIMACIÓN DEL BANNER--*/
+.section-banner.inactive{
+    opacity: 0;
+    transition:.5s easy all;
+}
+/*------------------------*/
+.div-btn-close img{
+    width: 35px;
+    margin: 15px;
+    position: relative;
+    border-radius: 50px;
+    cursor: pointer;
+
+}
+
+.div-tittles h1, .div-tittles h2{
+    color: white;
+    font-family: mst-light;
+
+}
+
+.div-tittles h1{
+    font-size: 60px;
+    padding-bottom: 45px; ;
+}
+.div-tittles h2{
+    font-size: 30px;
+    padding-bottom: 35px; ;
+}
+
+.div-button a{
+    color: white;
+    border: 3px solid white;
+    font: 20px mst-medium;
+    padding: 18px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.div-tittles, .div-button{
+    text-align: center;
+    padding: 25px;
+
+}

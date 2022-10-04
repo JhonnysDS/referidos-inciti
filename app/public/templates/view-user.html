@@ -3,6 +3,25 @@
 {% block title %}Proyectos{{ slug_title }}{% endblock %}
 
 {% block content %}
+<!---BANNER  --->
+<section class="section-overall-banner" id="banner-content-referreds">
+        <section class="section-banner" id="banner-content-referreds-son">
+            <div class="div-btn-close">
+                <img src="{{url_for('static', filename='imagenes/arrow-left.png')}}" id="close-button" alt="Cerrar">
+            </div>
+            <div class="div-banner">
+                <div class="div-tittles">
+                    <h1> Te ayudamos a conseguir nuevos referidos </h1>
+                    <h2> Comparte este contenido con tus contactos y podrás ponerlo en tus historias</h2>
+                </div>
+                <div class="div-button">
+                    <a href="#">Ir al contenido</a>
+                </div>
+
+            </div>
+        </section>
+    </section>
+<!---PAGINA PRINCIPAL--->
     <header class="header">
         <div class="logo">
             <img src="{{url_for('static', filename='imagenes/logoBlue.png')}}" alt="Logo Inciti">
@@ -49,4 +68,5 @@
 {% block scripts %}
     <script src="{{url_for('static', filename='/plugins/jquery/jquery-3.4.1.js')}}"></script>
     <script src="{{url_for('static', filename='/js/alertdelete.js')}}"></script>
+    <script src="{{url_for('static', filename='/js/pluggins/banner/banner-index.js')}}"></script>
 {% endblock %}
