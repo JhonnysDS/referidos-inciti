@@ -354,6 +354,9 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0;
 }
 
+.btn-cancel{
+    text-decoration: none;
+}
 /*-------------------ESTILOS DE PAGINA TERMINOS Y CONDICIONES, Y TABLA GENERAL DE LOS PROYECTOS --------------*/
 
 .section-term-conditions, .section-table-general{
@@ -571,4 +574,13 @@ border: 1px solid rgb(198, 196, 196);
     text-align: center;
     padding: 25px;
 
+}
+
+@media (max-width: 1396px){
+    .div-tittles h1{
+        font-size: 30px;
+    }
+    .div-tittles h2{
+        font-size: 15px;
+    }
 }

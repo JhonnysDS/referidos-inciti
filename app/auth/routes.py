@@ -1,5 +1,4 @@
 from werkzeug.exceptions import abort
-
 from flask import render_template, redirect, url_for, request, session
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
@@ -9,7 +8,7 @@ from .decorators import admin_required
 from .forms import SignupForm, LoginForm
 from .models import User
 from ..project.models import Projects
-from ..public.forms import EditReferredForm, AddReferredForm
+from ..public.forms import EditReferredForm
 from ..public.models import UserReferred
 
 
@@ -111,7 +110,7 @@ def view_admin(id):
                     UserReferred.signature, UserReferred.apartment_type). \
         filter(User.id == UserReferred.user_id).paginate(1, 10000, False)
 
-    return render_template("view-list-general.html",profiles=profiles
+    return render_template("view-list-general.html",id_lists=id,profiles=profiles
                            ,users_referreds=users_referreds ,users_referred=users_referred.items
                            ,project_created=project_created)
 
@@ -130,19 +129,13 @@ def edit_referred(id):
     form = EditReferredForm(obj=profiles)
 
     if form.validate_on_submit():
-        email = form.email.data
-        user_referred = UserReferred.get_by_email(email)
-
-        if user_referred is not None and user_referred.id != id:
-            error = f'El email {email} ya está siendo utilizado por otro usuario'
-        else:
-            profiles.all_names = form.all_names.data,
-            profiles.cellphone = form.cellphone.data,
-            profiles.email = email,
-            profiles.signature = form.signature.data,
-            profiles.apartment_type = form.apartment_type.data
-            profiles.save()
-            return redirect(url_for('project.view_admin_index'))
+        profiles.all_names = form.all_names.data,
+        profiles.cellphone = form.cellphone.data,
+        profiles.email = form.email.data,
+        profiles.signature = form.signature.data,
+        profiles.apartment_type = form.apartment_type.data
+        profiles.save()
+        return redirect(url_for('project.view_admin_index'))
 
     formerrors = form.errors
 
@@ -151,7 +144,7 @@ def edit_referred(id):
     elif formerrors != "":
         message_error = error
 
-    return render_template("edit-referred.html", message_error=message_error, formerrors=formerrors, profiles=profiles,
+    return render_template("edit-referred.html",message_error=message_error, formerrors=formerrors, profiles=profiles,
                            form=form)
 
 
@@ -167,9 +160,10 @@ def delete_referred(id):
     profilesreferred.delete()
     return redirect(url_for('project.view_admin_index'))
 
-@auth_bp.route("/prueba/")
-def descargar_informe():
-    informe = UserReferred.query.filter_by(signature=3).all()
-    print(informe)
+
+@auth_bp.route("/prueba/<int:id>")
+def descargar_informe(id):
+    query = UserReferred.query.get(id)
+    print(query)
 
     return {"da":2}
