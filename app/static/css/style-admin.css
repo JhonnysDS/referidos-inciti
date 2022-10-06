@@ -584,3 +584,60 @@ border: 1px solid rgb(198, 196, 196);
         font-size: 15px;
     }
 }
+
+/*--------ESTILOS DE REPORTE -------------*/
+
+.section-report{
+    height: 100vh;
+    background-color: white;
+}
+.div-report{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.table-report-overall{
+    text-align: center;
+    padding: 50px;
+}
+.div-tittle-report{
+    font: 25px mst-regular;
+    margin-bottom: 80px;
+}
+
+.subtittle-table{
+    font: 15px mst-light;
+    margin-bottom: 30px;
+}
+.div-table-report{
+    display: flex;
+    justify-content: center;
+    border-collapse: collapse;
+    padding-bottom: 25px;
+}
+.div-table-report table{
+    border: 1px solid black;
+    border-collapse: collapse;
+
+}
+.table-report thead{
+    padding: 5px;
+    background-color: #4a73b1;
+    border: 1px solid black;
+    font: 15px mst-light;
+}
+.table-report thead tr th{
+    padding: 15px;
+}
+.table-report tbody{
+    font: 15px mst-light;
+}
+.table-report tbody tr td{
+    padding: 5px;
+    border: 1px solid black;
+    padding: 15px;
+}
+
+.div-total p{
+    font: 20px mst-light;
+}

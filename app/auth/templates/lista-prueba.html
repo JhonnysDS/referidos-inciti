@@ -1,0 +1,70 @@
+{% extends "base_template_logged.html" %}
+
+{% block title %}Reporte{% endblock %}
+
+{% block content %}
+<section class="section-report">
+        <div class="div-report">
+            <div class="table-report-overall">
+                <div class="div-tittle-report">
+                    <h1>Reporte general referidos</h1>
+                </div>
+                <div class="subtittle-table">
+                    <h2>Cantidad de Apartamentos comprados por tipo</h2>
+                </div>
+            <div class="div-table-report">
+
+                <table  class="table-report">
+                    <thead>
+                        <tr>
+                            <th>1A,B,C</th>
+                            <th>2</th>
+                            <th>3</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{contador_tipos_1}}</td>
+                            <td>{{contador_tipo_2}}</td>
+                            <td>{{contador_tipo_3}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="subtittle-table">
+                <h2>Total a pagar por tipo de apto</h2>
+            </div>
+            <div class="div-table-report">
+
+                <table class="table-report">
+                    <thead>
+                        <tr>
+                            <th>1A,B,C</th>
+                            <th>2</th>
+                            <th>3</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{pago_tipos_1}}</td>
+                            <td>{{pago_tipos_2}}</td>
+                            <td>{{pago_tipos_3}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="div-total">
+                <p>TOTAL= <span>{{total}}</span> COP</p>
+            </div>
+        </div>
+        </div>
+    <button onclick="imprimirPagina();">Imprimir</button>
+    </section>
+{% endblock %}
+{% block scripts %}
+<script>
+    function imprimirPagina(){
+        window.print();
+    }
+</script>
+{% endblock %}

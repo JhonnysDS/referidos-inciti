@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from werkzeug.exceptions import abort
 from flask import render_template, redirect, url_for, request, session
 from flask_login import current_user, login_user, logout_user, login_required
@@ -161,9 +163,31 @@ def delete_referred(id):
     return redirect(url_for('project.view_admin_index'))
 
 
-@auth_bp.route("/prueba/<int:id>")
-def descargar_informe(id):
-    query = UserReferred.query.get(id)
-    print(query)
+@auth_bp.route("/prueba/")
+def descargar_informe():
+    users = UserReferred.get_all()
+    contador_tipos_1= 0
+    contador_tipo_2= 0
+    contador_tipo_3=0
+    for usuario in users:
+        nombres = usuario.all_names
+        email = usuario.email
+        cellphone = usuario.cellphone
+        signature = usuario.signature
+        type_apartment = usuario.apartment_type
+        if type_apartment == 2 or type_apartment == 3 or type_apartment == 4:
+            contador_tipos_1 += 1
+        elif type_apartment == 5:
+            contador_tipo_2 += 1
+        elif type_apartment == 6:
+            contador_tipo_3 += 1
+    pago_tipos_1 = (contador_tipos_1*2000000)
+    pago_tipos_2 = (contador_tipo_2*1500000)
+    pago_tipos_3 = (contador_tipo_3*1000000)
 
-    return {"da":2}
+    total = (pago_tipos_1 + pago_tipos_2 + pago_tipos_3)
+
+    tiempo= datetime
+    return render_template('lista-prueba.html',tiempo=tiempo, users=users,contador_tipos_1=contador_tipos_1,
+                           contador_tipo_2=contador_tipo_2,contador_tipo_3=contador_tipo_3,
+                           pago_tipos_1=pago_tipos_1, pago_tipos_2=pago_tipos_2, pago_tipos_3=pago_tipos_3, total=total)
